@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://de66lnf1dsdkr"]
+[gd_scene load_steps=3 format=3 uid="uid://de66lnf1dsdkr"]
 
 [ext_resource type="Script" path="res://scripts/enemy_base.gd" id="1_dk8ij"]
+[ext_resource type="Script" path="res://base_nodes/Enemy_character_base.gd" id="2_5yvvk"]
 
 [node name="Enemy_base" type="PathFollow3D"]
 loop = false
 script = ExtResource("1_dk8ij")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("2_5yvvk")
+
+[connection signal="Enemy_hit" from="CharacterBody3D" to="." method="_on_character_body_3d_enemy_hit"]

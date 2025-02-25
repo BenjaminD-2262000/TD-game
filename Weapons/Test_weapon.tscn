@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://crvkqn3d32vu4"]
+
+[ext_resource type="Script" path="res://Weapons/Test_weapon.gd" id="1_f87rw"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="2_u8r85"]
+
+[node name="TestWeapon" type="Node3D"]
+script = ExtResource("1_f87rw")
+
+[node name="RightHand" parent="." instance=ExtResource("2_u8r85")]

@@ -1,6 +1,4 @@
-extends Node
-
-@export var damage: int
+extends "res://scripts/weapon_base.gd"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,12 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
-#virtual function for activating the weapon upon weapon switch
-func activate():
-	pass
-
-#virtual function for deactivating the weapon upon weapon switch
-func deactivate():
 	pass

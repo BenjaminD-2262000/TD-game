@@ -10,7 +10,6 @@ var timer = null
 signal wave_done
 signal enemy_reach_end
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -47,6 +46,7 @@ func spawn_enemy(wave):
 	path.add_child(enemy)
 	enemy.progress = 0 
 	enemy.reached_end.connect(_on_enemy_reached_end)
+	enemy.enemy_died.connect(_on_enemy_died)
 	enemies_spawned += 1
 	if enemies_spawned >= wave["amount"]:
 		if timer:
@@ -58,4 +58,6 @@ func spawn_enemy(wave):
 
 func _on_enemy_reached_end(enemy):
 	enemy_reach_end.emit(enemy)
-	
+
+func _on_enemy_died():
+	$SubViewport/Kill_count.enemy_died()

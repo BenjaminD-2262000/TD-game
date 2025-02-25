@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5jwoawv5xg32"]
+[gd_scene load_steps=18 format=3 uid="uid://c5jwoawv5xg32"]
 
 [ext_resource type="Script" path="res://Levels/EnemySpawner.gd" id="1_iqevg"]
 [ext_resource type="PackedScene" uid="uid://im06nq4w4p3o" path="res://enemies/basic_enemy.tscn" id="2_lol31"]
 [ext_resource type="PackedScene" uid="uid://dher8540ewaoy" path="res://castle.tscn" id="3_4knop"]
 [ext_resource type="Script" path="res://Levels/WaveSpawner.gd" id="3_kecdl"]
 [ext_resource type="PackedScene" uid="uid://bs285vgjjqivo" path="res://enemies/fast_enemy.tscn" id="4_0krpr"]
-[ext_resource type="Script" path="res://Levels/Kill_count.gd" id="5_3118g"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="6_nlmgy"]
 [ext_resource type="PackedScene" uid="uid://cqapcqfp4ioag" path="res://player.tscn" id="7_inio6"]
 [ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="8_pow6c"]
@@ -44,7 +43,7 @@ point_count = 12
 albedo_color = Color(0.54902, 0.333333, 0.054902, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_e07wf"]
-viewport_path = NodePath("EnemySpawner/WaveSpawner/SubViewport")
+viewport_path = NodePath("EnemySpawner/SubViewport")
 
 [node name="Debug_level" type="Node3D"]
 
@@ -85,6 +84,7 @@ material = SubResource("StandardMaterial3D_3xjwv")
 
 [node name="EnemySpawner" type="Node3D" parent="." node_paths=PackedStringArray("path")]
 script = ExtResource("1_iqevg")
+spawn_interval = null
 path = NodePath("../Enemy_Path")
 
 [node name="WaveSpawner" type="Node3D" parent="EnemySpawner" node_paths=PackedStringArray("path")]
@@ -95,17 +95,11 @@ enemy_scenes = {
 "fast": ExtResource("4_0krpr")
 }
 
-[node name="SubViewport" type="SubViewport" parent="EnemySpawner/WaveSpawner"]
-transparent_bg = true
+[node name="SubViewport" type="SubViewport" parent="EnemySpawner"]
 
-[node name="Kill_count" type="Label" parent="EnemySpawner/WaveSpawner/SubViewport"]
-offset_right = 513.0
-offset_bottom = 232.0
-theme_override_colors/font_color = Color(1, 0.992157, 0, 1)
-theme_override_font_sizes/font_size = 200
-text = "
-"
-script = ExtResource("5_3118g")
+[node name="Kill_count" type="Label" parent="EnemySpawner/SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Castle" parent="." instance=ExtResource("3_4knop")]
 transform = Transform3D(-0.287717, 0, -0.861603, 0, 2.08782, 0, 7.27433, 0, -0.0340784, 22.1711, 0, -2.21663)

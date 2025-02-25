@@ -8,6 +8,7 @@ extends Node3D
 var enemy_waves = []  # Stores the parsed JSON waves
 var wave_index = 0  # Tracks which enemy to spawn next
 
+var wave_size: int = 0
 
 func _ready():
 	load_waves()
@@ -24,8 +25,13 @@ func load_waves():
 		var json_string = file.get_as_text()
 		enemy_waves = JSON.parse_string(json_string)
 		file.close()
+		
+		for i in range(enemy_waves.size()):
+			wave_size += enemy_waves[i]["amount"]
+
 	else:
 		print("Failed to load enemy wave file!")
+	$WaveSpawner/SubViewport/Kill_count.set_wave_size(wave_size)
 
 func start_spawning():
 	$WaveSpawner.spawn_wave(enemy_waves[wave_index])

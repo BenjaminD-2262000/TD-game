@@ -1,8 +1,6 @@
-extends Node
+extends CharacterBody3D
 
-@export var damage: int
-
-
+signal Enemy_hit(damage)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,10 +10,5 @@ func _ready():
 func _process(delta):
 	pass
 
-#virtual function for activating the weapon upon weapon switch
-func activate():
-	pass
-
-#virtual function for deactivating the weapon upon weapon switch
-func deactivate():
-	pass
+func take_damage(damage):
+	Enemy_hit.emit(damage)

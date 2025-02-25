@@ -1,4 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://vsfxjjbukam5"]
+[gd_scene load_steps=8 format=3 uid="uid://vsfxjjbukam5"]
+
+[sub_resource type="GDScript" id="GDScript_5ajb3"]
+script/source = "extends \"res://scripts/weapon_base.gd\"
+
+@export var hitbox: Area3D
+
+var is_active: bool = false  # Track if the hammer is enabled
+var can_hit: bool = false  # Prevent multiple hits in one swing
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func activate():
+	print(\"Hammer activated\")
+	is_active = true
+	can_hit = true  # Reset hit state
+	if hitbox:
+		hitbox.monitoring = true  # Enable hit detection
+		hitbox.body_entered.connect(_on_hitbox_body_entered)
+
+func deactivate():
+	print(\"Hammer deactivated\")
+	is_active = false
+	if hitbox:
+		hitbox.monitoring = false  # Disable hit detection
+		hitbox.body_entered.disconnect(_on_hitbox_body_entered)
+
+func _on_hitbox_body_entered(body):
+	body.take_damage(damage)
+	
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yyo3a"]
+size = Vector3(0.4, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hppm"]
+albedo_color = Color(0.482353, 0.482353, 0.482353, 1)
+metallic = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_maeh8"]
+material = SubResource("StandardMaterial3D_0hppm")
+size = Vector3(0.4, 0.2, 0.2)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rdq32"]
 height = 0.7
@@ -13,28 +62,22 @@ top_radius = 0.03
 bottom_radius = 0.03
 height = 0.7
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yyo3a"]
-size = Vector3(0.4, 0.2, 0.2)
+[node name="Hammer" type="Node3D" node_paths=PackedStringArray("hitbox")]
+script = SubResource("GDScript_5ajb3")
+hitbox = NodePath("HeadHitbox")
+damage = 50
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hppm"]
-albedo_color = Color(0.482353, 0.482353, 0.482353, 1)
-metallic = 0.2
+[node name="HeadHitbox" type="Area3D" parent="."]
 
-[sub_resource type="BoxMesh" id="BoxMesh_maeh8"]
-material = SubResource("StandardMaterial3D_0hppm")
-size = Vector3(0.4, 0.2, 0.2)
-
-[node name="Hammer" type="Node3D"]
-
-[node name="head" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_rdq32")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="head"]
-mesh = SubResource("CylinderMesh_ub8yu")
-
-[node name="Handle" type="CollisionShape3D" parent="."]
+[node name="Head" type="CollisionShape3D" parent="HeadHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404691, 0)
 shape = SubResource("BoxShape3D_yyo3a")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Handle"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HeadHitbox/Head"]
 mesh = SubResource("BoxMesh_maeh8")
+
+[node name="Handle" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_rdq32")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Handle"]
+mesh = SubResource("CylinderMesh_ub8yu")

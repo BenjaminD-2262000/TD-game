@@ -6,6 +6,8 @@ extends PathFollow3D
 @export var damage: float = 1.0
 signal reached_end
 
+signal enemy_died
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CharacterBody3D/SubViewport/HPBar.max_value = health
@@ -19,8 +21,6 @@ func _process(delta):
 	if progress_ratio >= 1.0:  #canot be to precise
 		reached_end.emit(self)
 
-
-
 func take_damage(amount: int):
 	health -= amount
 	$CharacterBody3D/SubViewport/HPBar.value = health
@@ -30,4 +30,9 @@ func take_damage(amount: int):
 		
 
 func die():
+	enemy_died.emit()
 	queue_free()
+
+
+func _on_character_body_3d_enemy_hit(damage):
+	take_damage(damage)

@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vsfxjjbukam5" path="res://Weapons/Hammer.tscn" id="4_ajv6r"]
 [ext_resource type="Script" path="res://Right_Hand.gd" id="4_noq6m"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_fo0ap"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_et4go"]
+[ext_resource type="PackedScene" uid="uid://crvkqn3d32vu4" path="res://Weapons/Test_weapon.tscn" id="6_5itps"]
 
 [node name="Player" type="XROrigin3D"]
 
@@ -26,8 +25,14 @@ script = ExtResource("2_51jko")
 [node name="Right_Hand" type="XRController3D" parent="."]
 tracker = &"right_hand"
 script = ExtResource("4_noq6m")
-weapon_list = [ExtResource("4_ajv6r"), SubResource("SphereShape3D_et4go")]
+weapon_list = Array[NodePath]([NodePath("Weapons/Hammer"), NodePath("Weapons/TestWeapon")])
 
-[node name="Hammer" parent="Right_Hand" instance=ExtResource("4_ajv6r")]
+[node name="Weapons" type="Node3D" parent="Right_Hand"]
+
+[node name="Hammer" parent="Right_Hand/Weapons" instance=ExtResource("4_ajv6r")]
+visible = false
+
+[node name="TestWeapon" parent="Right_Hand/Weapons" instance=ExtResource("6_5itps")]
+visible = false
 
 [node name="PlayerBody" parent="." instance=ExtResource("5_fo0ap")]
