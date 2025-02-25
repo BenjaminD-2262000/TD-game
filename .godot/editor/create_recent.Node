@@ -1,0 +1,14 @@
+MeshInstance3D
+CollisionShape3D
+MultiMeshInstance3D
+CollisionPolygon3D
+XRToolsFunctionPickup
+XRController3D
+XRCamera3D
+XROrigin3D
+XRToolsStartXR
+Node3D
+SubViewport
+ProgressBar
+Sprite3D
+Camera3D

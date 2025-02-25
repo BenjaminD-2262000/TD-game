@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://de66lnf1dsdkr"]
+
+[ext_resource type="Script" path="res://scripts/enemy_base.gd" id="1_dk8ij"]
+
+[node name="Enemy_base" type="PathFollow3D"]
+loop = false
+script = ExtResource("1_dk8ij")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]

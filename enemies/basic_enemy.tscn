@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://im06nq4w4p3o"]
+
+[ext_resource type="PackedScene" uid="uid://de66lnf1dsdkr" path="res://base_nodes/enemy_base.tscn" id="1_64gnw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kqaa"]
+albedo_color = Color(0.552941, 0.109804, 0.117647, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5oci5"]
+material = SubResource("StandardMaterial3D_3kqaa")
+radius = 0.3
+height = 1.75
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d4m64"]
+radius = 0.3
+height = 1.75
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sxuw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrl3m"]
+bg_color = Color(0.858824, 0, 0.129412, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jb4vu"]
+viewport_path = NodePath("CharacterBody3D/SubViewport")
+
+[node name="Basic enemy" instance=ExtResource("1_64gnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878405, 0)
+damage = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CapsuleMesh_5oci5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_d4m64")
+
+[node name="SubViewport" type="SubViewport" parent="CharacterBody3D" index="2"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(150, 25)
+
+[node name="HPBar" type="ProgressBar" parent="CharacterBody3D/SubViewport" index="0"]
+offset_right = 150.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4sxuw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rrl3m")
+value = 100.0
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14852, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_jb4vu")

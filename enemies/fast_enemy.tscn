@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs285vgjjqivo"]
+
+[ext_resource type="PackedScene" uid="uid://de66lnf1dsdkr" path="res://base_nodes/enemy_base.tscn" id="1_jjnmw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x1gg"]
+albedo_color = Color(0.14902, 0.964706, 0.152941, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vhlk4"]
+material = SubResource("StandardMaterial3D_5x1gg")
+radius = 0.25
+height = 1.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5kten"]
+radius = 0.25
+height = 1.4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5wqx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnn06"]
+bg_color = Color(0.858824, 0, 0.129412, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_72csa"]
+viewport_path = NodePath("CharacterBody3D/SubViewport")
+
+[node name="Fast_enemy" instance=ExtResource("1_jjnmw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.132553, 0)
+health = 50
+speed = 17.0
+damage = 6.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.799962, 0)
+mesh = SubResource("CapsuleMesh_vhlk4")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_5kten")
+
+[node name="SubViewport" type="SubViewport" parent="CharacterBody3D" index="2"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(150, 25)
+
+[node name="HPBar" type="ProgressBar" parent="CharacterBody3D/SubViewport" index="0"]
+offset_right = 150.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_j5wqx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jnn06")
+value = 100.0
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11647, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_72csa")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqapcqfp4ioag"]
+
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_ljnvg"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="2_51jko"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="3_0duhl"]
+[ext_resource type="PackedScene" uid="uid://vsfxjjbukam5" path="res://Weapons/Hammer.tscn" id="4_ajv6r"]
+[ext_resource type="Script" path="res://Right_Hand.gd" id="4_noq6m"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_fo0ap"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_et4go"]
+
+[node name="Player" type="XROrigin3D"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="Left_Hand" type="XRController3D" parent="."]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="Left_Hand" instance=ExtResource("1_ljnvg")]
+
+[node name="XRToolsFunctionPickup" type="Node3D" parent="Left_Hand/LeftHand"]
+script = ExtResource("2_51jko")
+
+[node name="MovementDirect" parent="Left_Hand" instance=ExtResource("3_0duhl")]
+
+[node name="Right_Hand" type="XRController3D" parent="."]
+tracker = &"right_hand"
+script = ExtResource("4_noq6m")
+weapon_list = [ExtResource("4_ajv6r"), SubResource("SphereShape3D_et4go")]
+
+[node name="Hammer" parent="Right_Hand" instance=ExtResource("4_ajv6r")]
+
+[node name="PlayerBody" parent="." instance=ExtResource("5_fo0ap")]
