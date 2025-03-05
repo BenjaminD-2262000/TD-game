@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi4gt27yg160l"]
+
+[ext_resource type="Script" path="res://base_nodes/Tower_base.gd" id="1_octl6"]
+
+[node name="TowerBase" type="Node3D"]
+script = ExtResource("1_octl6")
+
+[node name="Range" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Range"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Range"]
+transparency = 0.9

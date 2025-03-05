@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://m681abjs35k3"]
+
+[ext_resource type="PackedScene" uid="uid://blgamw4tu1h27" path="res://Assets/Tower/uploads_files_3128125_WatchTowerSmall.fbx" id="1_gdhn3"]
+[ext_resource type="Texture2D" uid="uid://bf4nygfexodr3" path="res://Assets/Tower/uploads_files_3128125_WatchTowerSmall.fbm/TowerNormal.TGA" id="2_xk27x"]
+[ext_resource type="Texture2D" uid="uid://drjqeirvaf7dl" path="res://Assets/Tower/uploads_files_3128125_WatchTowerSmall.fbm/TowerBase.TGA" id="3_32ugm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtnro"]
+albedo_texture = ExtResource("2_xk27x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26brd"]
+albedo_texture = ExtResource("3_32ugm")
+
+[node name="Root Scene" instance=ExtResource("1_gdhn3")]
+
+[node name="tower" parent="RootNode" index="0"]
+material_overlay = SubResource("StandardMaterial3D_rtnro")
+surface_material_override/0 = SubResource("StandardMaterial3D_26brd")

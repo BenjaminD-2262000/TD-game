@@ -1,6 +1,8 @@
 extends CharacterBody3D
+class_name Enemy
 
 signal Enemy_hit(damage)
+signal Enemy_died
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

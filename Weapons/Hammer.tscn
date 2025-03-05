@@ -19,7 +19,7 @@ func _process(delta):
 
 
 func activate():
-	print(\"Hammer activated\")
+
 	is_active = true
 	can_hit = true  # Reset hit state
 	if hitbox:
@@ -27,14 +27,15 @@ func activate():
 		hitbox.body_entered.connect(_on_hitbox_body_entered)
 
 func deactivate():
-	print(\"Hammer deactivated\")
+
 	is_active = false
 	if hitbox:
 		hitbox.monitoring = false  # Disable hit detection
 		hitbox.body_entered.disconnect(_on_hitbox_body_entered)
 
 func _on_hitbox_body_entered(body):
-	body.take_damage(damage)
+	if body is Enemy:
+		body.take_damage(damage)
 	
 "
 

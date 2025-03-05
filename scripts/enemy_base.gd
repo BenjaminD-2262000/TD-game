@@ -31,6 +31,7 @@ func take_damage(amount: int):
 
 func die():
 	enemy_died.emit()
+	$CharacterBody3D.Enemy_died.emit()
 	queue_free()
 
 

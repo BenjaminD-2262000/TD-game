@@ -19,7 +19,7 @@ func _process(delta):
 func _input(event):
 	#TODO: REMOVE NUMPAD 2 AS SWITCH WEAPON, IS SIMPLY DEBUG
 	if event.is_action_pressed("ax_button") or event.is_action_pressed("Switch Weapon"):
-		print("A button pressed!")
+
 		_switch_weapon((current_weapon_index + 1) % weapon_list.size())
 
 func _switch_weapon(new_index: int):

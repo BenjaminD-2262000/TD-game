@@ -1,0 +1,129 @@
+[gd_scene load_steps=19 format=3 uid="uid://c5jwoawv5xg32"]
+
+[ext_resource type="Script" path="res://Levels/EnemySpawner.gd" id="1_iqevg"]
+[ext_resource type="PackedScene" uid="uid://im06nq4w4p3o" path="res://enemies/basic_enemy.tscn" id="2_lol31"]
+[ext_resource type="PackedScene" uid="uid://dher8540ewaoy" path="res://castle.tscn" id="3_4knop"]
+[ext_resource type="Script" path="res://Levels/WaveSpawner.gd" id="3_kecdl"]
+[ext_resource type="PackedScene" uid="uid://bs285vgjjqivo" path="res://enemies/fast_enemy.tscn" id="4_0krpr"]
+[ext_resource type="Script" path="res://Levels/Kill_count.gd" id="5_3118g"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="6_nlmgy"]
+[ext_resource type="PackedScene" uid="uid://cqapcqfp4ioag" path="res://player.tscn" id="7_inio6"]
+[ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="8_pow6c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e3nvv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_x1dso"]
+sky_material = SubResource("ProceduralSkyMaterial_e3nvv")
+
+[sub_resource type="Environment" id="Environment_7qxa4"]
+background_mode = 2
+sky = SubResource("Sky_x1dso")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7nwi"]
+albedo_color = Color(0.372549, 0.603922, 0.196078, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3lcrn"]
+material = SubResource("StandardMaterial3D_h7nwi")
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6p87"]
+size = Vector3(50, 0, 50)
+
+[sub_resource type="Curve3D" id="Curve3D_2eqvm"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -24.7585, 0, -0.531806, -3, 0, 3, 3, 0, -3, -16.8405, 0, -10.6952, -2, 0, 0, 2, 0, 0, -10.1634, 0, -15.4815, -2, 0, -2, 2, 0, 2, -3.3681, 0, -12.4088, 0, 0, 0, 0, 0, 0, -2.2454, 0, -3.30901, -1, 0, -2, 1, 0, 2, -2.12722, 0, 6.55894, -3, 0, 0, 3, 0, 0, 3.959, 0, 13.2361, -1, 0, 2, 1, 0, -2, 11.5225, 0, 9.09979, 0, 0, 0, 0, 0, 0, 12.527, 0, 2.89539, -1, 0, 1, 1, 0, -1, 13.1179, 0, -1.47724, 0, 0, 0, 0, 0, 0, 16.8996, 0, -2.65903, 0, 0, 0, 0, 0, 0, 21.306, 0, -2.34),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xjwv"]
+albedo_color = Color(0.54902, 0.333333, 0.054902, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e07wf"]
+viewport_path = NodePath("EnemySpawner/WaveSpawner/SubViewport")
+
+[node name="Debug_level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7qxa4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_3lcrn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_h6p87")
+
+[node name="Enemy_Path" type="Path3D" parent="."]
+curve = SubResource("Curve3D_2eqvm")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Enemy_Path"]
+transform = Transform3D(0.788858, 0, -0.614576, 0, 1, 0, 0.614576, 0, 0.788858, -24.7585, 0, -0.531806)
+
+[node name="Enemy_path_mesh" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(-1.12961, 0.390631, -1.14847, -0.0894094, 2.06049, -0.0501919, 2.03693, 0.331635, 1.75542, 0.134555, -0.585492, 0.10602)
+mode = 2
+path_node = NodePath("../Enemy_Path")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_3xjwv")
+
+[node name="EnemySpawner" type="Node3D" parent="." node_paths=PackedStringArray("path")]
+script = ExtResource("1_iqevg")
+path = NodePath("../Enemy_Path")
+
+[node name="WaveSpawner" type="Node3D" parent="EnemySpawner" node_paths=PackedStringArray("path")]
+script = ExtResource("3_kecdl")
+path = NodePath("../../Enemy_Path")
+enemy_scenes = {
+"basic": ExtResource("2_lol31"),
+"fast": ExtResource("4_0krpr")
+}
+
+[node name="SubViewport" type="SubViewport" parent="EnemySpawner/WaveSpawner"]
+transparent_bg = true
+
+[node name="Kill_count" type="Label" parent="EnemySpawner/WaveSpawner/SubViewport"]
+offset_right = 513.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(1, 0.992157, 0, 1)
+theme_override_font_sizes/font_size = 200
+text = "
+"
+script = ExtResource("5_3118g")
+
+[node name="Kill_Count_sprite" type="Sprite3D" parent="EnemySpawner/WaveSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.9219, -31.2237)
+texture = SubResource("ViewportTexture_e07wf")
+
+[node name="Castle" parent="." instance=ExtResource("3_4knop")]
+transform = Transform3D(-0.287717, 0, -0.861603, 0, 2.08782, 0, 7.27433, 0, -0.0340784, 22.1711, 0, -2.21663)
+
+[node name="XRToolsStartXR" type="Node" parent="."]
+script = ExtResource("6_nlmgy")
+
+[node name="Player" parent="." instance=ExtResource("7_inio6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="XRSimulator" parent="." instance=ExtResource("8_pow6c")]
+
+[node name="Towers" type="Node3D" parent="."]
+
+[connection signal="enemy_reach_end" from="EnemySpawner/WaveSpawner" to="Castle" method="_on_wave_spawner_enemy_reach_end"]
+[connection signal="wave_done" from="EnemySpawner/WaveSpawner" to="EnemySpawner" method="_on_wave_spawner_wave_done"]
