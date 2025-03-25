@@ -45,4 +45,3 @@ func _on_wave_spawner_enemy_reach_end(enemy):
 			return  
 		handle_enemy_at_door(enemy)
 	)
-

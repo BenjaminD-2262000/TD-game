@@ -2,6 +2,8 @@
 class_name XRToolsViewport2DIn3D
 extends Node3D
 
+var wave_ongoing: bool = false
+signal start_game
 
 ## XR ToolsViewport 2D in 3D
 ##
@@ -634,3 +636,20 @@ func _update_render() -> void:
 		# Force a redraw of the viewport
 		if Engine.is_editor_hint() or update_mode == UpdateMode.UPDATE_ONCE:
 			$Viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+
+func wave_finished():
+	visible = true
+	wave_ongoing = false
+	$Start_game_ui.enable()
+
+func game_completed():
+	pass
+	
+func on_start_game() -> void:
+	if wave_ongoing:
+		return
+		
+	print("signal one sent")
+	visible = false
+	wave_ongoing = true
+	start_game.emit()

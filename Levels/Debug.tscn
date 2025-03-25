@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5jwoawv5xg32"]
+[gd_scene load_steps=24 format=3 uid="uid://c5jwoawv5xg32"]
 
+[ext_resource type="Script" path="res://Levels/level_base.gd" id="1_bdbtb"]
 [ext_resource type="Script" path="res://Levels/EnemySpawner.gd" id="1_iqevg"]
 [ext_resource type="PackedScene" uid="uid://im06nq4w4p3o" path="res://enemies/basic_enemy.tscn" id="2_lol31"]
 [ext_resource type="PackedScene" uid="uid://dher8540ewaoy" path="res://castle.tscn" id="3_4knop"]
@@ -7,8 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bs285vgjjqivo" path="res://enemies/fast_enemy.tscn" id="4_0krpr"]
 [ext_resource type="Script" path="res://Levels/Kill_count.gd" id="5_3118g"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="6_nlmgy"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="6_p0afi"]
+[ext_resource type="PackedScene" uid="uid://blgcwjyykt2u6" path="res://Levels/start_game_ui.tscn" id="7_er3xc"]
 [ext_resource type="PackedScene" uid="uid://cqapcqfp4ioag" path="res://player.tscn" id="7_inio6"]
 [ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="8_pow6c"]
+[ext_resource type="PackedScene" uid="uid://0cvbw33uu3f" path="res://Levels/game_successfull.tscn" id="9_amu2d"]
 [ext_resource type="Script" path="res://Levels/Tower_manager.gd" id="10_7xeos"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e3nvv"]
@@ -48,6 +52,7 @@ albedo_color = Color(0.54902, 0.333333, 0.054902, 1)
 viewport_path = NodePath("EnemySpawner/WaveSpawner/SubViewport")
 
 [node name="Debug_level" type="Node3D"]
+script = ExtResource("1_bdbtb")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7qxa4")
@@ -113,6 +118,22 @@ script = ExtResource("5_3118g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.9219, -31.2237)
 texture = SubResource("ViewportTexture_e07wf")
 
+[node name="StartGameViewport" parent="EnemySpawner/WaveSpawner" instance=ExtResource("6_p0afi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.830657, 1.4477, -1.74572)
+scene = ExtResource("7_er3xc")
+viewport_size = Vector2(700, 350)
+unshaded = true
+scene_properties_keys = PackedStringArray("start_game_ui.gd")
+
+[node name="Start_game_ui" parent="EnemySpawner/WaveSpawner/StartGameViewport" instance=ExtResource("7_er3xc")]
+visible = false
+
+[node name="GameFinishedViewport" parent="EnemySpawner/WaveSpawner" instance=ExtResource("6_p0afi")]
+transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0.781308, 17.0313, -25.5325)
+visible = false
+scene = ExtResource("9_amu2d")
+scene_properties_keys = PackedStringArray()
+
 [node name="Castle" parent="." instance=ExtResource("3_4knop")]
 transform = Transform3D(-0.287717, 0, -0.861603, 0, 2.08782, 0, 7.27433, 0, -0.0340784, 22.1711, 0, -2.21663)
 
@@ -127,5 +148,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="Tower_manager" type="Node3D" parent="."]
 script = ExtResource("10_7xeos")
 
+[connection signal="enemy_died" from="EnemySpawner" to="." method="_on_enemy_spawner_enemy_died"]
 [connection signal="enemy_reach_end" from="EnemySpawner/WaveSpawner" to="Castle" method="_on_wave_spawner_enemy_reach_end"]
 [connection signal="wave_done" from="EnemySpawner/WaveSpawner" to="EnemySpawner" method="_on_wave_spawner_wave_done"]
+[connection signal="start_game" from="EnemySpawner/WaveSpawner/StartGameViewport" to="." method="_on_viewport_2_din_3d_start_game"]

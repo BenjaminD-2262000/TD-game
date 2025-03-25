@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqapcqfp4ioag"]
+[gd_scene load_steps=15 format=3 uid="uid://cqapcqfp4ioag"]
 
 [ext_resource type="Script" path="res://Left_controller.gd" id="1_bnqnj"]
+[ext_resource type="Script" path="res://player.gd" id="1_ewx2v"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_ljnvg"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="2_51jko"]
 [ext_resource type="PackedScene" uid="uid://buuil45x6f2ji" path="res://Towers/basic_tower.tscn" id="2_o5k6e"]
@@ -8,12 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://vsfxjjbukam5" path="res://Weapons/Hammer.tscn" id="4_ajv6r"]
 [ext_resource type="Script" path="res://Right_Hand.gd" id="4_noq6m"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_fo0ap"]
-[ext_resource type="PackedScene" uid="uid://crvkqn3d32vu4" path="res://Weapons/Test_weapon.tscn" id="6_5itps"]
 [ext_resource type="PackedScene" uid="uid://dmcdluo4er4m" path="res://Weapons/wrench.tscn" id="6_jkcly"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="10_uo7i8"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="11_4je1s"]
+[ext_resource type="PackedScene" uid="uid://c4km721fex0ry" path="res://Weapons/flame_thrower.tscn" id="11_hyh3a"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="12_jp5r0"]
 
 [node name="Player" type="XROrigin3D"]
+script = ExtResource("1_ewx2v")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="Label" type="Label" parent="XRCamera3D"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Left_Hand" type="XRController3D" parent="."]
 tracker = &"left_hand"
@@ -36,15 +45,22 @@ visible = false
 [node name="Right_Hand" type="XRController3D" parent="."]
 tracker = &"right_hand"
 script = ExtResource("4_noq6m")
-weapon_list = Array[NodePath]([NodePath("Weapons/Hammer"), NodePath("Weapons/TestWeapon")])
+weapon_list = Array[NodePath]([NodePath("Weapons/Hammer"), NodePath("Weapons/RightHand"), NodePath("Weapons/FlameThrower")])
 
 [node name="Weapons" type="Node3D" parent="Right_Hand"]
 
 [node name="Hammer" parent="Right_Hand/Weapons" instance=ExtResource("4_ajv6r")]
 visible = false
 
-[node name="TestWeapon" parent="Right_Hand/Weapons" instance=ExtResource("6_5itps")]
+[node name="RightHand" parent="Right_Hand/Weapons" instance=ExtResource("10_uo7i8")]
 visible = false
 
+[node name="FunctionPickup" parent="Right_Hand/Weapons/RightHand" instance=ExtResource("11_4je1s")]
+
+[node name="FlameThrower" parent="Right_Hand/Weapons" instance=ExtResource("11_hyh3a")]
+visible = false
+
+[node name="FunctionPointer" parent="Right_Hand" instance=ExtResource("12_jp5r0")]
+
 [node name="PlayerBody" parent="." instance=ExtResource("5_fo0ap")]
-collision_mask = 1015
+collision_mask = 769

@@ -6,6 +6,7 @@ extends XRController3D
 var ground
 var preview_instance: Node3D = null
 var build_mode: bool = true
+var current_displayed_tower_cost: int
 
 func _ready():
 	ground = get_tree().current_scene.get_node_or_null("Ground")
@@ -53,6 +54,8 @@ func _input(event):
 				place_object()
 
 func place_object():
+	if not get_parent().can_afford(current_displayed_tower_cost):
+		return
 	if raycast.is_colliding():
 		var collision_point = raycast.get_collision_point()
 		var new_object = object_scene.instantiate()
@@ -64,10 +67,12 @@ func place_object():
 		else:
 			print("Towers node not found!")
 		new_object.place()
+		get_parent().pay(current_displayed_tower_cost)
 
 func create_preview():
 	if object_scene:
 		preview_instance = object_scene.instantiate()
+		current_displayed_tower_cost = preview_instance.cost
 		var towers_node = get_tree().current_scene.get_node("Tower_manager")  # Ensure "Towers" node path is correct
 		if towers_node:
 			towers_node.add_child(preview_instance)
@@ -86,4 +91,3 @@ func update_preview_position(collision_point):
 func hide_preview():
 	if preview_instance:
 		preview_instance.visible = false
-

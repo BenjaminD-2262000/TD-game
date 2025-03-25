@@ -1,25 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://buuil45x6f2ji"]
+[gd_scene load_steps=6 format=3 uid="uid://buuil45x6f2ji"]
 
 [ext_resource type="PackedScene" uid="uid://bi4gt27yg160l" path="res://base_nodes/Tower_base.tscn" id="1_65cb8"]
 [ext_resource type="PackedScene" uid="uid://m681abjs35k3" path="res://Assets/Tower/Basic_tower.tscn" id="2_4a042"]
+[ext_resource type="PackedScene" uid="uid://b6yhmpfrwlfcw" path="res://lever_snap.tscn" id="2_d4tlb"]
+[ext_resource type="PackedScene" uid="uid://hwmheyyoil6n" path="res://Towers/repair_game.tscn" id="4_m0kw5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_efndo"]
 
 [node name="TowerBase" instance=ExtResource("1_65cb8")]
+cost = 65
 damage = 10
 max_enemy_hit = 1
 fire_rate = 0.1
 range = 5
 
-[node name="Pivot" type="Node3D" parent="." index="1"]
+[node name="LeverSnap" parent="." index="0" instance=ExtResource("2_d4tlb")]
+transform = Transform3D(0.992252, 0, 0.124242, 0, 1, 0, -0.124242, 0, 0.992252, 0, 1.65, -0.113)
+visible = false
+
+[node name="Pivot" type="Node3D" parent="." index="2"]
 
 [node name="Tower" parent="Pivot" index="0" instance=ExtResource("2_4a042")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
-[node name="Tower" type="StaticBody3D" parent="." index="2"]
+[node name="Tower" type="StaticBody3D" parent="." index="3"]
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tower" index="0"]
 transform = Transform3D(4.4, 0, 0, 0, 8.8452, 0, 0, 0, 4.03, 0, 4, 0)
 shape = SubResource("BoxShape3D_efndo")
+
+[node name="Repair_Game" parent="." index="4" instance=ExtResource("4_m0kw5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004964, 1.27065, 2.15287)
+
+[connection signal="full_crank" from="LeverSnap" to="." method="_on_lever_snap_full_crank"]
+[connection signal="repair_game_done" from="Repair_Game" to="." method="_on_repair_game_repair_game_done"]

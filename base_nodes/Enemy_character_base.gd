@@ -7,7 +7,8 @@ signal Enemy_died
 func _ready():
 	pass # Replace with function body.
 
-
+func set_on_fire(time: float, damage: float):
+	get_parent().set_on_fire(time, damage)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

@@ -475,3 +475,12 @@ static func _find_child(node : Node, type : String) -> Node:
 
 	# No child found matching type
 	return null
+
+
+func activate():
+	if $XRToolsFunctionPickup:
+		$XRToolsFunctionPickup.enabled = true
+
+func deactivate():
+	if $XRToolsFunctionPickup:
+		$XRToolsFunctionPickup.enabled = false

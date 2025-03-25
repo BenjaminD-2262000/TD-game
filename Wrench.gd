@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name Wrench
 @onready var hitbox: Area3D = $hitbox
 
 var is_active: bool = false  # Track if the hammer is enabled
@@ -36,4 +36,4 @@ func deactivate():
 
 func _on_hitbox_body_entered(body):
 	if body.name == "Tower":
-		body.get_parent().repair()
+		body.get_parent().start_repair()

@@ -1,0 +1,83 @@
+[gd_scene load_steps=15 format=3 uid="uid://bj7kynvb2hbld"]
+
+[ext_resource type="Script" path="res://Levels/level_base.gd" id="1_05t3n"]
+[ext_resource type="Script" path="res://Levels/EnemySpawner.gd" id="1_td78g"]
+[ext_resource type="Script" path="res://Levels/WaveSpawner.gd" id="2_i0cmm"]
+[ext_resource type="PackedScene" uid="uid://im06nq4w4p3o" path="res://enemies/basic_enemy.tscn" id="3_gjhyk"]
+[ext_resource type="PackedScene" uid="uid://bs285vgjjqivo" path="res://enemies/fast_enemy.tscn" id="4_ivy7o"]
+[ext_resource type="Script" path="res://Levels/Kill_count.gd" id="5_fb2ce"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="6_e3ecj"]
+[ext_resource type="PackedScene" uid="uid://cqapcqfp4ioag" path="res://player.tscn" id="8_d6amp"]
+[ext_resource type="PackedScene" uid="uid://0cvbw33uu3f" path="res://Levels/game_successfull.tscn" id="9_cg7pl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yjdow"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fbjuv"]
+sky_material = SubResource("ProceduralSkyMaterial_yjdow")
+
+[sub_resource type="Environment" id="Environment_dop3p"]
+background_mode = 2
+sky = SubResource("Sky_fbjuv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x0qqf"]
+viewport_path = NodePath("EnemySpawner/WaveSpawner/SubViewport")
+
+[sub_resource type="Curve3D" id="Curve3D_rwf6c"]
+
+[node name="LevelBase" type="Node3D"]
+script = ExtResource("1_05t3n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dop3p")
+
+[node name="EnemySpawner" type="Node3D" parent="."]
+script = ExtResource("1_td78g")
+
+[node name="WaveSpawner" type="Node3D" parent="EnemySpawner"]
+script = ExtResource("2_i0cmm")
+enemy_scenes = {
+"basic": ExtResource("3_gjhyk"),
+"fast": ExtResource("4_ivy7o")
+}
+
+[node name="SubViewport" type="SubViewport" parent="EnemySpawner/WaveSpawner"]
+transparent_bg = true
+
+[node name="Kill_count" type="Label" parent="EnemySpawner/WaveSpawner/SubViewport"]
+offset_right = 513.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(1, 0.992157, 0, 1)
+theme_override_font_sizes/font_size = 200
+text = "
+"
+script = ExtResource("5_fb2ce")
+
+[node name="Kill_Count_sprite" type="Sprite3D" parent="EnemySpawner/WaveSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.9219, -31.2237)
+texture = SubResource("ViewportTexture_x0qqf")
+
+[node name="Viewport2Din3D" parent="EnemySpawner/WaveSpawner" instance=ExtResource("6_e3ecj")]
+scene_properties_keys = PackedStringArray()
+
+[node name="Game_successfull" parent="EnemySpawner/WaveSpawner/Viewport2Din3D" instance=ExtResource("9_cg7pl")]
+
+[node name="GameFinishedViewport" parent="EnemySpawner/WaveSpawner" instance=ExtResource("6_e3ecj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.781308, 1.44288, -1.84819)
+visible = false
+scene = ExtResource("9_cg7pl")
+scene_properties_keys = PackedStringArray()
+
+[node name="Enemy_Path" type="Path3D" parent="."]
+curve = SubResource("Curve3D_rwf6c")
+
+[node name="Player" parent="." instance=ExtResource("8_d6amp")]
+
+[connection signal="wave_done" from="EnemySpawner/WaveSpawner" to="EnemySpawner" method="_on_wave_spawner_wave_done"]

@@ -30,6 +30,10 @@ signal hinge_moved(angle)
 
 ## Hinge position
 @export var hinge_position : float = 0.0: set = _set_hinge_position
+var is_moving: bool = false
+var _previous_position: float = 0.0
+signal wheel_moving
+signal wheel_stopped
 
 ## Default position
 @export var default_position : float = 0.0: set = _set_default_position
@@ -45,6 +49,9 @@ signal hinge_moved(angle)
 @onready var _hinge_position_rad : float = deg_to_rad(hinge_position)
 @onready var _default_position_rad : float = deg_to_rad(default_position)
 
+# Variables to check a full lever crank
+var has_reached_top: bool = false
+signal full_crank
 
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
@@ -85,6 +92,18 @@ func _process(_delta: float) -> void:
 	# Move the hinge by the requested offset
 	move_hinge(_hinge_position_rad + offset)
 
+	# Check if the hinge is moving
+	if hinge_position != _previous_position:
+		if not is_moving:
+			is_moving = true
+			wheel_moving.emit()
+	else:
+		if is_moving:
+			is_moving = false
+			wheel_stopped.emit()
+
+	# Update previous position
+	_previous_position = hinge_position
 
 # Move the hinge to the specified position
 func move_hinge(position: float) -> void:
@@ -99,7 +118,11 @@ func move_hinge(position: float) -> void:
 
 	# Emit the moved signal
 	emit_signal("hinge_moved", hinge_position)
-
+	
+	if hinge_position >= hinge_limit_max and not has_reached_top:
+		has_reached_top = true
+	elif hinge_position <= hinge_limit_min and has_reached_top:
+		full_crank.emit()
 
 # Handle release of hinge
 func _on_hinge_released(_interactable: XRToolsInteractableHinge):
@@ -146,7 +169,8 @@ func _do_move_hinge(position: float) -> float:
 		position = round(position / _hinge_steps_rad) * _hinge_steps_rad
 
 	# Apply hinge limits
-	position = clamp(position, _hinge_limit_min_rad, _hinge_limit_max_rad)
+	if _hinge_limit_min_rad != 0:
+		position = clamp(position, _hinge_limit_min_rad, _hinge_limit_max_rad)
 
 	# Move if necessary
 	if position != _hinge_position_rad:

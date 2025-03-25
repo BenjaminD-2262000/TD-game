@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4km721fex0ry"]
+
+[ext_resource type="PackedScene" uid="uid://ox1tnnxv61x4" path="res://base_nodes/Weapon_base.tscn" id="1_4hn7c"]
+[ext_resource type="Script" path="res://Weapons/flame_thrower.gd" id="2_vndn0"]
+[ext_resource type="PackedScene" uid="uid://dvmshm41cxejt" path="res://Weapons/wheel_smooth.tscn" id="3_ugbp4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g08xu"]
+albedo_color = Color(0.355314, 0.355314, 0.355314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h8ywr"]
+material = SubResource("StandardMaterial3D_g08xu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo0xu"]
+albedo_color = Color(0.486767, 0.0704758, 0.0699846, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qpij1"]
+material = SubResource("StandardMaterial3D_wo0xu")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bx4qy"]
+height = 0.297899
+radius = 0.244504
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0eqw4"]
+height = 0.199096
+radius = 0.155161
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpgjd"]
+albedo_color = Color(0.86314, 0.263209, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b60dd"]
+material = SubResource("StandardMaterial3D_jpgjd")
+top_radius = 0.245
+bottom_radius = 0.05
+
+[node name="FlameThrower" node_paths=PackedStringArray("hitbox") instance=ExtResource("1_4hn7c")]
+script = ExtResource("2_vndn0")
+hitbox = NodePath("Node3D/FireRange")
+time_on_fire = 5.0
+damage = 10
+
+[node name="Node3D" type="Node3D" parent="." index="0"]
+
+[node name="WheelSmooth" parent="Node3D" index="0" instance=ExtResource("3_ugbp4")]
+transform = Transform3D(-0.00568094, 0, -0.499968, 0, 0.5, 0, 0.499968, 0, -0.00568094, -0.0519368, 0.0997637, -0.1019)
+
+[node name="FlameThrowerBody" type="StaticBody3D" parent="Node3D" index="1"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/FlameThrowerBody" index="0"]
+transform = Transform3D(0.0743037, 0, 0, 0, 0.0602321, 0, 0, 0, 0.267345, 0, 0.111164, -0.163943)
+mesh = SubResource("BoxMesh_h8ywr")
+
+[node name="Canister" type="MeshInstance3D" parent="Node3D/FlameThrowerBody" index="1"]
+transform = Transform3D(0.0940057, 0, 0, 0, 0.0940057, 0, 0, 0, 0.0940057, 0.0328553, 0.044202, -0.0545982)
+mesh = SubResource("CylinderMesh_qpij1")
+
+[node name="FireRange" type="Area3D" parent="Node3D" index="2"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/FireRange" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.0124962, 0.999922, 0, -0.999922, 0.0124962, -0.0120035, 0.11893, -0.637206)
+shape = SubResource("CylinderShape3D_bx4qy")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Node3D/FireRange" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.117638, -0.405965)
+shape = SubResource("CylinderShape3D_0eqw4")
+
+[node name="Fire" type="MeshInstance3D" parent="Node3D/FireRange" index="2"]
+transform = Transform3D(1, 0, 0, 0, 5.40369e-05, 1.00024, 0, -0.221159, 0.000244393, 0, 0.114589, -0.523985)
+transparency = 0.68
+mesh = SubResource("CylinderMesh_b60dd")
+
+[connection signal="wheel_moving" from="Node3D/WheelSmooth" to="." method="_on_wheel_smooth_wheel_moving"]
+[connection signal="wheel_stopped" from="Node3D/WheelSmooth" to="." method="_on_wheel_smooth_wheel_stopped"]

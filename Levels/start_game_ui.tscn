@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://blgcwjyykt2u6"]
+
+[ext_resource type="Script" path="res://Levels/start_game_ui.gd" id="1_2p03t"]
+
+[node name="Start_game_ui" type="CanvasLayer"]
+script = ExtResource("1_2p03t")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 425.0
+offset_bottom = 204.0
+color = Color(0.580282, 0.295236, 0.249, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -12.0
+offset_right = 105.5
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Start wave" type="Button" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Wave
+"
+
+[connection signal="pressed" from="Control/ColorRect/MarginContainer/VBoxContainer/Start wave" to="." method="_on_start_wave_pressed"]
