@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqapcqfp4ioag"]
+[gd_scene load_steps=17 format=3 uid="uid://cqapcqfp4ioag"]
 
 [ext_resource type="Script" path="res://Left_controller.gd" id="1_bnqnj"]
 [ext_resource type="Script" path="res://player.gd" id="1_ewx2v"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="3_0duhl"]
 [ext_resource type="PackedScene" uid="uid://vsfxjjbukam5" path="res://Weapons/Hammer.tscn" id="4_ajv6r"]
 [ext_resource type="Script" path="res://Right_Hand.gd" id="4_noq6m"]
+[ext_resource type="PackedScene" uid="uid://ogy318omhrt1" path="res://Towers/fire_tower.tscn" id="4_sqaij"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_fo0ap"]
+[ext_resource type="PackedScene" uid="uid://cf6lhgwblrmbs" path="res://Towers/freeze_tower.tscn" id="5_n2m23"]
 [ext_resource type="PackedScene" uid="uid://dmcdluo4er4m" path="res://Weapons/wrench.tscn" id="6_jkcly"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="10_uo7i8"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="11_4je1s"]
@@ -28,6 +30,7 @@ offset_bottom = 23.0
 tracker = &"left_hand"
 script = ExtResource("1_bnqnj")
 object_scene = ExtResource("2_o5k6e")
+tower_list = [ExtResource("2_o5k6e"), ExtResource("4_sqaij"), ExtResource("5_n2m23")]
 
 [node name="LeftHand" parent="Left_Hand" instance=ExtResource("1_ljnvg")]
 
@@ -59,6 +62,7 @@ visible = false
 
 [node name="FlameThrower" parent="Right_Hand/Weapons" instance=ExtResource("11_hyh3a")]
 visible = false
+time_on_fire = 2.0
 
 [node name="FunctionPointer" parent="Right_Hand" instance=ExtResource("12_jp5r0")]
 

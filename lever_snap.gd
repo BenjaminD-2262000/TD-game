@@ -24,4 +24,5 @@ func activate():
 	$LeverOrigin/InteractableLever/HandleOrigin/InteractableHandle/CollisionShape3D.disabled = false
 
 func _on_interactable_lever_full_crank() -> void:
+	print("full crank")
 	full_crank.emit() # Replace with function body.

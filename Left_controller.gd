@@ -1,6 +1,8 @@
 extends XRController3D
 
 @export var object_scene: PackedScene  # Assign your object scene in the Inspector
+@export var tower_list: Array
+var current_tower: int = 0
 @onready var raycast = $RayCast3D  # Make sure the path is correct
 
 var ground
@@ -29,8 +31,15 @@ func switch_mode():
 		$Wrench.deactivate()
 
 
-	
-	
+func switch_tower():
+	delete_preview()
+	if current_tower < tower_list.size() - 1:
+		current_tower += 1
+	else:
+		current_tower = 0
+	object_scene = tower_list[current_tower]
+	create_preview()
+
 func handle_build_mode():
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()  # Gets the object the ray is colliding with
@@ -48,6 +57,11 @@ func _input(event):
 		if event.keycode == KEY_KP_3:
 			switch_mode()
 			return
+		elif event.keycode == KEY_KP_4:
+			switch_tower()
+			return
+
+
 	if raycast.is_colliding() and raycast.get_collider() == ground: #first check if the tower can in fact be placed
 		if event is InputEventKey and event.is_pressed():
 			if event.keycode == KEY_KP_2:
@@ -80,7 +94,9 @@ func create_preview():
 			print("Towers node not found!")
 		preview_instance.visible = false
 
-
+func delete_preview():
+	if preview_instance:
+		preview_instance.queue_free()
 
 func update_preview_position(collision_point):
 	if preview_instance:

@@ -50,6 +50,7 @@ func spawn_enemy(wave):
 	enemy.reached_end.connect(_on_enemy_reached_end)
 	enemy.enemy_died.connect(_on_enemy_died)
 	enemies_spawned += 1
+		
 	if enemies_spawned >= enemies_in_wave:
 		if timer:
 			timer.stop()

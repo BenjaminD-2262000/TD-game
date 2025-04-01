@@ -39,15 +39,32 @@ shape = SubResource("CapsuleShape3D_d4m64")
 [node name="SubViewport" type="SubViewport" parent="CharacterBody3D" index="2"]
 disable_3d = true
 transparent_bg = true
-size = Vector2i(150, 25)
+size = Vector2i(190, 40)
 
-[node name="HPBar" type="ProgressBar" parent="CharacterBody3D/SubViewport" index="0"]
-offset_right = 150.0
-offset_bottom = 27.0
+[node name="HPBar" type="Control" parent="CharacterBody3D/SubViewport" index="0"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HPBarTexture" type="ProgressBar" parent="CharacterBody3D/SubViewport/HPBar" index="0"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 34.0
 theme_override_styles/background = SubResource("StyleBoxFlat_4sxuw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rrl3m")
 value = 100.0
 show_percentage = false
+
+[node name="StatusEffect" type="TextureRect" parent="CharacterBody3D/SubViewport/HPBar" index="1"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 35.0
+offset_bottom = 35.0
+expand_mode = 1
 
 [node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14852, 0)

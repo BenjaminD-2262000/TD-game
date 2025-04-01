@@ -653,3 +653,8 @@ func on_start_game() -> void:
 	visible = false
 	wave_ongoing = true
 	start_game.emit()
+
+
+func set_stats(stats):
+	if $Upgrade_screen:
+		$Upgrade_screen.set_stats(stats)

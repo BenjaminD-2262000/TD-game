@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bi4gt27yg160l"]
+[gd_scene load_steps=7 format=3 uid="uid://bi4gt27yg160l"]
 
 [ext_resource type="Script" path="res://base_nodes/Tower_base.gd" id="1_octl6"]
+[ext_resource type="PackedScene" uid="uid://b6yhmpfrwlfcw" path="res://lever_snap.tscn" id="2_pp7sx"]
+[ext_resource type="PackedScene" uid="uid://hwmheyyoil6n" path="res://Towers/repair_game.tscn" id="3_ke0ly"]
+[ext_resource type="PackedScene" uid="uid://keiih1dm3608" path="res://Towers/Upgrade screen.tscn" id="4_q7gpo"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="4_wjybi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gcakb"]
+size = Vector3(0.77002, 0.95752, 0.782349)
 
 [node name="TowerBase" type="Node3D"]
 script = ExtResource("1_octl6")
@@ -11,3 +18,28 @@ script = ExtResource("1_octl6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Range"]
 transparency = 0.9
+
+[node name="LeverSnap" parent="." instance=ExtResource("2_pp7sx")]
+transform = Transform3D(0.992252, 0, 0.124242, 0, 1, 0, -0.124242, 0, 0.992252, 0, 1.65, -0.113)
+visible = false
+
+[node name="Tower" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower"]
+transform = Transform3D(4.4, 0, 0, 0, 8.8452, 0, 0, 0, 4.03, 0, 2.43222, 0)
+shape = SubResource("BoxShape3D_gcakb")
+
+[node name="Repair_Game" parent="." instance=ExtResource("3_ke0ly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004964, 1.27065, 2.15287)
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("4_wjybi")]
+transform = Transform3D(1, 0, 0, 0, 0.980157, 0.198222, 0, -0.198222, 0.980157, 0, 1, 2.58565)
+visible = false
+scene = ExtResource("4_q7gpo")
+viewport_size = Vector2(425, 200)
+scene_properties_keys = PackedStringArray("upgrade_screen.gd")
+
+[node name="Upgrade_screen" parent="Viewport2Din3D" instance=ExtResource("4_q7gpo")]
+visible = false

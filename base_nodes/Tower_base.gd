@@ -5,11 +5,17 @@ class_name Tower
 
 var hitbox: Area3D
 @export var cost: int
-@export var damage: int
+@export var damage: float
 @export var max_enemy_hit: int
 @export var fire_rate: float  #fire rate in seconds between shot
 @export var range: int
+@export var level_tree_path: String
+var next_level_stats
 
+@onready var tower_location = $Pivot/Tower/RootNode/tower
+@onready var upgrade_screen = $Viewport2Din3D
+
+var current_level: int = 0
 var current_enemy: Node3D = null
 var enemies_in_range: Array
 var placed: bool = false
@@ -28,12 +34,17 @@ func _ready():
 	hitbox.body_entered.connect(_on_enemy_entered_range)
 	hitbox.body_exited.connect(_on_enemy_exit_range)
 	
+	
+	
 	#set the range
 	var shape = CylinderShape3D.new()
 	shape.radius = range
 	shape.height = 10
 	$Range/CollisionShape3D.set_shape(shape)
-	$Pivot/Tower/RootNode/tower.transparency = 0.95
+	if $Pivot/Tower.has_method("set_transparent"):
+		$Pivot/Tower.set_transparent(0.95)
+	else:
+		$Pivot/Tower.transparency = 0.95
 	
 	#set mesh to see range
 	var mesh = CylinderMesh.new()
@@ -41,6 +52,9 @@ func _ready():
 	mesh.top_radius = range
 	mesh.height = 2
 	$Range/MeshInstance3D.set_mesh(mesh)
+	
+	
+	set_next_level_stats(1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -98,7 +112,10 @@ func _on_enemy_in_range_died(enemy):
 		enemies_in_range.erase(enemy)
 
 func place():
-	$Pivot/Tower/RootNode/tower.transparency = 0.90
+	if $Pivot/Tower.has_method("set_transparent"):
+		$Pivot/Tower.set_transparent(0.0)
+	else:
+		$Pivot/Tower.transparency = 0.0
 	$Pivot.position.y -= setup_fase
 	$LeverSnap.show()
 	$LeverSnap.activate()
@@ -107,17 +124,27 @@ func place():
 
 func breakdown():
 	if placed and setup:
-		$Pivot/Tower/RootNode/tower.transparency = 0.95
+		if $Pivot/Tower.has_method("set_transparent"):
+			$Pivot/Tower.set_transparent(0.95)
+		else:
+			$Pivot/Tower.transparency = 0.95
 		broken = true
 
-func start_repair():
-	if placed and setup and broken and not repair_in_progress:
-		repair_in_progress = true
-		repair_game.start_repair()
-	
+func handle_wrench():
+	if placed and setup:
+		if broken and not repair_in_progress:
+			repair_in_progress = true
+			repair_game.start_repair()
+		elif not broken:
+			show_upgrade_screen()
+			
+
 func repair():
 	if placed and setup and broken:
-		$Pivot/Tower/RootNode/tower.transparency = 0.0
+		if $Pivot/Tower.has_method("set_transparent"):
+			$Pivot/Tower.set_transparent(0.0)
+		else:
+			$Pivot/Tower.transparency = 0.0
 		broken = false
 		repair_in_progress = false
 
@@ -129,10 +156,39 @@ func _on_lever_snap_full_crank() -> void:
 		setup_fase -= 1
 		$Pivot.position.y += 1
 	else:
-		$Pivot/Tower/RootNode/tower.transparency = 0.0
+		if $Pivot/Tower.has_method("set_transparent"):
+			$Pivot/Tower.set_transparent(0.0)
+		else:
+			$Pivot/Tower.transparency = 0.0
 		setup = true
 		remove_child($LeverSnap)
 
+
+func can_upgrade():
+	pass
+
+func show_upgrade_screen():
+	upgrade_screen.show()
+	upgrade_screen.set_stats(next_level_stats)
+
+func upgrade():
+	
+	current_level += 1
+	
+	damage += next_level_stats["damage"]
+	range +=  next_level_stats["range"]
+	fire_rate += next_level_stats["fire_rate"]
+	max_enemy_hit += next_level_stats["max_enemy_hit"]
+	
+
+func set_next_level_stats(next_level: int):
+	var file = FileAccess.open(level_tree_path, FileAccess.READ)
+	
+	if file:
+		var json_string = file.get_as_text()
+		var level_tree = JSON.parse_string(json_string)
+		next_level_stats = level_tree[next_level]
+		file.close()
 
 func _on_repair_game_repair_game_done() -> void:
 	print("screw bolted")

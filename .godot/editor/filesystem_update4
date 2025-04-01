@@ -1,23 +1,19 @@
-res://Levels/Debug.tscn
+res://base_nodes/Tower_base.tscn
 res://openxr_action_map.tres
 res://addons/godot-xr-tools/hands/animations/left/hand_blend_tree.tres
 res://addons/godot-xr-tools/hands/animations/right/hand_blend_tree.tres
-res://main.tscn
-res://player.tscn
-res://base_nodes/Tower_base.tscn
-res://Towers/basic_tower.tscn
-res://Levels/Level_base.tscn
-res://lever_snap.tscn
-res://Towers/repair_game.tscn
-res://Weapons/wrench.tscn
-res://Towers/repair_game.gd
-res://Wrench.gd
 res://base_nodes/Tower_base.gd
-res://Levels/WaveSpawner.gd
-res://player.gd
-res://Levels/level_base.gd
-res://Left_controller.gd
+res://Towers/basic_tower.tscn
+res://Towers/Level trees/Basic_tower.json
+res://main.tscn
+res://Levels/Debug.tscn
+res://player.tscn
 res://enemies/basic_enemy.tscn
-res://scripts/enemy_base.gd
-res://Levels/Tower_manager.gd
-res://Levels/EnemySpawner.gd
+res://enemies/fast_enemy.tscn
+res://Towers/freeze_tower.tscn
+res://Towers/fire_tower.tscn
+res://base_nodes/enemy_base.tscn
+res://Wrench.gd
+res://Towers/Upgrade screen.tscn
+res://Towers/upgrade_screen.gd
+res://addons/godot-xr-tools/objects/viewport_2d_in_3d.gd

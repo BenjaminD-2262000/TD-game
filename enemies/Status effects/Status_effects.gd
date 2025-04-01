@@ -2,7 +2,10 @@ extends Node
 class_name StatusEffect
 
 var duration: float = 0.0
-var enemy = null  # The enemy this effect applies to
+var enemy: Enemy_Base  # The enemy this effect applies to
+var effect_symbol
+
+signal effect_ended
 
 func _init(_enemy, _duration):
 	enemy = _enemy
@@ -14,4 +17,5 @@ func apply_effect():
 
 # Called when the effect ends
 func end_effect():
+	effect_ended.emit()
 	queue_free()

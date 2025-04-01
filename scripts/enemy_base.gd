@@ -1,5 +1,5 @@
 extends PathFollow3D
-
+class_name Enemy_Base
 
 @export var health: int = 100
 @export var speed: float = 10.0
@@ -7,6 +7,8 @@ extends PathFollow3D
 @export var resistances: Dictionary = {}
 ##The amount of money you get from killing one of this unit
 @export var worth: int = 10
+
+@onready var effect_icon = $CharacterBody3D/SubViewport/HPBar/StatusEffect
 var active_effects = []  # List to track status effects
 
 signal reached_end
@@ -17,8 +19,8 @@ signal enemy_died(worth: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CharacterBody3D/SubViewport/HPBar.max_value = health
-	$CharacterBody3D/SubViewport/HPBar.value = health
+	$CharacterBody3D/SubViewport/HPBar/HPBarTexture.max_value = health
+	$CharacterBody3D/SubViewport/HPBar/HPBarTexture.value = health
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,8 +32,8 @@ func _process(delta):
 
 func take_damage(amount: int, type: String = "normal"):
 	health -= amount
-	$CharacterBody3D/SubViewport/HPBar.value = health
-	$CharacterBody3D/SubViewport/HPBar.queue_redraw()
+	$CharacterBody3D/SubViewport/HPBar/HPBarTexture.value = health
+	$CharacterBody3D/SubViewport/HPBar/HPBarTexture.queue_redraw()
 	if health <=0:
 		die()
 	
@@ -46,9 +48,17 @@ func die():
 func apply_status_effect(effect: StatusEffect):
 	# Prevent duplicate effects of the same type (e.g., only one burning effect at a time)
 	for e in active_effects:
+		#fire melts ice
+		if e.get_class() == "FreezeEffect" and effect.get_class() == "BurningEffect":
+			active_effects.erase(e)
+		#cant freeze sombody that is currently on fire
+		if e.get_class() == "BurningEffect" and effect.get_class() == "FreezeEffect":
+			return
 		if e.get_class() == effect.get_class():
 			return  
-
+	
+	effect_icon.texture = effect.effect_symbol
+	effect.effect_ended.connect(remove_effect)
 	add_child(effect)
 	active_effects.append(effect)
 
@@ -59,5 +69,12 @@ func set_on_fire(time: float, damage: float):
 	apply_status_effect(fire_effect)
 
 
+func freeze(time: float, slowness_multiplayer: float):
+	var freeze_effect = FreezeEffect.new(self, time, slowness_multiplayer)
+	apply_status_effect(freeze_effect)
+
 func _on_character_body_3d_enemy_hit(damage):
 	take_damage(damage)
+	
+func remove_effect(effect):
+	active_effects.erase(effect)

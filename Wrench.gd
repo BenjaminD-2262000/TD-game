@@ -36,4 +36,4 @@ func deactivate():
 
 func _on_hitbox_body_entered(body):
 	if body.name == "Tower":
-		body.get_parent().start_repair()
+		body.get_parent().handle_wrench()
