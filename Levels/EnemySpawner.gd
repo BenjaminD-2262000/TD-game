@@ -27,8 +27,8 @@ func load_waves():
 		enemy_waves = JSON.parse_string(json_string)
 		file.close()
 		
-		for i in range(enemy_waves.size()):
-			wave_size += enemy_waves[i]["amount"]
+		for i in range(enemy_waves[wave_index].size()):
+			wave_size += enemy_waves[wave_index][i]["amount"]
 
 	else:
 		print("Failed to load enemy wave file!")
@@ -36,7 +36,7 @@ func load_waves():
 
 func start_spawning():
 	
-	$WaveSpawner.spawn_wave(enemy_waves[wave_index])
+	$WaveSpawner.spawn_wave(enemy_waves[wave_index], wave_size)
 	wave_index += 1
 		#TODO: set game completed screen
 

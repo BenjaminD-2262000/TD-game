@@ -649,7 +649,6 @@ func on_start_game() -> void:
 	if wave_ongoing:
 		return
 		
-	print("signal one sent")
 	visible = false
 	wave_ongoing = true
 	start_game.emit()

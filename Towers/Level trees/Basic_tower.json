@@ -2,7 +2,7 @@
 	{
 		"damage": 15,
 		"max_enemy_hit": 0,
-		"range": 0,
+		"range": 5,
 		"fire_rate": 0,
 		"price": 35
 	},

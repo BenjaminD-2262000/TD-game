@@ -1,12 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dher8540ewaoy"]
+[gd_scene load_steps=6 format=3 uid="uid://dher8540ewaoy"]
 
 [ext_resource type="Script" path="res://castle.gd" id="1_7okpr"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31evs"]
-albedo_color = Color(0.466667, 0.207843, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_o2pj8"]
-material = SubResource("StandardMaterial3D_31evs")
+[ext_resource type="PackedScene" uid="uid://c8y2hfm7yw18k" path="res://Assets/Gate/scene.gltf" id="2_d2ebi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2b4e"]
 
@@ -19,8 +14,7 @@ viewport_path = NodePath("SubViewport")
 [node name="Castle" type="Node3D"]
 script = ExtResource("1_7okpr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_o2pj8")
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_d2ebi")]
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
@@ -45,5 +39,5 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.202216, 1.29717, 0)
+transform = Transform3D(13.4495, 0, 0, 0, 2.78519, 0, 0, 0, 1, -2.23158, 10.2972, 0)
 texture = SubResource("ViewportTexture_ufg4q")

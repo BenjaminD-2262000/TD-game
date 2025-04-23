@@ -1,19 +1,26 @@
-res://base_nodes/Tower_base.tscn
+res://castle.tscn
 res://openxr_action_map.tres
 res://addons/godot-xr-tools/hands/animations/left/hand_blend_tree.tres
-res://addons/godot-xr-tools/hands/animations/right/hand_blend_tree.tres
 res://base_nodes/Tower_base.gd
-res://Towers/basic_tower.tscn
-res://Towers/Level trees/Basic_tower.json
-res://main.tscn
+res://addons/godot-xr-tools/hands/animations/right/hand_blend_tree.tres
 res://Levels/Debug.tscn
+res://Towers/freeze_tower.tscn
+res://main.tscn
 res://player.tscn
+res://Towers/fire_tower.tscn
 res://enemies/basic_enemy.tscn
 res://enemies/fast_enemy.tscn
-res://Towers/freeze_tower.tscn
-res://Towers/fire_tower.tscn
-res://base_nodes/enemy_base.tscn
-res://Wrench.gd
-res://Towers/Upgrade screen.tscn
-res://Towers/upgrade_screen.gd
-res://addons/godot-xr-tools/objects/viewport_2d_in_3d.gd
+res://enemies/armored_enemy.tscn
+res://Assets/Tower/Fridge/Assets.gd
+res://Towers/freeze_tower.gd
+res://Towers/basic_tower.tscn
+res://Weapons/flame_thrower.tscn
+res://Levels/debug_waves.json
+res://Assets/Zombies/Basic/zombie.tscn
+res://scripts/enemy_base.gd
+res://Assets/Zombies/Basic/zombie.gd
+res://Weapons/Hammer.tscn
+res://Weapons/wrench.tscn
+res://Assets/Zombies/fast/Fast zombie.tscn
+res://scripts/weapon_base.gd
+res://base_nodes/Weapon_base.tscn

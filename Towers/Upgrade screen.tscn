@@ -58,10 +58,10 @@ size_flags_vertical = 4
 
 [node name="Stat" type="Label" parent="Control/ColorRect/DamageContainer/Right"]
 layout_mode = 2
-text = "+5"
 horizontal_alignment = 2
 
 [node name="RangeContainer" type="HBoxContainer" parent="Control/ColorRect"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 53.0
 offset_right = 426.0
@@ -82,10 +82,10 @@ size_flags_vertical = 4
 
 [node name="Stat" type="Label" parent="Control/ColorRect/RangeContainer/Right"]
 layout_mode = 2
-text = "+5"
 horizontal_alignment = 2
 
 [node name="EnemiesContainer" type="HBoxContainer" parent="Control/ColorRect"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 74.0
 offset_right = 426.0
@@ -106,10 +106,10 @@ size_flags_vertical = 4
 
 [node name="Stat" type="Label" parent="Control/ColorRect/EnemiesContainer/Right"]
 layout_mode = 2
-text = "+5"
 horizontal_alignment = 2
 
 [node name="FireContainer" type="HBoxContainer" parent="Control/ColorRect"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 96.0
 offset_right = 426.0
@@ -130,10 +130,10 @@ size_flags_vertical = 4
 
 [node name="Stat" type="Label" parent="Control/ColorRect/FireContainer/Right"]
 layout_mode = 2
-text = "+5"
 horizontal_alignment = 2
 
 [node name="PriceContainer" type="HBoxContainer" parent="Control/ColorRect"]
+layout_mode = 0
 offset_left = 100.0
 offset_top = 127.0
 offset_right = 310.0
@@ -154,5 +154,6 @@ size_flags_vertical = 4
 
 [node name="Stat" type="Label" parent="Control/ColorRect/PriceContainer/Right"]
 layout_mode = 2
-text = "+5"
 horizontal_alignment = 2
+
+[connection signal="pressed" from="Control/ColorRect/Button" to="." method="_on_button_pressed"]

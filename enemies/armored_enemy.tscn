@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxb6xphv3uy0u"]
+
+[ext_resource type="PackedScene" uid="uid://de66lnf1dsdkr" path="res://base_nodes/enemy_base.tscn" id="1_k4p4w"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kghmb"]
+viewport_path = NodePath("CharacterBody3D/SubViewport")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0xiix"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljr77"]
+albedo_color = Color(0.762404, 0.762404, 0.762404, 1)
+metallic = 1.0
+normal_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7yku0"]
+material = SubResource("StandardMaterial3D_ljr77")
+
+[node name="Armored_enemy" instance=ExtResource("1_k4p4w")]
+speed = 3.0
+damage = 10.0
+worth = 25
+armored = true
+
+[node name="Sprite3D" parent="CharacterBody3D" index="1"]
+texture = SubResource("ViewportTexture_kghmb")
+
+[node name="Model" type="CollisionShape3D" parent="CharacterBody3D" index="2"]
+shape = SubResource("CylinderShape3D_0xiix")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_7yku0")

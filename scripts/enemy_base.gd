@@ -7,7 +7,8 @@ class_name Enemy_Base
 @export var resistances: Dictionary = {}
 ##The amount of money you get from killing one of this unit
 @export var worth: int = 10
-
+##Armored enemies are immune to standard attacks
+@export var armored: bool = false
 @onready var effect_icon = $CharacterBody3D/SubViewport/HPBar/StatusEffect
 var active_effects = []  # List to track status effects
 
@@ -16,12 +17,12 @@ signal reached_end
 signal enemy_died(worth: int)
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CharacterBody3D/SubViewport/HPBar/HPBarTexture.max_value = health
 	$CharacterBody3D/SubViewport/HPBar/HPBarTexture.value = health
-
+	if $CharacterBody3D/Model.has_method("play_animation"):
+		$CharacterBody3D/Model.play_animation()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -31,6 +32,9 @@ func _process(delta):
 		reached_end.emit(self)
 
 func take_damage(amount: int, type: String = "normal"):
+	#Armored enemies are immune to standard attacks
+	if armored and type == "normal":
+		return
 	health -= amount
 	$CharacterBody3D/SubViewport/HPBar/HPBarTexture.value = health
 	$CharacterBody3D/SubViewport/HPBar/HPBarTexture.queue_redraw()

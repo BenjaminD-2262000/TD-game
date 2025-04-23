@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://de66lnf1dsdkr"]
+[gd_scene load_steps=6 format=3 uid="uid://de66lnf1dsdkr"]
 
 [ext_resource type="Script" path="res://scripts/enemy_base.gd" id="1_dk8ij"]
 [ext_resource type="Script" path="res://base_nodes/Enemy_character_base.gd" id="2_5yvvk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8i6f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im2sv"]
+bg_color = Color(0.858824, 0, 0.129412, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3tguy"]
+viewport_path = NodePath("CharacterBody3D/SubViewport")
 
 [node name="Enemy_base" type="PathFollow3D"]
 loop = false
@@ -9,5 +17,40 @@ script = ExtResource("1_dk8ij")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("2_5yvvk")
+
+[node name="SubViewport" type="SubViewport" parent="CharacterBody3D"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(190, 40)
+
+[node name="HPBar" type="Control" parent="CharacterBody3D/SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HPBarTexture" type="ProgressBar" parent="CharacterBody3D/SubViewport/HPBar"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 7.0
+offset_right = 188.0
+offset_bottom = 34.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i8i6f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_im2sv")
+value = 100.0
+show_percentage = false
+
+[node name="StatusEffect" type="TextureRect" parent="CharacterBody3D/SubViewport/HPBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 35.0
+offset_bottom = 35.0
+expand_mode = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14852, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_3tguy")
 
 [connection signal="Enemy_hit" from="CharacterBody3D" to="." method="_on_character_body_3d_enemy_hit"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c5jwoawv5xg32"]
+[gd_scene load_steps=25 format=3 uid="uid://c5jwoawv5xg32"]
 
 [ext_resource type="Script" path="res://Levels/level_base.gd" id="1_bdbtb"]
 [ext_resource type="Script" path="res://Levels/EnemySpawner.gd" id="1_iqevg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Levels/WaveSpawner.gd" id="3_kecdl"]
 [ext_resource type="PackedScene" uid="uid://bs285vgjjqivo" path="res://enemies/fast_enemy.tscn" id="4_0krpr"]
 [ext_resource type="Script" path="res://Levels/Kill_count.gd" id="5_3118g"]
+[ext_resource type="PackedScene" uid="uid://dxb6xphv3uy0u" path="res://enemies/armored_enemy.tscn" id="6_7n8tt"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/xr/start_xr.gd" id="6_nlmgy"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="6_p0afi"]
 [ext_resource type="PackedScene" uid="uid://blgcwjyykt2u6" path="res://Levels/start_game_ui.tscn" id="7_er3xc"]
@@ -59,6 +60,8 @@ environment = SubResource("Environment_7qxa4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.817521, 0.817521, 0.817521, 1)
+light_energy = 0.4
 shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
@@ -98,6 +101,7 @@ path = NodePath("../Enemy_Path")
 script = ExtResource("3_kecdl")
 path = NodePath("../../Enemy_Path")
 enemy_scenes = {
+"armor": ExtResource("6_7n8tt"),
 "basic": ExtResource("2_lol31"),
 "fast": ExtResource("4_0krpr")
 }
@@ -135,7 +139,7 @@ scene = ExtResource("9_amu2d")
 scene_properties_keys = PackedStringArray()
 
 [node name="Castle" parent="." instance=ExtResource("3_4knop")]
-transform = Transform3D(-0.287717, 0, -0.861603, 0, 2.08782, 0, 7.27433, 0, -0.0340784, 22.1711, 0, -2.21663)
+transform = Transform3D(-0.0395215, 0, -0.999219, 0, 1, 0, 0.999219, 0, -0.0395215, 22.1711, 0, -2.21663)
 
 [node name="XRToolsStartXR" type="Node" parent="."]
 script = ExtResource("6_nlmgy")

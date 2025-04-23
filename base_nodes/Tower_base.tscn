@@ -35,11 +35,14 @@ shape = SubResource("BoxShape3D_gcakb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004964, 1.27065, 2.15287)
 
 [node name="Viewport2Din3D" parent="." instance=ExtResource("4_wjybi")]
-transform = Transform3D(1, 0, 0, 0, 0.980157, 0.198222, 0, -0.198222, 0.980157, 0, 1, 2.58565)
+transform = Transform3D(1, 0, 0, 0, 0.987245, 0.159209, 0, -0.159209, 0.987245, 0.830657, 1.33968, 3.16231)
 visible = false
 scene = ExtResource("4_q7gpo")
-viewport_size = Vector2(425, 200)
+viewport_size = Vector2(700, 350)
+unshaded = true
 scene_properties_keys = PackedStringArray("upgrade_screen.gd")
 
 [node name="Upgrade_screen" parent="Viewport2Din3D" instance=ExtResource("4_q7gpo")]
 visible = false
+
+[connection signal="upgrade_confirmed" from="Viewport2Din3D/Upgrade_screen" to="." method="_on_upgrade_screen_upgrade_confirmed"]

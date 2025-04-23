@@ -1,15 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://buuil45x6f2ji"]
 
 [ext_resource type="PackedScene" uid="uid://bi4gt27yg160l" path="res://base_nodes/Tower_base.tscn" id="1_65cb8"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1exqj"]
-albedo_color = Color(0.630109, 0.28044, 9.62615e-08, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_dudxr"]
-material = SubResource("StandardMaterial3D_1exqj")
-top_radius = 0.8
-bottom_radius = 0.8
-height = 1.7
+[ext_resource type="PackedScene" uid="uid://cr0jwhjpuht3e" path="res://Assets/Tower/Standard tower/scene.gltf" id="2_psibv"]
+[ext_resource type="Script" path="res://Assets/Tower/Fridge/Assets.gd" id="3_h0uik"]
 
 [node name="TowerBase" instance=ExtResource("1_65cb8")]
 cost = 65
@@ -20,9 +13,9 @@ level_tree_path = "res://Towers/Level trees/Basic_tower.json"
 
 [node name="Pivot" type="Node3D" parent="." index="1"]
 
-[node name="Tower" type="MeshInstance3D" parent="Pivot" index="0"]
-transform = Transform3D(2.45319, 0, 0, 0, 3.0781, 0, 0, 0, 2.36762, 0, 2.46457, 0)
-mesh = SubResource("CylinderMesh_dudxr")
+[node name="Tower" parent="Pivot" index="0" instance=ExtResource("2_psibv")]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 0, 0, 0)
+script = ExtResource("3_h0uik")
 
 [node name="CollisionShape3D" parent="Tower" index="0"]
 transform = Transform3D(4.4, 0, 0, 0, 8.8452, 0, 0, 0, 4.03, 0.00537109, 3.81212, -0.0789569)

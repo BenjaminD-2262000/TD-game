@@ -11,9 +11,9 @@ var hitbox: Area3D
 @export var range: int
 @export var level_tree_path: String
 var next_level_stats
+signal pay_for_upgrade(cost: int)
 
 @onready var tower_location = $Pivot/Tower/RootNode/tower
-@onready var upgrade_screen = $Viewport2Din3D
 
 var current_level: int = 0
 var current_enemy: Node3D = null
@@ -52,10 +52,8 @@ func _ready():
 	mesh.top_radius = range
 	mesh.height = 2
 	$Range/MeshInstance3D.set_mesh(mesh)
-	
-	
+		
 	set_next_level_stats(1)
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -136,8 +134,8 @@ func handle_wrench():
 			repair_in_progress = true
 			repair_game.start_repair()
 		elif not broken:
-			show_upgrade_screen()
-			
+			pass
+			#TODO: show upgrade screen
 
 func repair():
 	if placed and setup and broken:
@@ -168,11 +166,18 @@ func can_upgrade():
 	pass
 
 func show_upgrade_screen():
-	upgrade_screen.show()
-	upgrade_screen.set_stats(next_level_stats)
+	var update_screen = XRToolsViewport2DIn3D.new()
+	var ui_scene = preload("res://Towers/Upgrade screen.tscn").instantiate()
+	ui_scene.hide()
+	update_screen.set_scene(ui_scene)
+	update_screen.position = Vector3(1, 1.5, 3)
+	update_screen.set_stats(next_level_stats)
+	add_child(update_screen)
+	
 
 func upgrade():
 	
+	pay_for_upgrade.emit(next_level_stats["price"])
 	current_level += 1
 	
 	damage += next_level_stats["damage"]
@@ -193,3 +198,7 @@ func set_next_level_stats(next_level: int):
 func _on_repair_game_repair_game_done() -> void:
 	print("screw bolted")
 	repair()
+
+
+func _on_upgrade_screen_upgrade_confirmed() -> void:
+	upgrade()

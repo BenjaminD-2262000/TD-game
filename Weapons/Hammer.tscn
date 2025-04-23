@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://vsfxjjbukam5"]
+[gd_scene load_steps=4 format=3 uid="uid://vsfxjjbukam5"]
+
+[ext_resource type="PackedScene" uid="uid://dhukeoj4kn2ju" path="res://Assets/Weapons/Axe/scene.gltf" id="1_3v2w1"]
 
 [sub_resource type="GDScript" id="GDScript_5ajb3"]
 script/source = "extends \"res://scripts/weapon_base.gd\"
@@ -8,11 +10,19 @@ script/source = "extends \"res://scripts/weapon_base.gd\"
 var is_active: bool = false  # Track if the hammer is enabled
 var can_hit: bool = false  # Prevent multiple hits in one swing
 
+var last_position = Vector3()
+var speed = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	last_position = global_transform.origin
 
-
+func _physics_process(delta):
+	var current_position = global_transform.origin
+	var distance_moved = current_position.distance_to(last_position)
+	speed = distance_moved / delta
+	last_position = current_position
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -35,50 +45,24 @@ func deactivate():
 
 func _on_hitbox_body_entered(body):
 	if body is Enemy:
-		body.take_damage(damage)
+		if speed > 3:
+			body.take_damage(damage)
 	
 "
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yyo3a"]
-size = Vector3(0.4, 0.2, 0.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hppm"]
-albedo_color = Color(0.482353, 0.482353, 0.482353, 1)
-metallic = 0.2
-
-[sub_resource type="BoxMesh" id="BoxMesh_maeh8"]
-material = SubResource("StandardMaterial3D_0hppm")
-size = Vector3(0.4, 0.2, 0.2)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_rdq32"]
-height = 0.7
-radius = 0.03
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e05kb"]
-albedo_color = Color(0.713726, 0.403922, 0.0941176, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ub8yu"]
-material = SubResource("StandardMaterial3D_e05kb")
-top_radius = 0.03
-bottom_radius = 0.03
-height = 0.7
+size = Vector3(0.19436, 0.103052, 0.0563477)
 
 [node name="Hammer" type="Node3D" node_paths=PackedStringArray("hitbox")]
 script = SubResource("GDScript_5ajb3")
 hitbox = NodePath("HeadHitbox")
 damage = 50
 
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_3v2w1")]
+transform = Transform3D(-0.00137623, 0.00480513, -0.000129349, -5.99648e-05, 0.000117374, 0.00499826, 0.00480649, 0.00137731, 2.5321e-05, 0.0608856, 0.150975, 0.0113081)
+
 [node name="HeadHitbox" type="Area3D" parent="."]
 
 [node name="Head" type="CollisionShape3D" parent="HeadHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404691, 0)
+transform = Transform3D(0.000418858, 0, 1, 0, 1, 0, -1, 0, 0.000418858, -0.00780028, 0.356217, 0.00180665)
 shape = SubResource("BoxShape3D_yyo3a")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="HeadHitbox/Head"]
-mesh = SubResource("BoxMesh_maeh8")
-
-[node name="Handle" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_rdq32")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Handle"]
-mesh = SubResource("CylinderMesh_ub8yu")

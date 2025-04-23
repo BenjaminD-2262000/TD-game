@@ -1,3 +1,7 @@
+res://Assets/Zombies/Basic
+res://Assets/Zombies/fast
+res://Assets/Tower/Fridge
+res://enemies
 res://Towers
 res://Towers/Level trees
 F:/Godot/TD game/Towers/Level trees
@@ -8,5 +12,4 @@ res://Weapons
 F:/Godot/FBX
 res://scripts
 res://
-res://enemies
 F:/Godot/TD game/Levels

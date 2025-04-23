@@ -7,6 +7,8 @@ extends Node3D
 var enemies_spawned: int = 0
 var enemies_killed: int = 0
 var enemies_in_wave
+var enemies_of_type
+var enemie_type_in_wave: int = 0
 var timer = null
 
 signal wave_done
@@ -23,7 +25,8 @@ func _process(delta):
 	pass
 
 
-func spawn_wave(wave):
+func spawn_wave(wave, wave_size):
+	enemies_in_wave = wave_size
 	enemies_spawned = 0
 	timer = Timer.new()
 	timer.wait_time = spawn_interval
@@ -37,26 +40,29 @@ func spawn_enemy(wave):
 		print("path not found")
 		return
 
-	var enemy_type = wave["type"]
+	var enemy_type = wave[enemie_type_in_wave]["type"]
 
 	if not enemy_scenes.has(enemy_type):
 		print("Enemy type not found:", enemy_type)
 		return
 	
-	enemies_in_wave = wave["amount"]
+	enemies_of_type = wave[enemie_type_in_wave]["amount"]
 	var enemy = enemy_scenes[enemy_type].instantiate() as PathFollow3D
 	path.add_child(enemy)
 	enemy.progress = 0 
 	enemy.reached_end.connect(_on_enemy_reached_end)
 	enemy.enemy_died.connect(_on_enemy_died)
 	enemies_spawned += 1
-		
-	if enemies_spawned >= enemies_in_wave:
-		if timer:
-			timer.stop()
-			timer.queue_free()
-			timer = null
-		#make start wave button visible again
+	
+	if enemies_spawned >= enemies_of_type:
+		enemie_type_in_wave += 1
+		enemies_spawned = 0
+		if enemie_type_in_wave >= wave.size():
+			if timer:
+				timer.stop()
+				timer.queue_free()
+				timer = null
+			#make start wave button visible again
 
 
 func _on_enemy_reached_end(enemy):

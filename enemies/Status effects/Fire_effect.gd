@@ -27,7 +27,7 @@ func _ready():
 
 func _on_tick():
 	if enemy and duration > 0:
-		enemy.take_damage(damage_per_tick)
+		enemy.take_damage(damage_per_tick, "Fire")
 		duration -= 1
 	else:
 		end_effect()

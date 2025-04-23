@@ -77,11 +77,15 @@ func place_object():
 
 		if towers_node:
 			new_object.global_transform.origin = collision_point
+			new_object.pay_for_upgrade.connect(_on_pay_for_upgrade)
 			towers_node.add_child(new_object)
 		else:
 			print("Towers node not found!")
 		new_object.place()
 		get_parent().pay(current_displayed_tower_cost)
+
+func _on_pay_for_upgrade(upgrade_cost: int):
+	get_parent().pay(upgrade_cost)
 
 func create_preview():
 	if object_scene:

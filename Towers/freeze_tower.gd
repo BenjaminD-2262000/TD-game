@@ -15,8 +15,8 @@ func _ready() -> void:
 	shape.radius = range
 	shape.height = 10
 	$Range/CollisionShape3D.set_shape(shape)
-	if $Pivot/Tower/RootNode/tower:
-		$Pivot/Tower/RootNode/tower.transparency = 0.95
+	if $Pivot/Tower.has_method("set_transparent"):
+		$Pivot/Tower.set_transparent(0.95)
 	else:
 		$Pivot/Tower.transparency = 0.95
 	
@@ -85,8 +85,8 @@ func _on_lever_snap_full_crank() -> void:
 		setup_fase -= 1
 		$Pivot.position.y += 1
 	else:
-		if $Pivot/Tower/RootNode/tower:
-			$Pivot/Tower/RootNode/tower.transparency = 0.0
+		if $Pivot/Tower.has_method("set_transparent"):
+			$Pivot/Tower.set_transparent(0.0)
 		else:
 			$Pivot/Tower.transparency = 0.0
 		setup = true

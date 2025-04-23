@@ -1,20 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4km721fex0ry"]
+[gd_scene load_steps=9 format=3 uid="uid://c4km721fex0ry"]
 
 [ext_resource type="PackedScene" uid="uid://ox1tnnxv61x4" path="res://base_nodes/Weapon_base.tscn" id="1_4hn7c"]
 [ext_resource type="Script" path="res://Weapons/flame_thrower.gd" id="2_vndn0"]
 [ext_resource type="PackedScene" uid="uid://dvmshm41cxejt" path="res://Weapons/wheel_smooth.tscn" id="3_ugbp4"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g08xu"]
-albedo_color = Color(0.355314, 0.355314, 0.355314, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_h8ywr"]
-material = SubResource("StandardMaterial3D_g08xu")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo0xu"]
-albedo_color = Color(0.486767, 0.0704758, 0.0699846, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_qpij1"]
-material = SubResource("StandardMaterial3D_wo0xu")
+[ext_resource type="PackedScene" uid="uid://bskb6gq00hvca" path="res://Assets/Weapons/FlameThrower/scene.gltf" id="4_y0hff"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bx4qy"]
 height = 0.297899
@@ -45,15 +34,11 @@ transform = Transform3D(-0.00568094, 0, -0.499968, 0, 0.5, 0, 0.499968, 0, -0.00
 
 [node name="FlameThrowerBody" type="StaticBody3D" parent="Node3D" index="1"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/FlameThrowerBody" index="0"]
-transform = Transform3D(0.0743037, 0, 0, 0, 0.0602321, 0, 0, 0, 0.267345, 0, 0.111164, -0.163943)
-mesh = SubResource("BoxMesh_h8ywr")
-
-[node name="Canister" type="MeshInstance3D" parent="Node3D/FlameThrowerBody" index="1"]
-transform = Transform3D(0.0940057, 0, 0, 0, 0.0940057, 0, 0, 0, 0.0940057, 0.0328553, 0.044202, -0.0545982)
-mesh = SubResource("CylinderMesh_qpij1")
+[node name="Sketchfab_Scene" parent="Node3D/FlameThrowerBody" index="0" instance=ExtResource("4_y0hff")]
+transform = Transform3D(-0.0999032, 0, 0.00439856, 0, 0.1, 0, -0.00439856, 0, -0.0999032, 0.0583268, 0.118033, -0.30393)
 
 [node name="FireRange" type="Area3D" parent="Node3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0451909, 0.0479038, -0.618562)
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/FireRange" index="0"]

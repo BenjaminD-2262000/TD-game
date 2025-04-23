@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmcdluo4er4m"]
 
 [ext_resource type="Script" path="res://Wrench.gd" id="1_whaam"]
+[ext_resource type="PackedScene" uid="uid://bju63xom8eq6a" path="res://Assets/Weapons/Wrench/scene.gltf" id="2_8bmq3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4xawd"]
-size = Vector3(0.145935, 0.550354, 0.171127)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_t8k0r"]
+size = Vector3(0.173065, 0.59549, 0.0567913)
 
 [node name="Wrench" type="Node3D"]
 script = ExtResource("1_whaam")
@@ -15,10 +14,8 @@ collision_layer = 24
 collision_mask = 24
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002437, -0.00161743, 0.00392914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0111281, -0.0241852, 0.000529347)
 shape = SubResource("BoxShape3D_4xawd")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="hitbox"]
-transform = Transform3D(0.150114, 0, 0, 0, 0.250914, 0, 0, 0, 0.165481, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_t8k0r")
-skeleton = NodePath("../..")
+[node name="Sketchfab_Scene" parent="hitbox" instance=ExtResource("2_8bmq3")]
+transform = Transform3D(-0.0272894, 0.075169, 0.00221521, -0.0751986, -0.0272977, -8.36799e-05, 0.00067725, -0.0021108, 0.0799693, -0.0971741, 0.00298171, -5.75632e-05)

@@ -1,0 +1,338 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.8003600239753723,
+        0.11079999804496765,
+        5.197020053863525
+      ],
+      "min": [
+        -0.6920199990272522,
+        -0.1230200007557869,
+        -2.4758100509643555
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 13764,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.999538779258728,
+        0.9999764561653137,
+        1.0
+      ],
+      "min": [
+        -0.999538779258728,
+        -0.9999933838844299,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.9999511241912842,
+        0.9996576905250549,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -0.9992428421974182,
+        -0.9997493624687195,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.9874500036239624,
+        0.9950100183486938
+      ],
+      "min": [
+        0.007710000034421682,
+        0.007710000034421682
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 9176,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.9874500036239624,
+        0.9950100183486938
+      ],
+      "min": [
+        0.007710000034421682,
+        0.007710000034421682
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 18352,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.9874500036239624,
+        0.9950100183486938
+      ],
+      "min": [
+        0.007710000034421682,
+        0.007710000034421682
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 27528,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.9874500036239624,
+        0.9950100183486938
+      ],
+      "min": [
+        0.007710000034421682,
+        0.007710000034421682
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 36704,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.9874500036239624,
+        0.9950100183486938
+      ],
+      "min": [
+        0.007710000034421682,
+        0.007710000034421682
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 45880,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.9874500036239624,
+        0.9950100183486938
+      ],
+      "min": [
+        0.007710000034421682,
+        0.007710000034421682
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 55056,
+      "componentType": 5126,
+      "count": 1147,
+      "max": [
+        0.9874500036239624,
+        0.9950100183486938
+      ],
+      "min": [
+        0.007710000034421682,
+        0.007710000034421682
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 4218,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "chrizp (https://sketchfab.com/chrizp)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/wrench-knife-5912e829df6b4610b6a046ea3609af18",
+      "title": "Wrench Knife"
+    },
+    "generator": "Sketchfab-12.68.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 16872,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 64232,
+      "byteOffset": 16872,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 27528,
+      "byteOffset": 81104,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 18352,
+      "byteOffset": 108632,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 126984,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Material.002_baseColor.png"
+    },
+    {
+      "uri": "textures/Material.002_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Material.002_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Material.002",
+      "normalTexture": {
+        "index": 2
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Tool Knife_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4,
+            "TEXCOORD_2": 5,
+            "TEXCOORD_3": 6,
+            "TEXCOORD_4": 7,
+            "TEXCOORD_5": 8,
+            "TEXCOORD_6": 9
+          },
+          "indices": 10,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        -0.4130958020687103,
+        0.9090762138366699,
+        0.054150983691215716,
+        0.0,
+        0.03328670561313629,
+        -0.044349491596222146,
+        0.9984613656997681,
+        0.0,
+        0.9100790619850159,
+        0.41426271200180054,
+        -0.01193956285715094,
+        0.0,
+        -1.1615082025527954,
+        0.7474420070648193,
+        0.025521663948893714,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "Root"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "Tool Knife"
+    },
+    {
+      "mesh": 0,
+      "name": "Tool Knife_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}

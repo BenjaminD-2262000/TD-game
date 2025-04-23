@@ -1,9 +1,11 @@
 extends CanvasLayer
 
 
+signal upgrade_confirmed
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,3 +20,7 @@ func set_stats(stats):
 	$Control/ColorRect/FireContainer/Right/Stat.text = str(stats["fire_rate"])
 	$Control/ColorRect/PriceContainer/Right/Stat.text = str(stats["price"])
 	
+
+
+func _on_button_pressed() -> void:
+	upgrade_confirmed.emit()

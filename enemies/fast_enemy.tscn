@@ -1,73 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs285vgjjqivo"]
+[gd_scene load_steps=5 format=3 uid="uid://bs285vgjjqivo"]
 
 [ext_resource type="PackedScene" uid="uid://de66lnf1dsdkr" path="res://base_nodes/enemy_base.tscn" id="1_jjnmw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x1gg"]
-albedo_color = Color(0.14902, 0.964706, 0.152941, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vhlk4"]
-material = SubResource("StandardMaterial3D_5x1gg")
-radius = 0.25
-height = 1.4
+[ext_resource type="PackedScene" uid="uid://y8b6x4kl443k" path="res://Assets/Zombies/fast/Fast zombie.tscn" id="2_jbwvj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5kten"]
 radius = 0.25
 height = 1.4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8b8cy"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_021q8"]
-bg_color = Color(0.858824, 0, 0.129412, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_72csa"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_bs34t"]
 viewport_path = NodePath("CharacterBody3D/SubViewport")
 
 [node name="Fast_enemy" instance=ExtResource("1_jjnmw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.132553, 0)
 health = 50
-speed = 17.0
+speed = 12.0
 damage = 6.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.799962, 0)
-mesh = SubResource("CapsuleMesh_vhlk4")
-skeleton = NodePath("../..")
+[node name="Model" parent="CharacterBody3D" index="0" instance=ExtResource("2_jbwvj")]
+transform = Transform3D(-0.75, 0, -6.55671e-08, 0, 0.75, 0, 6.55671e-08, 0, -0.75, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_5kten")
 
-[node name="SubViewport" type="SubViewport" parent="CharacterBody3D" index="2"]
-disable_3d = true
-transparent_bg = true
-size = Vector2i(190, 40)
-
-[node name="HPBar" type="Control" parent="CharacterBody3D/SubViewport" index="0"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HPBarTexture" type="ProgressBar" parent="CharacterBody3D/SubViewport/HPBar" index="0"]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 7.0
-offset_right = 188.0
-offset_bottom = 34.0
-theme_override_styles/background = SubResource("StyleBoxFlat_8b8cy")
-theme_override_styles/fill = SubResource("StyleBoxFlat_021q8")
-value = 100.0
-show_percentage = false
-
-[node name="StatusEffect" type="TextureRect" parent="CharacterBody3D/SubViewport/HPBar" index="1"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 1.0
-offset_right = 35.0
-offset_bottom = 35.0
-expand_mode = 1
-
-[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11647, 0)
-billboard = 1
-texture = SubResource("ViewportTexture_72csa")
+[node name="Sprite3D" parent="CharacterBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47575, 0)
+texture = SubResource("ViewportTexture_bs34t")

@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://vsfxjjbukam5"]
+
+[ext_resource type="PackedScene" uid="uid://dhukeoj4kn2ju" path="res://Assets/Weapons/Axe/scene.gltf" id="1_3v2w1"]
+
+[sub_resource type="GDScript" id="GDScript_5ajb3"]
+script/source = "extends \"res://scripts/weapon_base.gd\"
+
+@export var hitbox: Area3D
+
+var is_active: bool = false  # Track if the hammer is enabled
+var can_hit: bool = false  # Prevent multiple hits in one swing
+
+var last_position = Vector3()
+var speed = 0.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func activate():
+
+	is_active = true
+	can_hit = true  # Reset hit state
+	if hitbox:
+		hitbox.monitoring = true  # Enable hit detection
+		hitbox.body_entered.connect(_on_hitbox_body_entered)
+
+func deactivate():
+
+	is_active = false
+	if hitbox:
+		hitbox.monitoring = false  # Disable hit detection
+		hitbox.body_entered.disconnect(_on_hitbox_body_entered)
+
+func _on_hitbox_body_entered(body):
+	if body is Enemy:
+		if velocity.length() > 3
+		body.take_damage(damage)
+	
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yyo3a"]
+size = Vector3(0.19436, 0.103052, 0.0563477)
+
+[node name="Hammer" type="RigidBody3D" node_paths=PackedStringArray("hitbox")]
+script = SubResource("GDScript_5ajb3")
+hitbox = NodePath("HeadHitbox")
+damage = 50
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_3v2w1")]
+transform = Transform3D(-0.00137623, 0.00480513, -0.000129349, -5.99648e-05, 0.000117374, 0.00499826, 0.00480649, 0.00137731, 2.5321e-05, 0.0608856, 0.150975, 0.0113081)
+
+[node name="HeadHitbox" type="Area3D" parent="."]
+
+[node name="Head" type="CollisionShape3D" parent="HeadHitbox"]
+transform = Transform3D(0.000418858, 0, 1, 0, 1, 0, -1, 0, 0.000418858, -0.00780028, 0.356217, 0.00180665)
+shape = SubResource("BoxShape3D_yyo3a")

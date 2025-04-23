@@ -1,14 +1,17 @@
+
 [
-	{
-		"amount": 2,
-		"type": "basic"
-	},
-	
-	{	"amount": 3,
-		"type": "fast"
-	},
-	{
-		"amount": 5,
-		"type": "basic"
-	}
+	[
+		{
+			"amount": 2,
+			"type": "basic"
+		},
+			
+		{	"amount": 3,
+			"type": "fast"
+		},
+		{
+			"amount": 5,
+			"type": "basic"
+		}
+	]
 ]
