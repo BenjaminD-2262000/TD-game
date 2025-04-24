@@ -15,9 +15,9 @@ func _ready():
 	create_preview()
 
 func _process(delta):
-	if build_mode:
-		handle_build_mode()
 
+	if build_mode:
+		handle_build_mode() 
 
 func switch_mode():
 	if build_mode:  #switch to repair mode
@@ -51,14 +51,28 @@ func handle_build_mode():
 	else:
 		hide_preview()
 
+func _on_button_pressed(name: String) -> void:
+	print(name)
+	if build_mode:
+		if name == "ax_button":
+			switch_tower()
+			return
+		
+		elif raycast.is_colliding() and raycast.get_collider() == ground: #first check if the tower can in fact be placed
+			if name == "trigger_click":
+				place_object()
 
+	elif name == "by_button":
+		switch_mode()
+		return
+	
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_KP_3:
-			switch_mode()
+			switch_tower()
 			return
 		elif event.keycode == KEY_KP_4:
-			switch_tower()
+			switch_mode()
 			return
 
 

@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dpe2fr1qr7wmq"
-path="res://.godot/imported/VigilantTower.fbx-5f370bb49f7d18a3af55a89362bab61e.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Tower/VigilantTower.fbx"
-dest_files=["res://.godot/imported/VigilantTower.fbx-5f370bb49f7d18a3af55a89362bab61e.scn"]
 
 [params]
 

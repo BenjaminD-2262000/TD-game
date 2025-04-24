@@ -68,3 +68,6 @@ time_on_fire = 2.0
 
 [node name="PlayerBody" parent="." instance=ExtResource("5_fo0ap")]
 collision_mask = 769
+
+[connection signal="button_pressed" from="Left_Hand" to="Left_Hand" method="_on_button_pressed"]
+[connection signal="button_pressed" from="Right_Hand" to="Right_Hand" method="_on_button_pressed"]

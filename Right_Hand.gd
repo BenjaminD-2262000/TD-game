@@ -16,12 +16,19 @@ func _process(delta):
 	pass
 	
 
+
+func _on_button_pressed(name: String) -> void:
+	if name == "ax_button":
+		_switch_weapon((current_weapon_index + 1) % weapon_list.size())
+		return
+
 func _input(event):
 	#TODO: REMOVE NUMPAD 2 AS SWITCH WEAPON, IS SIMPLY DEBUG
 	if event.is_action_pressed("ax_button") or event.is_action_pressed("Switch Weapon"):
-
 		_switch_weapon((current_weapon_index + 1) % weapon_list.size())
-
+	
+	
+	
 func _switch_weapon(new_index: int):
 	# Deactivate the current weapon
 	if current_weapon:

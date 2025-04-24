@@ -54,6 +54,7 @@ func _on_hitbox_body_entered(body):
 size = Vector3(0.19436, 0.103052, 0.0563477)
 
 [node name="Hammer" type="Node3D" node_paths=PackedStringArray("hitbox")]
+transform = Transform3D(1, 0, 0, 0, 0.871368, 0.49063, 0, -0.49063, 0.871368, 0, 0, 0)
 script = SubResource("GDScript_5ajb3")
 hitbox = NodePath("HeadHitbox")
 damage = 50
