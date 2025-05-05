@@ -2,7 +2,7 @@ extends Node3D
 
 
 var rng = RandomNumberGenerator.new()
-@export var break_change: int = 100
+@export var break_change: int = 10
 @export var break_interval: float = 1.0
 
 # Called when the node enters the scene tree for the first time.

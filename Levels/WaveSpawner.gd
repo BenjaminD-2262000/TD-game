@@ -48,6 +48,7 @@ func spawn_enemy(wave):
 	
 	enemies_of_type = wave[enemie_type_in_wave]["amount"]
 	var enemy = enemy_scenes[enemy_type].instantiate() as PathFollow3D
+	enemy.position = Vector3(0, -10, 0)
 	path.add_child(enemy)
 	enemy.progress = 0 
 	enemy.reached_end.connect(_on_enemy_reached_end)

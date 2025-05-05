@@ -1,17 +1,18 @@
-res://Weapons/Hammer.tscn
+res://player.tscn
 res://openxr_action_map.tres
 res://addons/godot-xr-tools/hands/animations/left/hand_blend_tree.tres
 res://base_nodes/Tower_base.gd
 res://addons/godot-xr-tools/hands/animations/right/hand_blend_tree.tres
 res://main.tscn
 res://Levels/Debug.tscn
-res://player.tscn
 res://Towers/fire_tower.tscn
 res://enemies/basic_enemy.tscn
 res://enemies/fast_enemy.tscn
 res://castle.tscn
 res://Towers/freeze_tower.tscn
 res://Towers/basic_tower.tscn
+res://Weapons/Hammer.tscn
 res://Weapons/wrench.tscn
 res://Assets/Zombies/fast/Fast zombie.tscn
-res://Assets/Zombies/Basic/zombie.tscn
+res://base_nodes/Tower_base.tscn
+res://lever_snap.tscn

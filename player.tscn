@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cqapcqfp4ioag"]
+[gd_scene load_steps=20 format=3 uid="uid://cqapcqfp4ioag"]
 
 [ext_resource type="Script" path="res://Left_controller.gd" id="1_bnqnj"]
 [ext_resource type="Script" path="res://player.gd" id="1_ewx2v"]
@@ -17,14 +17,18 @@
 [ext_resource type="PackedScene" uid="uid://c4km721fex0ry" path="res://Weapons/flame_thrower.tscn" id="11_hyh3a"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="12_jp5r0"]
 
+[sub_resource type="Theme" id="Theme_q4xre"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ltb3h"]
+viewport_path = NodePath("Left_Hand/MoneyViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7ci7l"]
+viewport_path = NodePath("Left_Hand/CostViewport")
+
 [node name="Player" type="XROrigin3D"]
 script = ExtResource("1_ewx2v")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
-
-[node name="Label" type="Label" parent="XRCamera3D"]
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="Left_Hand" type="XRController3D" parent="."]
 tracker = &"left_hand"
@@ -44,6 +48,34 @@ target_position = Vector3(0, 0, -10)
 
 [node name="Wrench" parent="Left_Hand" instance=ExtResource("6_jkcly")]
 visible = false
+
+[node name="CostViewport" type="SubViewport" parent="Left_Hand"]
+transparent_bg = true
+size = Vector2i(70, 20)
+
+[node name="TowerCost" type="Label" parent="Left_Hand/CostViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = SubResource("Theme_q4xre")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "COST"
+
+[node name="MoneyViewport" type="SubViewport" parent="Left_Hand"]
+transparent_bg = true
+size = Vector2i(70, 20)
+
+[node name="Money" type="Label" parent="Left_Hand/MoneyViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HELLo"
+
+[node name="MoneySprite" type="Sprite3D" parent="Left_Hand"]
+transform = Transform3D(0.204393, 0, 0, 0, 0.214383, 0, 0, 0, -1.13449, 0, 0.0814248, 0.147225)
+texture = SubResource("ViewportTexture_ltb3h")
+
+[node name="CostSprite" type="Sprite3D" parent="Left_Hand"]
+transform = Transform3D(0.183661, 0, 0, 0, 0.197784, 0, 0, 0, 1, 0, 0.0515653, 0.145456)
+texture = SubResource("ViewportTexture_7ci7l")
 
 [node name="Right_Hand" type="XRController3D" parent="."]
 tracker = &"right_hand"

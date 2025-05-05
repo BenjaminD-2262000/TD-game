@@ -24,10 +24,12 @@ func switch_mode():
 		build_mode = false
 		hide_preview()
 		$LeftHand.hide()
+		$MoneySprite.hide()
 		$Wrench.activate()
 	else:
 		build_mode = true
 		$LeftHand.show()
+		$MoneySprite.show()
 		$Wrench.deactivate()
 
 
@@ -105,6 +107,7 @@ func create_preview():
 	if object_scene:
 		preview_instance = object_scene.instantiate()
 		current_displayed_tower_cost = preview_instance.cost
+		$CostViewport/TowerCost.text = str(current_displayed_tower_cost)
 		var towers_node = get_tree().current_scene.get_node("Tower_manager")  # Ensure "Towers" node path is correct
 		if towers_node:
 			towers_node.add_child(preview_instance)
