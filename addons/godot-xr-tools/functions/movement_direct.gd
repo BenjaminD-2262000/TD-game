@@ -24,7 +24,7 @@ extends XRToolsMovementProvider
 ## Input action for movement direction
 @export var input_action : String = "primary"
 
-
+var walkingspeed : float = 0
 # Controller node
 @onready var _controller := XRHelpers.get_xr_controller(self)
 
@@ -39,13 +39,16 @@ func physics_movement(_delta: float, player_body: XRToolsPlayerBody, _disabled: 
 	# Skip if the controller isn't active
 	if !_controller.get_is_active():
 		return
-
-	## get input action with deadzone correction applied
-	var dz_input_action = XRToolsUserSettings.get_adjusted_vector2(_controller, input_action)
-
-	player_body.ground_control_velocity.y += dz_input_action.y * max_speed
-	if strafe:
-		player_body.ground_control_velocity.x += dz_input_action.x * max_speed
+	var dz_input_action
+	if input_action == "walk":
+		player_body.ground_control_velocity.y += walkingspeed
+	else:
+			
+		## get input action with deadzone correction applied
+		dz_input_action = XRToolsUserSettings.get_adjusted_vector2(_controller, input_action)
+		player_body.ground_control_velocity.y += dz_input_action.y * max_speed
+		if strafe:
+			player_body.ground_control_velocity.x += dz_input_action.x * max_speed
 
 	# Clamp ground control
 	var length := player_body.ground_control_velocity.length()

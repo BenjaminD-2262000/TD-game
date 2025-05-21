@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cqapcqfp4ioag"]
+[gd_scene load_steps=21 format=3 uid="uid://cqapcqfp4ioag"]
 
 [ext_resource type="Script" path="res://Left_controller.gd" id="1_bnqnj"]
 [ext_resource type="Script" path="res://player.gd" id="1_ewx2v"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="11_4je1s"]
 [ext_resource type="PackedScene" uid="uid://c4km721fex0ry" path="res://Weapons/flame_thrower.tscn" id="11_hyh3a"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="12_jp5r0"]
+[ext_resource type="Script" path="res://udp_listener.gd" id="17_rh7sb"]
 
 [sub_resource type="Theme" id="Theme_q4xre"]
 
@@ -42,6 +43,8 @@ tower_list = [ExtResource("2_o5k6e"), ExtResource("4_sqaij"), ExtResource("5_n2m
 script = ExtResource("2_51jko")
 
 [node name="MovementDirect" parent="Left_Hand" instance=ExtResource("3_0duhl")]
+strafe = true
+input_action = "walk"
 
 [node name="RayCast3D" type="RayCast3D" parent="Left_Hand"]
 target_position = Vector3(0, 0, -10)
@@ -100,6 +103,9 @@ time_on_fire = 2.0
 
 [node name="PlayerBody" parent="." instance=ExtResource("5_fo0ap")]
 collision_mask = 769
+
+[node name="UDP_listener" type="Node" parent="."]
+script = ExtResource("17_rh7sb")
 
 [connection signal="button_pressed" from="Left_Hand" to="Left_Hand" method="_on_button_pressed"]
 [connection signal="button_pressed" from="Right_Hand" to="Right_Hand" method="_on_button_pressed"]

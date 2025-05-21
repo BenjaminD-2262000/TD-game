@@ -6,8 +6,9 @@
 
 [node name="TowerBase" instance=ExtResource("1_65cb8")]
 cost = 65
+damage = 50.0
 max_enemy_hit = 1
-fire_rate = 0.1
+fire_rate = 1.0
 range = 5
 level_tree_path = "res://Towers/Level trees/Basic_tower.json"
 

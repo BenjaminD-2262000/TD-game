@@ -64,7 +64,6 @@ func damage_enemy():
 func _on_enemy_entered_range(enemy):
 	if not enemy is Enemy or not setup or broken:
 		return
-	
 	enemy.Enemy_died.connect(_on_enemy_in_range_died)
 	if not current_enemy:
 		print("set current enemy")
@@ -100,7 +99,7 @@ func _on_enemy_exit_range(enemy):
 		enemies_in_range.erase(enemy)
 
 
-func _on_enemy_in_range_died(enemy):
+func _on_enemy_in_range_died(enemy, worth):
 	if enemy == current_enemy:
 		if enemies_in_range[0]:
 			current_enemy = enemies_in_range.pop_front()
