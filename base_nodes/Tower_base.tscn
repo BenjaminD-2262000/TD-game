@@ -12,6 +12,9 @@ size = Vector3(0.77002, 0.95752, 0.782349)
 [node name="TowerBase" type="Node3D"]
 script = ExtResource("1_octl6")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.992252, 0, 0.124242, 0, 1, 0, -0.124242, 0, 0.992252, 0, 1.65, -0.113)
+
 [node name="Range" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Range"]

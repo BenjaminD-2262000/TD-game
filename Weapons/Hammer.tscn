@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://vsfxjjbukam5"]
+[gd_scene load_steps=5 format=3 uid="uid://vsfxjjbukam5"]
 
 [ext_resource type="PackedScene" uid="uid://dhukeoj4kn2ju" path="res://Assets/Weapons/Axe/scene.gltf" id="1_3v2w1"]
+[ext_resource type="AudioStream" uid="uid://dhsqmcapijomg" path="res://Assets/adio/axe_slash.ogg" id="2_6jtqe"]
 
 [sub_resource type="GDScript" id="GDScript_5ajb3"]
 script/source = "extends \"res://scripts/weapon_base.gd\"
@@ -47,6 +48,7 @@ func _on_hitbox_body_entered(body):
 	if body is Enemy:
 		if speed > 3:
 			body.take_damage(damage)
+			$AudioStreamPlayer3D.play()
 	
 "
 
@@ -67,3 +69,7 @@ transform = Transform3D(-0.00137623, 0.00480513, -0.000129349, -5.99648e-05, 0.0
 [node name="Head" type="CollisionShape3D" parent="HeadHitbox"]
 transform = Transform3D(0.000418858, 0, 1, 0, 1, 0, -1, 0, 0.000418858, -0.00780028, 0.356217, 0.00180665)
 shape = SubResource("BoxShape3D_yyo3a")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_6jtqe")
+volume_db = -15.238

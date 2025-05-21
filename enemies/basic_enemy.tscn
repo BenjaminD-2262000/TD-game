@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://im06nq4w4p3o"]
+[gd_scene load_steps=6 format=3 uid="uid://im06nq4w4p3o"]
 
 [ext_resource type="PackedScene" uid="uid://de66lnf1dsdkr" path="res://base_nodes/enemy_base.tscn" id="1_64gnw"]
 [ext_resource type="PackedScene" uid="uid://66yru527kvg7" path="res://Assets/Zombies/Basic/zombie.tscn" id="2_0i0jd"]
+[ext_resource type="AudioStream" uid="uid://dsaixe3cs3kc3" path="res://Assets/adio/zombie-death-2.wav" id="3_i2eto"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d4m64"]
 radius = 0.3
@@ -25,3 +26,6 @@ shape = SubResource("CapsuleShape3D_d4m64")
 
 [node name="Sprite3D" parent="CharacterBody3D" index="3"]
 texture = SubResource("ViewportTexture_ndol3")
+
+[node name="AudioStreamPlayer3D" parent="." index="1"]
+stream = ExtResource("3_i2eto")

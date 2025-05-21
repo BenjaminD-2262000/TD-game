@@ -7,9 +7,10 @@ var previous_button_state: bool = false
 var current_weapon: Node = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	disable_all()
 	if weapon_list.size() > 0:
 		_switch_weapon(0)
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -28,7 +29,14 @@ func _input(event):
 		_switch_weapon((current_weapon_index + 1) % weapon_list.size())
 	
 	
-	
+func disable_all():
+	for weapon in weapon_list:
+		var weapon_node = get_node_or_null(weapon)
+		if weapon_node.has_method("deactivate"):
+			weapon_node.deactivate()
+		weapon_node.hide()
+
+		
 func _switch_weapon(new_index: int):
 	# Deactivate the current weapon
 	if current_weapon:
@@ -50,3 +58,7 @@ func _switch_weapon(new_index: int):
 
 func get_active_weapon():
 	return current_weapon
+
+@onready var functionPickup = $Weapons/FunctionPickup
+func _on_right_hand_pickup(can_pickup: bool) -> void:
+	functionPickup.enabled = can_pickup

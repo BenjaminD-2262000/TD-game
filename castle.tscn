@@ -41,3 +41,12 @@ metadata/_edit_use_anchors_ = true
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(13.4495, 0, 0, 0, 2.78519, 0, 0, 0, 1, -2.23158, 10.2972, 0)
 texture = SubResource("ViewportTexture_ufg4q")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(0.897189, -0.165036, -0.409652, 0, -0.927556, 0.373684, -0.441647, -0.335265, -0.832193, -8.92269, 7.70282, 1.02048)
+light_color = Color(0.999999, 0.987042, 0.549268, 1)
+light_energy = 16.0
+spot_range = 36.615
+spot_angle = 22.72

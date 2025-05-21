@@ -476,11 +476,10 @@ static func _find_child(node : Node, type : String) -> Node:
 	# No child found matching type
 	return null
 
+signal pickup(can_pickup : bool)
 
 func activate():
-	if $XRToolsFunctionPickup:
-		$XRToolsFunctionPickup.enabled = true
+	pickup.emit(true)
 
 func deactivate():
-	if $XRToolsFunctionPickup:
-		$XRToolsFunctionPickup.enabled = false
+	pickup.emit(false)

@@ -37,14 +37,13 @@ script = ExtResource("1_bnqnj")
 object_scene = ExtResource("2_o5k6e")
 tower_list = [ExtResource("2_o5k6e"), ExtResource("4_sqaij"), ExtResource("5_n2m23")]
 
-[node name="LeftHand" parent="Left_Hand" instance=ExtResource("1_ljnvg")]
-
-[node name="XRToolsFunctionPickup" type="Node3D" parent="Left_Hand/LeftHand"]
+[node name="XRToolsFunctionPickup" type="Node3D" parent="Left_Hand"]
 script = ExtResource("2_51jko")
+
+[node name="LeftHand" parent="Left_Hand" instance=ExtResource("1_ljnvg")]
 
 [node name="MovementDirect" parent="Left_Hand" instance=ExtResource("3_0duhl")]
 strafe = true
-input_action = "walk"
 
 [node name="RayCast3D" type="RayCast3D" parent="Left_Hand"]
 target_position = Vector3(0, 0, -10)
@@ -90,10 +89,11 @@ weapon_list = Array[NodePath]([NodePath("Weapons/Hammer"), NodePath("Weapons/Rig
 [node name="Hammer" parent="Right_Hand/Weapons" instance=ExtResource("4_ajv6r")]
 visible = false
 
+[node name="FunctionPickup" parent="Right_Hand/Weapons" instance=ExtResource("11_4je1s")]
+enabled = false
+
 [node name="RightHand" parent="Right_Hand/Weapons" instance=ExtResource("10_uo7i8")]
 visible = false
-
-[node name="FunctionPickup" parent="Right_Hand/Weapons/RightHand" instance=ExtResource("11_4je1s")]
 
 [node name="FlameThrower" parent="Right_Hand/Weapons" instance=ExtResource("11_hyh3a")]
 visible = false
@@ -109,3 +109,4 @@ script = ExtResource("17_rh7sb")
 
 [connection signal="button_pressed" from="Left_Hand" to="Left_Hand" method="_on_button_pressed"]
 [connection signal="button_pressed" from="Right_Hand" to="Right_Hand" method="_on_button_pressed"]
+[connection signal="pickup" from="Right_Hand/Weapons/RightHand" to="Right_Hand" method="_on_right_hand_pickup"]

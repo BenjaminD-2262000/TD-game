@@ -53,4 +53,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14852, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_3tguy")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
 [connection signal="Enemy_hit" from="CharacterBody3D" to="." method="_on_character_body_3d_enemy_hit"]

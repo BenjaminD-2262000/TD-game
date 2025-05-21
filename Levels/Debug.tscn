@@ -16,16 +16,19 @@
 [ext_resource type="PackedScene" uid="uid://0cvbw33uu3f" path="res://Levels/game_successfull.tscn" id="9_amu2d"]
 [ext_resource type="Script" path="res://Levels/Tower_manager.gd" id="10_7xeos"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e3nvv"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3bxta"]
+sky_top_color = Color(0.0109836, 0.0478774, 0.2875, 1)
+sky_horizon_color = Color(3.63803e-05, 3.34068e-05, 0.000889489, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Sky" id="Sky_x1dso"]
-sky_material = SubResource("ProceduralSkyMaterial_e3nvv")
+[sub_resource type="Sky" id="Sky_pq5fo"]
+sky_material = SubResource("ProceduralSkyMaterial_3bxta")
 
 [sub_resource type="Environment" id="Environment_7qxa4"]
 background_mode = 2
-sky = SubResource("Sky_x1dso")
+sky = SubResource("Sky_pq5fo")
+ambient_light_sky_contribution = 0.2
+ambient_light_energy = 0.21
 tonemap_mode = 2
 glow_enabled = true
 
@@ -34,7 +37,7 @@ albedo_color = Color(0.372549, 0.603922, 0.196078, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3lcrn"]
 material = SubResource("StandardMaterial3D_h7nwi")
-size = Vector2(50, 50)
+size = Vector2(500, 500)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6p87"]
 size = Vector3(50, 0, 50)
@@ -61,7 +64,7 @@ environment = SubResource("Environment_7qxa4")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_color = Color(0.817521, 0.817521, 0.817521, 1)
-light_energy = 0.4
+light_energy = 0.077
 shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="."]

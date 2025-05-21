@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs285vgjjqivo"]
+[gd_scene load_steps=6 format=3 uid="uid://bs285vgjjqivo"]
 
 [ext_resource type="PackedScene" uid="uid://de66lnf1dsdkr" path="res://base_nodes/enemy_base.tscn" id="1_jjnmw"]
 [ext_resource type="PackedScene" uid="uid://y8b6x4kl443k" path="res://Assets/Zombies/fast/Fast zombie.tscn" id="2_jbwvj"]
+[ext_resource type="AudioStream" uid="uid://beshstm1it45w" path="res://Assets/adio/zombie-death-1.wav" id="3_7c1b7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5kten"]
 radius = 0.25
@@ -26,3 +27,6 @@ shape = SubResource("CapsuleShape3D_5kten")
 [node name="Sprite3D" parent="CharacterBody3D" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47575, 0)
 texture = SubResource("ViewportTexture_bs34t")
+
+[node name="AudioStreamPlayer3D" parent="." index="1"]
+stream = ExtResource("3_7c1b7")

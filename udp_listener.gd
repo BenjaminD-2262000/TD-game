@@ -24,7 +24,6 @@ func _process(delta):
 		var peer = server.take_connection()
 		var packet = peer.get_packet()
 		var msg = packet.get_string_from_utf8()
-		print(msg)
 		if msg == "step":
 			step_count += 1
 		
@@ -37,7 +36,6 @@ func _process(delta):
 	
 	if elapsed_time >= 1.0: # Calculate every second
 		var speed = (step_count * step_length) / elapsed_time # m/s
-		print("Speed: %.2f m/s | Steps: %d | Time: %.2fs" % [speed, step_count, elapsed_time])
 		get_parent().walkingspeed = speed
 		# Reset tracking for next interval
 		step_count = 0

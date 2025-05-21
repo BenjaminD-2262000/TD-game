@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://buuil45x6f2ji"]
+[gd_scene load_steps=5 format=3 uid="uid://buuil45x6f2ji"]
 
 [ext_resource type="PackedScene" uid="uid://bi4gt27yg160l" path="res://base_nodes/Tower_base.tscn" id="1_65cb8"]
+[ext_resource type="AudioStream" uid="uid://ndcvmc4x4mcn" path="res://Assets/adio/gun-shot.mp3" id="2_3nkwj"]
 [ext_resource type="PackedScene" uid="uid://cr0jwhjpuht3e" path="res://Assets/Tower/Standard tower/scene.gltf" id="2_psibv"]
 [ext_resource type="Script" path="res://Assets/Tower/Fridge/Assets.gd" id="3_h0uik"]
 
@@ -12,6 +13,10 @@ fire_rate = 1.0
 range = 5
 level_tree_path = "res://Towers/Level trees/Basic_tower.json"
 
+[node name="AudioStreamPlayer3D" parent="." index="0"]
+stream = ExtResource("2_3nkwj")
+volume_db = -25.905
+
 [node name="Pivot" type="Node3D" parent="." index="1"]
 
 [node name="Tower" parent="Pivot" index="0" instance=ExtResource("2_psibv")]
@@ -20,6 +25,8 @@ script = ExtResource("3_h0uik")
 
 [node name="CollisionShape3D" parent="Tower" index="0"]
 transform = Transform3D(4.4, 0, 0, 0, 8.8452, 0, 0, 0, 4.03, 0.00537109, 3.81212, -0.0789569)
+
+[node name="lights" type="Node3D" parent="." index="6"]
 
 [connection signal="full_crank" from="LeverSnap" to="." method="_on_lever_snap_full_crank"]
 [connection signal="repair_game_done" from="Repair_Game" to="." method="_on_repair_game_repair_game_done"]

@@ -44,6 +44,7 @@ func take_damage(amount: int, type: String = "normal"):
 		
 
 func die():
+	$AudioStreamPlayer3D.play()
 	enemy_died.emit(worth)
 	$CharacterBody3D.Enemy_died.emit(worth)
 	queue_free()

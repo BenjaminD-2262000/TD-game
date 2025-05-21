@@ -22,6 +22,8 @@ var placed: bool = false
 var broken: bool = false
 var repair_in_progress: bool = false
 
+@onready var audioPlayer = $AudioStreamPlayer3D
+
 var setup: bool=false
 @export var setup_fase: int = 5
 
@@ -60,6 +62,7 @@ func _process(delta):
 
 func damage_enemy():
 	current_enemy.take_damage(damage)
+	audioPlayer.play()
 
 func _on_enemy_entered_range(enemy):
 	if not enemy is Enemy or not setup or broken:
