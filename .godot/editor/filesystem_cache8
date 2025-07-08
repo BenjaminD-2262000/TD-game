@@ -1,18 +1,18 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1747836189
+::res://::1751708676
 castle.gd::GDScript::-1::1741604208::0::1::::<>Node3D<>::
 castle.tscn::PackedScene::7659934209279588932::1747830369::0::1::::<><>::res://castle.gd<>uid://c8y2hfm7yw18k::::res://Assets/Gate/scene.gltf
 icon.svg::CompressedTexture2D::4228224404186846932::1739813060::1747400026::1::::<><>::
 Left_controller.gd::GDScript::-1::1747209992::0::1::::<>XRController3D<>::
 lever_snap.gd::GDScript::-1::1742999058::0::1::::<>Node3D<>::
-lever_snap.tscn::PackedScene::4612267147422277638::1747836189::0::1::::<><>::res://lever_snap.gd<>res://addons/godot-xr-tools/interactables/interactable_hinge.gd<>res://addons/godot-xr-tools/interactables/interactable_handle.gd<>uid://c25yxb0vt53vc::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn<>uid://db62hs5s4n2b3::::res://addons/godot-xr-tools/hands/animations/left/Grip 4.res<>res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd<>uid://ctw7nbntd5pcj::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn<>uid://d1xnpyc08njjx::::res://addons/godot-xr-tools/hands/animations/right/Grip 4.res<>uid://ca3daqmpo0tua::::res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.tscn
-main.tscn::PackedScene::7587914771940252863::1747836189::0::1::::<><>::
+lever_snap.tscn::PackedScene::4612267147422277638::1747836965::0::1::::<><>::res://lever_snap.gd<>res://addons/godot-xr-tools/interactables/interactable_hinge.gd<>res://addons/godot-xr-tools/interactables/interactable_handle.gd<>uid://c25yxb0vt53vc::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn<>uid://db62hs5s4n2b3::::res://addons/godot-xr-tools/hands/animations/left/Grip 4.res<>res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd<>uid://ctw7nbntd5pcj::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn<>uid://d1xnpyc08njjx::::res://addons/godot-xr-tools/hands/animations/right/Grip 4.res<>uid://ca3daqmpo0tua::::res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.tscn
+main.tscn::PackedScene::7587914771940252863::1747836965::0::1::::<><>::
 openxr_action_map.tres::OpenXRActionMap::7273514478642728517::1747828224::0::1::::<><>::
 player.gd::GDScript::-1::1747759606::0::1::::<>XROrigin3D<>::
-player.tscn::PackedScene::5896778040892267118::1747836189::0::1::::<><>::res://Left_controller.gd<>res://player.gd<>uid://bq86r4yll8po::::res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn<>res://addons/godot-xr-tools/functions/function_pickup.gd<>uid://buuil45x6f2ji::::res://Towers/basic_tower.tscn<>uid://bl2nuu3qhlb5k::::res://addons/godot-xr-tools/functions/movement_direct.tscn<>uid://vsfxjjbukam5::::res://Weapons/Hammer.tscn<>res://Right_Hand.gd<>uid://ogy318omhrt1::::res://Towers/fire_tower.tscn<>uid://diyu06cw06syv::::res://addons/godot-xr-tools/player/player_body.tscn<>uid://cf6lhgwblrmbs::::res://Towers/freeze_tower.tscn<>uid://dmcdluo4er4m::::res://Weapons/wrench.tscn<>uid://xqimcf20s2jp::::res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn<>uid://b4ysuy43poobf::::res://addons/godot-xr-tools/functions/function_pickup.tscn<>uid://c4km721fex0ry::::res://Weapons/flame_thrower.tscn<>uid://cqhw276realc::::res://addons/godot-xr-tools/functions/function_pointer.tscn<>res://udp_listener.gd
+player.tscn::PackedScene::5896778040892267118::1747837036::0::1::::<><>::res://Left_controller.gd<>res://player.gd<>uid://bq86r4yll8po::::res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn<>res://addons/godot-xr-tools/functions/function_pickup.gd<>uid://buuil45x6f2ji::::res://Towers/basic_tower.tscn<>uid://bl2nuu3qhlb5k::::res://addons/godot-xr-tools/functions/movement_direct.tscn<>uid://vsfxjjbukam5::::res://Weapons/Hammer.tscn<>res://Right_Hand.gd<>uid://ogy318omhrt1::::res://Towers/fire_tower.tscn<>uid://diyu06cw06syv::::res://addons/godot-xr-tools/player/player_body.tscn<>uid://cf6lhgwblrmbs::::res://Towers/freeze_tower.tscn<>uid://dmcdluo4er4m::::res://Weapons/wrench.tscn<>uid://xqimcf20s2jp::::res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn<>uid://b4ysuy43poobf::::res://addons/godot-xr-tools/functions/function_pickup.tscn<>uid://c4km721fex0ry::::res://Weapons/flame_thrower.tscn<>uid://cqhw276realc::::res://addons/godot-xr-tools/functions/function_pointer.tscn<>res://udp_listener.gd
 README.md::TextFile::-1::1740474800::0::1::::<><>::
 Right_Hand.gd::GDScript::-1::1747833692::0::1::::<>XRController3D<>::
-udp_listener.gd::GDScript::-1::1747826832::0::1::::ServerNode<>Node<>::
+udp_listener.gd::GDScript::-1::1747836991::0::1::::ServerNode<>Node<>::
 Wrench.gd::GDScript::-1::1744018614::0::1::::Wrench<>Node3D<>::
 xr_camera_3d.gd::GDScript::-1::1747410012::0::1::::<>XRCamera3D<>::
 ::res://addons/::1740405746
@@ -416,7 +416,7 @@ start_xr.tscn::PackedScene::5550875170460828808::1740404894::0::1::::<><>::res:/
 XRSimulator.gd::GDScript::-1::1740405746::0::1::::<>Node<>::
 XRSimulator.tscn::PackedScene::6130295131173790883::1740405746::0::1::::<><>::res://addons/xr-simulator/XRSimulator.gd
 ::res://Assets/::1747835988
-::res://Assets/adio/::1747836680
+::res://Assets/adio/::1747836699
 axe_slash.ogg::AudioStreamOggVorbis::7688735763269020670::1747836662::1747836699::1::::<><>::
 gun-shot.mp3::AudioStreamMP3::918807670933463417::1747835743::1747836000::1::::<><>::
 zombie-death-1.wav::AudioStreamWAV::2704793038732058718::1747836587::1747836699::1::::<><>::
@@ -492,31 +492,31 @@ scene.gltf::PackedScene::2898195064709332577::1706854888::1747400045::1::::<><>:
 ::res://Assets/Zombies/fast/textures/::1747400026
 FBHead_preview_mat_baseColor.png::CompressedTexture2D::7706628870335693186::1706854880::1747400026::1::::<><>::
 Material.001_baseColor.png::CompressedTexture2D::7578001198699710225::1706854876::1747400026::1::::<><>::
-::res://base_nodes/::1747836293
-enemy_base.tscn::PackedScene::7505915698229615281::1744110819::0::1::::<><>::res://scripts/enemy_base.gd<>res://base_nodes/Enemy_character_base.gd
+::res://base_nodes/::1747836965
+enemy_base.tscn::PackedScene::7505915698229615281::1747836965::0::1::::<><>::res://scripts/enemy_base.gd<>res://base_nodes/Enemy_character_base.gd
 Enemy_character_base.gd::GDScript::-1::1747407159::0::1::::Enemy<>CharacterBody3D<>::
 Tower_base.gd::GDScript::-1::1747836105::0::1::::Tower<>Node3D<>::
-Tower_base.tscn::PackedScene::3008198088369607433::1747836293::0::1::::<><>::res://base_nodes/Tower_base.gd<>uid://b6yhmpfrwlfcw::::res://lever_snap.tscn<>uid://hwmheyyoil6n::::res://Towers/repair_game.tscn<>uid://keiih1dm3608::::res://Towers/Upgrade screen.tscn<>uid://clujaf3u776a3::::res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn
+Tower_base.tscn::PackedScene::3008198088369607433::1747836965::0::1::::<><>::res://base_nodes/Tower_base.gd<>uid://b6yhmpfrwlfcw::::res://lever_snap.tscn<>uid://hwmheyyoil6n::::res://Towers/repair_game.tscn<>uid://keiih1dm3608::::res://Towers/Upgrade screen.tscn<>uid://clujaf3u776a3::::res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn
 Weapon_base.tscn::PackedScene::1031737775132285691::1744295281::0::1::::<><>::res://scripts/weapon_base.gd
-::res://enemies/::1747830369
+::res://enemies/::1747836966
 armored_enemy.tscn::PackedScene::8777593932199939846::1744293828::0::1::::<><>::uid://de66lnf1dsdkr::::res://base_nodes/enemy_base.tscn
-basic_enemy.tscn::PackedScene::587857275451797098::1747830369::0::1::::<><>::uid://de66lnf1dsdkr::::res://base_nodes/enemy_base.tscn<>uid://66yru527kvg7::::res://Assets/Zombies/Basic/zombie.tscn
-fast_enemy.tscn::PackedScene::3707616415796502312::1747830369::0::1::::<><>::uid://de66lnf1dsdkr::::res://base_nodes/enemy_base.tscn<>uid://y8b6x4kl443k::::res://Assets/Zombies/fast/Fast zombie.tscn
+basic_enemy.tscn::PackedScene::587857275451797098::1747836966::0::1::::<><>::uid://de66lnf1dsdkr::::res://base_nodes/enemy_base.tscn<>uid://66yru527kvg7::::res://Assets/Zombies/Basic/zombie.tscn<>uid://dsaixe3cs3kc3::::res://Assets/adio/zombie-death-2.wav
+fast_enemy.tscn::PackedScene::3707616415796502312::1747836966::0::1::::<><>::uid://de66lnf1dsdkr::::res://base_nodes/enemy_base.tscn<>uid://y8b6x4kl443k::::res://Assets/Zombies/fast/Fast zombie.tscn<>uid://beshstm1it45w::::res://Assets/adio/zombie-death-1.wav
 Fire.png::CompressedTexture2D::1520058345124209378::1743000285::1747400026::1::::<><>::
 Freeze.png::CompressedTexture2D::2275075721606217106::1743081137::1747400026::1::::<><>::
 ::res://enemies/Status effects/::1744039059
 Fire_effect.gd::GDScript::-1::1744039059::0::1::::BurningEffect<>StatusEffect<>::
 Freeze_effect.gd::GDScript::-1::1743428221::0::1::::FreezeEffect<>StatusEffect<>::
 Status_effects.gd::GDScript::-1::1743428207::0::1::::StatusEffect<>Node<>::
-::res://Levels/::1747836190
-Debug.tscn::PackedScene::6898446886250085411::1747836189::0::1::::<><>::res://Levels/level_base.gd<>res://Levels/EnemySpawner.gd<>uid://im06nq4w4p3o::::res://enemies/basic_enemy.tscn<>uid://dher8540ewaoy::::res://castle.tscn<>res://Levels/WaveSpawner.gd<>uid://bs285vgjjqivo::::res://enemies/fast_enemy.tscn<>res://Levels/Kill_count.gd<>uid://dxb6xphv3uy0u::::res://enemies/armored_enemy.tscn<>res://addons/godot-xr-tools/xr/start_xr.gd<>uid://clujaf3u776a3::::res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn<>uid://blgcwjyykt2u6::::res://Levels/start_game_ui.tscn<>uid://cqapcqfp4ioag::::res://player.tscn<>uid://ctltchlf2j2r4::::res://addons/xr-simulator/XRSimulator.tscn<>uid://0cvbw33uu3f::::res://Levels/game_successfull.tscn<>res://Levels/Tower_manager.gd
+::res://Levels/::1747836965
+Debug.tscn::PackedScene::6898446886250085411::1747836965::0::1::::<><>::res://Levels/level_base.gd<>res://Levels/EnemySpawner.gd<>uid://im06nq4w4p3o::::res://enemies/basic_enemy.tscn<>uid://dher8540ewaoy::::res://castle.tscn<>res://Levels/WaveSpawner.gd<>uid://bs285vgjjqivo::::res://enemies/fast_enemy.tscn<>res://Levels/Kill_count.gd<>uid://dxb6xphv3uy0u::::res://enemies/armored_enemy.tscn<>res://addons/godot-xr-tools/xr/start_xr.gd<>uid://clujaf3u776a3::::res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn<>uid://blgcwjyykt2u6::::res://Levels/start_game_ui.tscn<>uid://cqapcqfp4ioag::::res://player.tscn<>uid://ctltchlf2j2r4::::res://addons/xr-simulator/XRSimulator.tscn<>uid://0cvbw33uu3f::::res://Levels/game_successfull.tscn<>res://Levels/Tower_manager.gd
 debug_waves.json::JSON::-1::1744204018::0::1::::<><>::
 EnemySpawner.gd::GDScript::-1::1744040308::0::1::::<>Node3D<>::
 game_successfull.tscn::PackedScene::51768467328496877::1742315275::0::1::::<><>::
 Kill_count.gd::GDScript::-1::1740505459::0::1::::<>Label<>::
 level_base.gd::GDScript::-1::1742841204::0::1::::<>Node3D<>::
 Level_base.tscn::PackedScene::3084831108872925253::1743428459::0::1::::<><>::res://Levels/level_base.gd<>res://Levels/EnemySpawner.gd<>res://Levels/WaveSpawner.gd<>uid://im06nq4w4p3o::::res://enemies/basic_enemy.tscn<>uid://bs285vgjjqivo::::res://enemies/fast_enemy.tscn<>res://Levels/Kill_count.gd<>uid://clujaf3u776a3::::res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn<>uid://cqapcqfp4ioag::::res://player.tscn<>uid://0cvbw33uu3f::::res://Levels/game_successfull.tscn
-slider_smooth.tscn::PackedScene::9115800177269416533::1747836190::0::1::::<><>::res://addons/godot-xr-tools/interactables/interactable_slider.gd<>res://addons/godot-xr-tools/interactables/interactable_handle.gd<>uid://c25yxb0vt53vc::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn<>uid://db62hs5s4n2b3::::res://addons/godot-xr-tools/hands/animations/left/Grip 4.res<>res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd<>uid://ctw7nbntd5pcj::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn<>uid://d1xnpyc08njjx::::res://addons/godot-xr-tools/hands/animations/right/Grip 4.res<>uid://ca3daqmpo0tua::::res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.tscn
+slider_smooth.tscn::PackedScene::9115800177269416533::1747836965::0::1::::<><>::res://addons/godot-xr-tools/interactables/interactable_slider.gd<>res://addons/godot-xr-tools/interactables/interactable_handle.gd<>uid://c25yxb0vt53vc::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn<>uid://db62hs5s4n2b3::::res://addons/godot-xr-tools/hands/animations/left/Grip 4.res<>res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd<>uid://ctw7nbntd5pcj::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn<>uid://d1xnpyc08njjx::::res://addons/godot-xr-tools/hands/animations/right/Grip 4.res<>uid://ca3daqmpo0tua::::res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.tscn
 start_game_ui.gd::GDScript::-1::1742296065::0::1::::<>CanvasLayer<>::
 start_game_ui.tscn::PackedScene::3171045462577306091::1744110819::0::1::::<><>::res://Levels/start_game_ui.gd
 Tower_manager.gd::GDScript::-1::1747209992::0::1::::<>Node3D<>::
@@ -585,14 +585,14 @@ readme.md::TextFile::-1::1747214594::0::1::::<><>::
 ::res://qualisys_cpp_sdk/Tests/::1747214594
 CMakeLists.txt::TextFile::-1::1747214594::0::1::::<><>::
 ::res://qualisys_cpp_sdk/Tests/Data/::1747214594
-::res://scripts/::1747407159
-enemy_base.gd::GDScript::-1::1747407159::0::1::::Enemy_Base<>PathFollow3D<>::
+::res://scripts/::1747836960
+enemy_base.gd::GDScript::-1::1747836960::0::1::::Enemy_Base<>PathFollow3D<>::
 weapon_base.gd::GDScript::-1::1744295281::0::1::::<>Node3D<>::
 ::res://src/::1747226293
-::res://Towers/::1747836349
+::res://Towers/::1747836965
 basic_tower.tscn::PackedScene::3831992061817985694::1747836349::0::1::::<><>::uid://bi4gt27yg160l::::res://base_nodes/Tower_base.tscn<>uid://ndcvmc4x4mcn::::res://Assets/adio/gun-shot.mp3<>uid://cr0jwhjpuht3e::::res://Assets/Tower/Standard tower/scene.gltf<>res://Assets/Tower/Fridge/Assets.gd
 fire_tower.gd::GDScript::-1::1747408652::0::1::::<>Node3D<>::
-fire_tower.tscn::PackedScene::996538704750621148::1747830369::0::1::::<><>::uid://bi4gt27yg160l::::res://base_nodes/Tower_base.tscn<>res://Towers/fire_tower.gd
+fire_tower.tscn::PackedScene::996538704750621148::1747836965::0::1::::<><>::uid://bi4gt27yg160l::::res://base_nodes/Tower_base.tscn<>res://Towers/fire_tower.gd
 freeze_tower.gd::GDScript::-1::1747408663::0::1::::<>Node3D<>::
 freeze_tower.tscn::PackedScene::5188462032616597692::1747406876::0::1::::<><>::uid://bi4gt27yg160l::::res://base_nodes/Tower_base.tscn<>res://Towers/freeze_tower.gd<>uid://cpgu3cimi07dq::::res://Assets/Tower/Fridge/scene.gltf<>res://Assets/Tower/Fridge/Assets.gd
 repair_game.gd::GDScript::-1::1742833732::0::1::::<>Node3D<>::
@@ -603,12 +603,12 @@ Upgrade screen.tscn::PackedScene::710646377671779183::1744110819::0::1::::<><>::
 upgrade_screen.gd::GDScript::-1::1744017068::0::1::::<>CanvasLayer<>::
 ::res://Towers/Level trees/::1744019352
 Basic_tower.json::JSON::-1::1744019352::0::1::::<><>::
-::res://Weapons/::1747836190
+::res://Weapons/::1747836965
 brown_grid.png::CompressedTexture2D::4587827536558144364::1741707126::1747400026::1::::<><>::
 brown_grid_triplanar.tres::StandardMaterial3D::-1::1741707170::0::1::::<><>::uid://b6mm34yoewsoy::::res://Weapons/brown_grid.png
 flame_thrower.gd::GDScript::-1::1742309127::0::1::::<>Node3D<>::
-flame_thrower.tscn::PackedScene::6829748818276717910::1747836190::0::1::::<><>::uid://ox1tnnxv61x4::::res://base_nodes/Weapon_base.tscn<>res://Weapons/flame_thrower.gd<>uid://dvmshm41cxejt::::res://Weapons/wheel_smooth.tscn<>uid://bskb6gq00hvca::::res://Assets/Weapons/FlameThrower/scene.gltf
-Hammer.tscn::PackedScene::1511469660881347622::1747836190::0::1::::<><>::uid://dhukeoj4kn2ju::::res://Assets/Weapons/Axe/scene.gltf
+flame_thrower.tscn::PackedScene::6829748818276717910::1747836965::0::1::::<><>::uid://ox1tnnxv61x4::::res://base_nodes/Weapon_base.tscn<>res://Weapons/flame_thrower.gd<>uid://dvmshm41cxejt::::res://Weapons/wheel_smooth.tscn<>uid://bskb6gq00hvca::::res://Assets/Weapons/FlameThrower/scene.gltf
+Hammer.tscn::PackedScene::1511469660881347622::1747836965::0::1::::<><>::uid://dhukeoj4kn2ju::::res://Assets/Weapons/Axe/scene.gltf<>uid://dhsqmcapijomg::::res://Assets/adio/axe_slash.ogg
 lever_snap.tscn::PackedScene::8787325745030803456::1741621072::0::1::::<><>::res://assets/wahooney.itch.io/blue_grid.tres<>res://addons/godot-xr-tools/interactables/interactable_hinge.gd<>res://assets/wahooney.itch.io/brown_grid_triplanar.tres<>res://addons/godot-xr-tools/interactables/interactable_handle.gd<>uid://c25yxb0vt53vc::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn<>uid://db62hs5s4n2b3::::res://addons/godot-xr-tools/hands/animations/left/Grip 4.res<>res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd<>uid://ctw7nbntd5pcj::::res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn<>uid://d1xnpyc08njjx::::res://addons/godot-xr-tools/hands/animations/right/Grip 4.res<>uid://ca3daqmpo0tua::::res://addons/godot-xr-tools/objects/grab_points/grab_point_redirect.tscn
 Test_weapon.gd::GDScript::-1::1740493554::0::1::::<>Node3D<>::
 Test_weapon.tscn::PackedScene::6010040110931036305::1740498498::0::1::::<><>::res://Weapons/Test_weapon.gd<>uid://xqimcf20s2jp::::res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn

@@ -32,11 +32,11 @@ ambient_light_energy = 0.21
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7nwi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u72c6"]
 albedo_color = Color(0.372549, 0.603922, 0.196078, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3lcrn"]
-material = SubResource("StandardMaterial3D_h7nwi")
+material = SubResource("StandardMaterial3D_u72c6")
 size = Vector2(500, 500)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6p87"]

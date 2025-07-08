@@ -14,7 +14,6 @@ var step_length = 0.7 # meters per step (adjust as needed)
 func _ready():
 	server.listen(4242)
 	step_start_time = Time.get_ticks_msec() / 1000.0 # seconds
-	run_script()
 
 func _process(delta):
 	server.poll()

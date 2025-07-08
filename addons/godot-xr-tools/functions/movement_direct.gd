@@ -40,7 +40,7 @@ func physics_movement(_delta: float, player_body: XRToolsPlayerBody, _disabled: 
 	if !_controller.get_is_active():
 		return
 	var dz_input_action
-	if input_action == "walk":
+	if input_action == "mocap":
 		player_body.ground_control_velocity.y += walkingspeed
 	else:
 			
