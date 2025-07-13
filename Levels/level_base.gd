@@ -7,6 +7,12 @@ var game_started: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Player.set_money(starting_capital)
+	
+	#code that has to be excecuted after becomming main scene
+	await get_tree().process_frame
+	if get_tree().get_current_scene() == self:
+		$Player.init_player()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -17,10 +23,12 @@ func init(mocap: bool, no_legs: bool, starting_wave:int):
 		$Player.set_walking_type("mocap")
 		$Player.start_udp_script()
 	elif no_legs:
-		$Player.set_walking_type("no legs")
+		$Player.set_walking_type("no_legs")
 	
-	#TODO: add way to start at later wave
-	
+	$EnemySpawner.set_wave(starting_wave)
+
+
+
 func start_game():
 	print("starting game")
 	game_started = true

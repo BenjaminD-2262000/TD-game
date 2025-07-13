@@ -2,6 +2,8 @@
 class_name ServerNode
 extends Node
 
+var script_running = false
+
 var server = UDPServer.new()
 var peers = []
 var pid
@@ -9,7 +11,7 @@ var pid
 # Step tracking
 var step_count = 0
 var step_start_time = 0.0
-var step_length = 0.7 # meters per step (adjust as needed)
+var step_length = 0.9 # meters per step (adjust as needed)
 
 func _ready():
 	server.listen(4242)
@@ -19,7 +21,6 @@ func _process(delta):
 	server.poll()
 	
 	if server.is_connection_available():
-		print("server connected")
 		var peer = server.take_connection()
 		var packet = peer.get_packet()
 		var msg = packet.get_string_from_utf8()
@@ -33,8 +34,9 @@ func _process(delta):
 	var current_time = Time.get_ticks_msec() / 1000.0
 	var elapsed_time = current_time - step_start_time
 	
-	if elapsed_time >= 1.0: # Calculate every second
-		var speed = (step_count * step_length) / elapsed_time # m/s
+	if elapsed_time >= 0.10: # Calculate every second
+		var speed = (step_count * step_length) / elapsed_time # m/0.1s
+		speed = speed * 10
 		get_parent().walkingspeed = speed
 		# Reset tracking for next interval
 		step_count = 0
@@ -50,9 +52,11 @@ func run_script():
 	var output = []
 	var err = []
 	pid = OS.create_process("python", [absolute_path]) #ADD TRUE FOR DEBUG
+	
+	script_running = true
 
 
 func _notification(what):
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and script_running:
 		OS.kill(pid)
 		get_tree().quit() # default behavior)

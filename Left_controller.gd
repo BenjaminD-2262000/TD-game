@@ -11,8 +11,7 @@ var build_mode: bool = true
 var current_displayed_tower_cost: int
 
 func _ready():
-	ground = get_tree().current_scene.get_node_or_null("Ground")
-	create_preview()
+	pass
 
 func _process(delta):
 

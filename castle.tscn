@@ -45,7 +45,14 @@ texture = SubResource("ViewportTexture_ufg4q")
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
-transform = Transform3D(0.897189, -0.165036, -0.409652, 0, -0.927556, 0.373684, -0.441647, -0.335265, -0.832193, -8.92269, 7.70282, 1.02048)
+transform = Transform3D(0.947551, -0.119431, -0.296451, 1.65642e-09, -0.927556, 0.373684, -0.319604, -0.354084, -0.878907, -8.92269, 7.70282, 1.02048)
+light_color = Color(0.999999, 0.987042, 0.549268, 1)
+light_energy = 16.0
+spot_range = 36.615
+spot_angle = 22.72
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(0.998571, -0.0199675, -0.0495632, 3.32995e-09, -0.927556, 0.373684, -0.0534342, -0.37315, -0.926231, 8.89562, 7.70282, 1.02048)
 light_color = Color(0.999999, 0.987042, 0.549268, 1)
 light_energy = 16.0
 spot_range = 36.615

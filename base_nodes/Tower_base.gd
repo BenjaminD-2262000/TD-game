@@ -27,6 +27,8 @@ var repair_in_progress: bool = false
 var setup: bool=false
 @export var setup_fase: int = 5
 
+@onready var current_upgrade_screen = $Viewport2Din3D/Upgrade_screen
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	repair_game.disable_game()
@@ -136,7 +138,7 @@ func handle_wrench():
 			repair_in_progress = true
 			repair_game.start_repair()
 		elif not broken:
-			pass
+			show_upgrade_screen()
 			#TODO: show upgrade screen
 
 func repair():
@@ -168,14 +170,25 @@ func can_upgrade():
 	pass
 
 func show_upgrade_screen():
-	var update_screen = XRToolsViewport2DIn3D.new()
-	var ui_scene = preload("res://Towers/Upgrade screen.tscn").instantiate()
-	ui_scene.hide()
-	update_screen.set_scene(ui_scene)
-	update_screen.position = Vector3(1, 1.5, 3)
-	update_screen.set_stats(next_level_stats)
-	add_child(update_screen)
+	if is_instance_valid(current_upgrade_screen):
+		current_upgrade_screen.queue_free()
+	var new_upgrade_viewport = load("res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn").instantiate()
+	var new_upgrade_screen = load("res://Towers/Upgrade screen.tscn")
+	new_upgrade_viewport.set_scene(new_upgrade_screen)
+
+
+	#handle visuals of the viewport
+	new_upgrade_viewport.unshaded = true
+	new_upgrade_viewport.transform.origin = Vector3(0, 1.5, 3)
+	new_upgrade_viewport.viewport_size = Vector2i(425, 204)
+	add_child(new_upgrade_viewport)
+	new_upgrade_viewport.set_stats(next_level_stats)
 	
+		#connect the upgrade button to the upgrade function
+	var ui_root = new_upgrade_viewport.get_scene_root()  # This is the instance of the upgrade screen
+	ui_root.connect("upgrade_confirmed", Callable(self, "_on_upgrade_screen_upgrade_confirmed"))
+	ui_root.connect("calcel_upgrade", Callable(self, "_on_upgrade_screen_upgrade_canceled"))
+	current_upgrade_screen = new_upgrade_viewport
 
 func upgrade():
 	
@@ -187,6 +200,8 @@ func upgrade():
 	fire_rate += next_level_stats["fire_rate"]
 	max_enemy_hit += next_level_stats["max_enemy_hit"]
 	
+	current_upgrade_screen.queue_free()
+	$LevelViewport/Level.text = str(current_level)
 
 func set_next_level_stats(next_level: int):
 	var file = FileAccess.open(level_tree_path, FileAccess.READ)
@@ -204,3 +219,7 @@ func _on_repair_game_repair_game_done() -> void:
 
 func _on_upgrade_screen_upgrade_confirmed() -> void:
 	upgrade()
+
+
+func _on_upgrade_screen_upgrade_canceled() -> void:
+	current_upgrade_screen.queue_free()

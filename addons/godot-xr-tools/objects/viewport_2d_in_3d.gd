@@ -655,5 +655,14 @@ func on_start_game() -> void:
 
 
 func set_stats(stats):
-	if $Upgrade_screen:
-		$Upgrade_screen.set_stats(stats)
+	var viewport = $Viewport
+	var ui_root = viewport.get_child(0) # Assuming your Control scene is the first child
+
+	if ui_root:
+		print("setting stats")
+		ui_root.set_stats(stats)
+
+func get_scene_root():
+	var viewport = $Viewport
+	var ui_root = viewport.get_child(0)
+	return ui_root

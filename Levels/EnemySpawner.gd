@@ -7,6 +7,7 @@ extends Node3D
 
 var enemy_waves = []  # Stores the parsed JSON waves
 var wave_index = 0  # Tracks which enemy to spawn next
+var total_waves
 
 var wave_size: int = 0
 
@@ -19,7 +20,11 @@ func _ready():
 func _process(delta):
 	pass
 	
-	
+func set_wave(wave_nr: int):
+	wave_index = wave_nr
+
+
+
 func load_waves():
 	var file = FileAccess.open("res://Levels/debug_waves.json", FileAccess.READ)
 	if file:
@@ -32,17 +37,18 @@ func load_waves():
 
 	else:
 		print("Failed to load enemy wave file!")
+	total_waves = enemy_waves.size()
 	$WaveSpawner/SubViewport/Kill_count.set_wave_size(wave_size)
 
 func start_spawning():
-	
+
 	$WaveSpawner.spawn_wave(enemy_waves[wave_index], wave_size)
+	$WaveSpawner/SubViewport/Wave_number.text = "Wave:" + str(wave_index + 1) + "/" + str(total_waves)
 	wave_index += 1
-		#TODO: set game completed screen
 
 
 func _on_wave_spawner_wave_done() -> void:
-	if wave_index >= enemy_waves.size():
+	if wave_index >= total_waves - 1:
 		$WaveSpawner/GameFinishedViewport.show()
 		$WaveSpawner/StartGameViewport.hide()
 		return

@@ -26,6 +26,7 @@ func _process(delta):
 
 
 func spawn_wave(wave, wave_size):
+	enemie_type_in_wave = 0
 	enemies_in_wave = wave_size
 	enemies_spawned = 0
 	timer = Timer.new()

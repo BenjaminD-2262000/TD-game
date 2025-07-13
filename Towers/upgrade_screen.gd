@@ -2,7 +2,8 @@ extends CanvasLayer
 
 
 signal upgrade_confirmed
-	
+signal calcel_upgrade
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -22,5 +23,9 @@ func set_stats(stats):
 	
 
 
-func _on_button_pressed() -> void:
+func _on_upgrade_pressed() -> void:
 	upgrade_confirmed.emit()
+
+
+func _on_cancel_pressed() -> void:
+	calcel_upgrade.emit()

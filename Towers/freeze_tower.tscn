@@ -22,4 +22,9 @@ transform = Transform3D(4.4, 0, 0, 0, 8.8452, 0, 0, 0, 4.03, -0.0661981, 1.74659
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 1.16133)
 script = ExtResource("4_i1ud5")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.22487, 0.241268)
+light_color = Color(0.439216, 1, 1, 1)
+light_energy = 16.0
+
 [connection signal="full_crank" from="LeverSnap" to="." method="_on_lever_snap_full_crank"]

@@ -111,6 +111,7 @@ enemy_scenes = {
 
 [node name="SubViewport" type="SubViewport" parent="EnemySpawner/WaveSpawner"]
 transparent_bg = true
+size = Vector2i(1024, 512)
 
 [node name="Kill_count" type="Label" parent="EnemySpawner/WaveSpawner/SubViewport"]
 offset_right = 513.0
@@ -118,17 +119,28 @@ offset_bottom = 232.0
 theme_override_colors/font_color = Color(1, 0.992157, 0, 1)
 theme_override_font_sizes/font_size = 200
 text = "
-"
+hi"
 script = ExtResource("5_3118g")
+
+[node name="Wave_number" type="Label" parent="EnemySpawner/WaveSpawner/SubViewport"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -273.0
+offset_right = 557.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.992157, 0, 1)
+theme_override_font_sizes/font_size = 200
+text = "wave:"
 
 [node name="Kill_Count_sprite" type="Sprite3D" parent="EnemySpawner/WaveSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.9219, -31.2237)
 texture = SubResource("ViewportTexture_e07wf")
 
 [node name="StartGameViewport" parent="EnemySpawner/WaveSpawner" instance=ExtResource("6_p0afi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.830657, 1.4477, -1.74572)
+transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0.781, 17.031, -25.532)
 scene = ExtResource("7_er3xc")
-viewport_size = Vector2(700, 350)
+viewport_size = Vector2(400, 200)
 unshaded = true
 scene_properties_keys = PackedStringArray("start_game_ui.gd")
 
@@ -139,7 +151,7 @@ visible = false
 transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0.781308, 17.0313, -25.5325)
 visible = false
 scene = ExtResource("9_amu2d")
-scene_properties_keys = PackedStringArray()
+unshaded = true
 
 [node name="Castle" parent="." instance=ExtResource("3_4knop")]
 transform = Transform3D(-0.0395215, 0, -0.999219, 0, 1, 0, 0.999219, 0, -0.0395215, 22.1711, 0, -2.21663)

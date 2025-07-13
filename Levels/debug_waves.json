@@ -13,5 +13,11 @@
 			"amount": 5,
 			"type": "basic"
 		}
+	],
+	[
+		{
+			"amount": 5,
+			"type": "fast"
+		}
 	]
 ]

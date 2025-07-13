@@ -22,7 +22,11 @@ func _on_start_game_pressed() -> void:
 	var level = load("res://Levels/Debug.tscn").instantiate()
 	level.init(motion_capture, no_legs, starting_wave)
 	
+	print("adding child")
 	get_tree().get_root().add_child(level)
+	print("added child")
 	get_tree().get_current_scene().queue_free()
+	print("removed menu")
 	get_tree().set_current_scene(level)
+	print("set new scene")
 	
