@@ -1,6 +1,10 @@
 extends Node3D
 
 var castle_damage: int = 50
+
+var castle_destroyed = false
+
+signal game_over
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,8 +16,10 @@ func _process(delta):
 	
 	
 func take_damage(damage):
-	if $SubViewport/Healthbar.value < damage:
+	if $SubViewport/Healthbar.value <= damage:
 		damage = $SubViewport/Healthbar.value
+		castle_destroyed = true
+		game_over.emit()
 	$SubViewport/Healthbar.value -= damage
 	$SubViewport/Healthbar.queue_redraw()
 
@@ -21,14 +27,12 @@ func handle_enemy_at_door(enemy):
 
 	if not is_instance_valid(enemy):  
 		return  # Enemy is already deleted, stop execution
-		
-	var enemy_damage = enemy.damage
-	take_damage(enemy_damage)
-	enemy.take_damage(castle_damage)
+	if not castle_destroyed:
+		take_damage(enemy.damage)
+		enemy.take_damage(castle_damage)
 
-	
 func _on_wave_spawner_enemy_reach_end(enemy):
-	if enemy.has_meta("damage_timer"):  #only onet timer
+	if enemy.has_meta("damage_timer"):  #only one timer
 		return
 
 	var timer = Timer.new()
@@ -40,7 +44,7 @@ func _on_wave_spawner_enemy_reach_end(enemy):
 
 	handle_enemy_at_door(enemy) #instantly handle first tick
 	timer.timeout.connect(func():
-		if not is_instance_valid(enemy):  # ✅ Stop if enemy is gone
+		if not is_instance_valid(enemy):
 			timer.queue_free()
 			return  
 		handle_enemy_at_door(enemy)

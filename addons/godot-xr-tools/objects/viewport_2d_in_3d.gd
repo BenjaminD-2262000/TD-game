@@ -659,10 +659,18 @@ func set_stats(stats):
 	var ui_root = viewport.get_child(0) # Assuming your Control scene is the first child
 
 	if ui_root:
-		print("setting stats")
 		ui_root.set_stats(stats)
 
 func get_scene_root():
 	var viewport = $Viewport
 	var ui_root = viewport.get_child(0)
 	return ui_root
+	
+
+
+func set_game_won():
+	scene_node.set_game_won()
+	
+
+func set_game_over(wave: int, enemies: int):
+	scene_node.set_game_over(wave, enemies)

@@ -53,6 +53,9 @@ signal wheel_stopped
 var has_reached_top: bool = false
 signal full_crank
 
+##a minimum offset for the wheel to decide the minimum turning speed for flamethrower
+@export var minimum_offset = 0.1
+
 # Add support for is_xr_class on XRTools classes
 func is_xr_class(name : String) -> bool:
 	return name == "XRToolsInteractableHinge" or super(name)
@@ -88,12 +91,11 @@ func _process(_delta: float) -> void:
 
 	# Average the angular offsets
 	var offset := offset_sum / grabbed_handles.size()
-
 	# Move the hinge by the requested offset
 	move_hinge(_hinge_position_rad + offset)
 
 	# Check if the hinge is moving
-	if hinge_position != _previous_position:
+	if offset >= minimum_offset:
 		if not is_moving:
 			is_moving = true
 			wheel_moving.emit()

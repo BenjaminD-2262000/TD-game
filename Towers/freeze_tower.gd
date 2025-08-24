@@ -10,22 +10,7 @@ func _ready() -> void:
 	hitbox.body_entered.connect(_on_enemy_entered_range)
 	hitbox.body_exited.connect(_on_enemy_exit_range)
 	
-	#set the range
-	var shape = CylinderShape3D.new()
-	shape.radius = range
-	shape.height = 10
-	$Range/CollisionShape3D.set_shape(shape)
-	if $Pivot/Tower.has_method("set_transparent"):
-		$Pivot/Tower.set_transparent(0.95)
-	else:
-		$Pivot/Tower.transparency = 0.95
-	
-	#set mesh to see range
-	var mesh = CylinderMesh.new()
-	mesh.bottom_radius = range
-	mesh.top_radius = range
-	mesh.height = 2
-	$Range/MeshInstance3D.set_mesh(mesh)
+	update_range()
 	
 	var timer = Timer.new()
 	timer.wait_time = fire_rate
@@ -34,8 +19,9 @@ func _ready() -> void:
 	timer.timeout.connect(func():
 		freeze()
 	)
+	
+	set_next_level_stats(1)
 
-##shoots the fire
 func freeze():
 	if not (placed and setup) or broken:
 		return
@@ -44,7 +30,7 @@ func freeze():
 	mat.albedo_color = Color(0, 0, 0.8)  # RGB (Blue-ish)
 	$Range/MeshInstance3D.set_surface_override_material(0, mat)
 	
-	# Create a timer to continuously apply fire damage for 0.5s
+	
 	var fire_timer = Timer.new()
 	fire_timer.wait_time = 0.1  # Apply damage every 0.1s (adjustable)
 	fire_timer.autostart = true
@@ -85,10 +71,7 @@ func _on_lever_snap_full_crank() -> void:
 		setup_fase -= 1
 		$Pivot.position.y += 1
 	else:
-		if $Pivot/Tower.has_method("set_transparent"):
-			$Pivot/Tower.set_transparent(0.0)
-		else:
-			$Pivot/Tower.transparency = 0.0
+		set_transparancy(VISIBLE)
 		setup = true
 		remove_child($LeverSnap)
 

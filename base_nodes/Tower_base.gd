@@ -29,6 +29,9 @@ var setup: bool=false
 
 @onready var current_upgrade_screen = $Viewport2Din3D/Upgrade_screen
 
+const TRANSPARANT = 0.95
+const VISIBLE = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	repair_game.disable_game()
@@ -37,18 +40,18 @@ func _ready():
 	hitbox.monitoring = true
 	hitbox.body_entered.connect(_on_enemy_entered_range)
 	hitbox.body_exited.connect(_on_enemy_exit_range)
-	
-	
-	
+
+	update_range()
+	set_damage_timer()
+	set_next_level_stats(1)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func update_range():
 	#set the range
 	var shape = CylinderShape3D.new()
 	shape.radius = range
 	shape.height = 10
 	$Range/CollisionShape3D.set_shape(shape)
-	if $Pivot/Tower.has_method("set_transparent"):
-		$Pivot/Tower.set_transparent(0.95)
-	else:
-		$Pivot/Tower.transparency = 0.95
 	
 	#set mesh to see range
 	var mesh = CylinderMesh.new()
@@ -56,57 +59,52 @@ func _ready():
 	mesh.top_radius = range
 	mesh.height = 2
 	$Range/MeshInstance3D.set_mesh(mesh)
-		
-	set_next_level_stats(1)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func set_transparancy(transparancy):
+	if $Pivot/Tower.has_method("set_transparent"):
+		$Pivot/Tower.set_transparent(transparancy)
+	else:
+		$Pivot/Tower.transparency = transparancy
+
 func _process(delta):
 	pass
 
 func damage_enemy():
-	current_enemy.take_damage(damage)
-	audioPlayer.play()
+	if current_enemy:
+		current_enemy.take_damage(damage)
+		audioPlayer.play()
 
 func _on_enemy_entered_range(enemy):
 	if not enemy is Enemy or not setup or broken:
 		return
 	enemy.Enemy_died.connect(_on_enemy_in_range_died)
 	if not current_enemy:
-		print("set current enemy")
 		current_enemy = enemy
-		
-		if enemy.has_meta("damage_timer"):  #only one timer
-			return
-
-		var timer = Timer.new()
-		timer.wait_time = fire_rate
-		timer.autostart = true
-		add_child(timer)
-
-		enemy.set_meta("damage_timer", timer)
-
-		damage_enemy() #instantly handle first tick
-		timer.timeout.connect(func():
-			if not is_instance_valid(current_enemy):  # ✅ Stop if enemy is gone
-				timer.queue_free()
-				return  
-			damage_enemy()
-		)
-		
-		
 		
 	else:
 		enemies_in_range.push_back(enemy)
 
-func _on_enemy_exit_range(enemy):
-	if enemy == current_enemy:
-		current_enemy = enemies_in_range.pop_front()
-	else:
-		enemies_in_range.erase(enemy)
+func set_damage_timer():
 
+	var timer = Timer.new()
+	timer.wait_time = fire_rate
+	timer.autostart = true
+	add_child(timer)
+
+	timer.timeout.connect(func():
+		damage_enemy()
+	)
+	
+
+func _on_enemy_exit_range(enemy):
+	remove_enemy(enemy)
 
 func _on_enemy_in_range_died(enemy, worth):
+	remove_enemy(enemy)
+
+func remove_enemy(enemy):
 	if enemy == current_enemy:
-		if enemies_in_range[0]:
+		if enemies_in_range.size() > 0:
 			current_enemy = enemies_in_range.pop_front()
 		else:
 			current_enemy = null
@@ -114,10 +112,6 @@ func _on_enemy_in_range_died(enemy, worth):
 		enemies_in_range.erase(enemy)
 
 func place():
-	if $Pivot/Tower.has_method("set_transparent"):
-		$Pivot/Tower.set_transparent(0.0)
-	else:
-		$Pivot/Tower.transparency = 0.0
 	$Pivot.position.y -= setup_fase
 	$LeverSnap.show()
 	$LeverSnap.activate()
@@ -126,10 +120,7 @@ func place():
 
 func breakdown():
 	if placed and setup:
-		if $Pivot/Tower.has_method("set_transparent"):
-			$Pivot/Tower.set_transparent(0.95)
-		else:
-			$Pivot/Tower.transparency = 0.95
+		set_transparancy(TRANSPARANT)
 		broken = true
 
 func handle_wrench():
@@ -139,14 +130,10 @@ func handle_wrench():
 			repair_game.start_repair()
 		elif not broken:
 			show_upgrade_screen()
-			#TODO: show upgrade screen
 
 func repair():
 	if placed and setup and broken:
-		if $Pivot/Tower.has_method("set_transparent"):
-			$Pivot/Tower.set_transparent(0.0)
-		else:
-			$Pivot/Tower.transparency = 0.0
+		set_transparancy(VISIBLE)
 		broken = false
 		repair_in_progress = false
 
@@ -158,10 +145,7 @@ func _on_lever_snap_full_crank() -> void:
 		setup_fase -= 1
 		$Pivot.position.y += 1
 	else:
-		if $Pivot/Tower.has_method("set_transparent"):
-			$Pivot/Tower.set_transparent(0.0)
-		else:
-			$Pivot/Tower.transparency = 0.0
+		set_transparancy(VISIBLE)
 		setup = true
 		remove_child($LeverSnap)
 
@@ -176,7 +160,6 @@ func show_upgrade_screen():
 	var new_upgrade_screen = load("res://Towers/Upgrade screen.tscn")
 	new_upgrade_viewport.set_scene(new_upgrade_screen)
 
-
 	#handle visuals of the viewport
 	new_upgrade_viewport.unshaded = true
 	new_upgrade_viewport.transform.origin = Vector3(0, 1.5, 3)
@@ -184,7 +167,7 @@ func show_upgrade_screen():
 	add_child(new_upgrade_viewport)
 	new_upgrade_viewport.set_stats(next_level_stats)
 	
-		#connect the upgrade button to the upgrade function
+	#connect the upgrade button to the upgrade function
 	var ui_root = new_upgrade_viewport.get_scene_root()  # This is the instance of the upgrade screen
 	ui_root.connect("upgrade_confirmed", Callable(self, "_on_upgrade_screen_upgrade_confirmed"))
 	ui_root.connect("calcel_upgrade", Callable(self, "_on_upgrade_screen_upgrade_canceled"))
@@ -200,8 +183,12 @@ func upgrade():
 	fire_rate += next_level_stats["fire_rate"]
 	max_enemy_hit += next_level_stats["max_enemy_hit"]
 	
+	update_range()
+	
 	current_upgrade_screen.queue_free()
 	$LevelViewport/Level.text = str(current_level)
+	
+	set_next_level_stats(current_level + 1)
 
 func set_next_level_stats(next_level: int):
 	var file = FileAccess.open(level_tree_path, FileAccess.READ)
@@ -209,11 +196,10 @@ func set_next_level_stats(next_level: int):
 	if file:
 		var json_string = file.get_as_text()
 		var level_tree = JSON.parse_string(json_string)
-		next_level_stats = level_tree[next_level]
+		next_level_stats = level_tree[next_level - 1]
 		file.close()
 
 func _on_repair_game_repair_game_done() -> void:
-	print("screw bolted")
 	repair()
 
 

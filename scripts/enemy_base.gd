@@ -5,9 +5,7 @@ class_name Enemy_Base
 @export var speed: float = 10.0
 @export var damage: float = 1.0
 @export var resistances: Dictionary = {}
-##The amount of money you get from killing one of this unit
 @export var worth: int = 10
-##Armored enemies are immune to standard attacks
 @export var armored: bool = false
 @onready var effect_icon = $CharacterBody3D/SubViewport/HPBar/StatusEffect
 var active_effects = []  # List to track status effects
@@ -53,12 +51,6 @@ func die():
 func apply_status_effect(effect: StatusEffect):
 	# Prevent duplicate effects of the same type (e.g., only one burning effect at a time)
 	for e in active_effects:
-		#fire melts ice
-		if e.get_class() == "FreezeEffect" and effect.get_class() == "BurningEffect":
-			active_effects.erase(e)
-		#cant freeze sombody that is currently on fire
-		if e.get_class() == "BurningEffect" and effect.get_class() == "FreezeEffect":
-			return
 		if e.get_class() == effect.get_class():
 			return  
 	

@@ -43,17 +43,14 @@ func switch_tower():
 
 func handle_build_mode():
 	if raycast.is_colliding():
-		var collider = raycast.get_collider()  # Gets the object the ray is colliding with
-		if collider == ground:  #make sure it gets placed on the grSound
-			var collision_point = raycast.get_collision_point()  # Get the collision point
-			update_preview_position(collision_point)
+		if raycast.get_collider() == ground:  #make sure it gets placed on the ground
+			update_preview_position(raycast.get_collision_point())
 		else:
 			hide_preview()
 	else:
 		hide_preview()
 
 func _on_button_pressed(name: String) -> void:
-	print(name)
 	if build_mode:
 		if name == "ax_button":
 			switch_tower()
@@ -66,16 +63,17 @@ func _on_button_pressed(name: String) -> void:
 	elif name == "by_button":
 		switch_mode()
 		return
-	
+
+#Code to handle temporary input for simulator for testing.
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
+
 		if event.keycode == KEY_KP_3:
 			switch_tower()
 			return
 		elif event.keycode == KEY_KP_4:
 			switch_mode()
 			return
-
 
 	if raycast.is_colliding() and raycast.get_collider() == ground: #first check if the tower can in fact be placed
 		if event is InputEventKey and event.is_pressed():
@@ -87,16 +85,16 @@ func place_object():
 		return
 	if raycast.is_colliding():
 		var collision_point = raycast.get_collision_point()
-		var new_object = object_scene.instantiate()
-		var towers_node = get_tree().current_scene.get_node("Tower_manager")  # Ensure "Towers" node path is correct
+		var new_tower = object_scene.instantiate()
+		var towers_node = get_tree().current_scene.get_node("Tower_manager")
 
 		if towers_node:
-			new_object.global_transform.origin = collision_point
-			new_object.pay_for_upgrade.connect(_on_pay_for_upgrade)
-			towers_node.add_child(new_object)
+			new_tower.global_transform.origin = collision_point
+			new_tower.pay_for_upgrade.connect(_on_pay_for_upgrade)
+			towers_node.add_child(new_tower)
 		else:
 			print("Towers node not found!")
-		new_object.place()
+		new_tower.place()
 		get_parent().pay(current_displayed_tower_cost)
 
 func _on_pay_for_upgrade(upgrade_cost: int):
@@ -107,6 +105,7 @@ func create_preview():
 		preview_instance = object_scene.instantiate()
 		current_displayed_tower_cost = preview_instance.cost
 		$CostViewport/TowerCost.text = str(current_displayed_tower_cost)
+		preview_instance.set_transparancy(0.95)
 		var towers_node = get_tree().current_scene.get_node("Tower_manager")  # Ensure "Towers" node path is correct
 		if towers_node:
 			towers_node.add_child(preview_instance)

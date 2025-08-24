@@ -1,6 +1,6 @@
 [
 	{
-		"damage": 15,
+		"damage": 100,
 		"max_enemy_hit": 0,
 		"range": 5,
 		"fire_rate": 0,

@@ -25,22 +25,14 @@ func _process(delta: float) -> void:
 	moneyLabel.text = str(money)
 	if walkingtype == "no_cap":
 		update_walk_no_cap()
-	elif walkingtype == "no_legs":
-		update_walk_no_legs()
-	
 	#update walking speed in the controller
 	$Left_Hand/MovementDirect.walkingspeed = walkingspeed
 
 func create_tower_preview():
 	$Left_Hand.create_preview()
 
-#handles walking by moving controllers
-func update_walk_no_legs():
-	pass
-	#TODO: add walking by moving arms in walk like motion
 
-
-#handles walking if there is no motion capture system by loking at head going up or down
+#handles walking if there is no motion capture system by looking at head going up or down
 func update_walk_no_cap():
 	var y_position = $XRCamera3D.global_transform.origin.y
 	if abs(y_position - prev_y_pos) > 10:

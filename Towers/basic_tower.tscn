@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cr0jwhjpuht3e" path="res://Assets/Tower/Standard tower/scene.gltf" id="2_psibv"]
 [ext_resource type="Script" path="res://Assets/Tower/Fridge/Assets.gd" id="3_h0uik"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_p47u5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_26ubd"]
 viewport_path = NodePath("LevelViewport")
 
 [node name="TowerBase" instance=ExtResource("1_65cb8")]
@@ -15,7 +15,6 @@ max_enemy_hit = 1
 fire_rate = 1.0
 range = 5
 level_tree_path = "res://Towers/Level trees/Basic_tower.json"
-setup_fase = 0
 
 [node name="AudioStreamPlayer3D" parent="." index="0"]
 stream = ExtResource("2_3nkwj")
@@ -39,24 +38,8 @@ light_energy = 10.99
 spot_range = 36.615
 spot_angle = 22.72
 
-[node name="Viewport2Din3D" parent="." index="7"]
-collision_layer = 5242880
-
-[node name="LevelViewport" type="SubViewport" parent="." index="8"]
-transparent_bg = true
-size = Vector2i(41, 81)
-
-[node name="Level" type="Label" parent="LevelViewport" index="0"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 75
-text = "0"
-
-[node name="Sprite3D" type="Sprite3D" parent="." index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0408258, 8.05889, 0.0547217)
-billboard = 1
-shaded = true
-texture = SubResource("ViewportTexture_p47u5")
+[node name="Sprite3D" parent="." index="9"]
+texture = SubResource("ViewportTexture_26ubd")
 
 [connection signal="full_crank" from="LeverSnap" to="." method="_on_lever_snap_full_crank"]
 [connection signal="repair_game_done" from="Repair_Game" to="." method="_on_repair_game_repair_game_done"]

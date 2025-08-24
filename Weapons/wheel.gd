@@ -16,7 +16,7 @@ func _on_interactable_hinge_wheel_moving() -> void:
 	wheel_moving.emit()
 
 func _on_interactable_hinge_wheel_stopped() -> void:
-	wheel_moving.emit()
+	wheel_stopped.emit()
 
 func disable():
 	$HingeOrigin/HandPoseArea/CollisionShape3D.disabled = true

@@ -10,22 +10,7 @@ func _ready() -> void:
 	hitbox.body_entered.connect(_on_enemy_entered_range)
 	hitbox.body_exited.connect(_on_enemy_exit_range)
 	
-	#set the range
-	var shape = CylinderShape3D.new()
-	shape.radius = range
-	shape.height = 10
-	$Range/CollisionShape3D.set_shape(shape)
-	if $Pivot/Tower/RootNode/tower:
-		$Pivot/Tower/RootNode/tower.transparency = 0.95
-	else:
-		$Pivot/Tower.transparency = 0.95
-	
-	#set mesh to see range
-	var mesh = CylinderMesh.new()
-	mesh.bottom_radius = range
-	mesh.top_radius = range
-	mesh.height = 2
-	$Range/MeshInstance3D.set_mesh(mesh)
+	update_range()
 	
 	var timer = Timer.new()
 	timer.wait_time = fire_rate
@@ -34,6 +19,8 @@ func _ready() -> void:
 	timer.timeout.connect(func():
 		fire()
 	)
+	
+	set_next_level_stats(1)
 
 ##shoots the fire
 func fire():
@@ -85,10 +72,7 @@ func _on_lever_snap_full_crank() -> void:
 		setup_fase -= 1
 		$Pivot.position.y += 1
 	else:
-		if $Pivot/Tower/RootNode/tower:
-			$Pivot/Tower/RootNode/tower.transparency = 0.0
-		else:
-			$Pivot/Tower.transparency = 0.0
+		set_transparancy(VISIBLE)
 		setup = true
 		remove_child($LeverSnap)
 

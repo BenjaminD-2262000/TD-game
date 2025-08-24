@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5jwoawv5xg32"]
+[gd_scene load_steps=26 format=3 uid="uid://c5jwoawv5xg32"]
 
 [ext_resource type="Script" path="res://Levels/level_base.gd" id="1_bdbtb"]
 [ext_resource type="Script" path="res://Levels/EnemySpawner.gd" id="1_iqevg"]
@@ -12,8 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="6_p0afi"]
 [ext_resource type="PackedScene" uid="uid://blgcwjyykt2u6" path="res://Levels/start_game_ui.tscn" id="7_er3xc"]
 [ext_resource type="PackedScene" uid="uid://cqapcqfp4ioag" path="res://player.tscn" id="7_inio6"]
+[ext_resource type="Script" path="res://Levels/wave_number.gd" id="8_i7von"]
 [ext_resource type="PackedScene" uid="uid://ctltchlf2j2r4" path="res://addons/xr-simulator/XRSimulator.tscn" id="8_pow6c"]
-[ext_resource type="PackedScene" uid="uid://0cvbw33uu3f" path="res://Levels/game_successfull.tscn" id="9_amu2d"]
+[ext_resource type="PackedScene" uid="uid://0cvbw33uu3f" path="res://Levels/game_end.tscn" id="9_amu2d"]
 [ext_resource type="Script" path="res://Levels/Tower_manager.gd" id="10_7xeos"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3bxta"]
@@ -57,6 +58,7 @@ viewport_path = NodePath("EnemySpawner/WaveSpawner/SubViewport")
 
 [node name="Debug_level" type="Node3D"]
 script = ExtResource("1_bdbtb")
+starting_capital = 1000
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7qxa4")
@@ -83,6 +85,8 @@ transform = Transform3D(0.788858, 0, -0.614576, 0, 1, 0, 0.614576, 0, 0.788858, 
 
 [node name="Enemy_path_mesh" type="CSGPolygon3D" parent="."]
 use_collision = true
+collision_layer = 4
+collision_mask = 4
 polygon = PackedVector2Array(-1.12961, 0.390631, -1.14847, -0.0894094, 2.06049, -0.0501919, 2.03693, 0.331635, 1.75542, 0.134555, -0.585492, 0.10602)
 mode = 2
 path_node = NodePath("../Enemy_Path")
@@ -111,12 +115,12 @@ enemy_scenes = {
 
 [node name="SubViewport" type="SubViewport" parent="EnemySpawner/WaveSpawner"]
 transparent_bg = true
-size = Vector2i(1024, 512)
+size = Vector2i(2000, 512)
 
 [node name="Kill_count" type="Label" parent="EnemySpawner/WaveSpawner/SubViewport"]
 offset_right = 513.0
 offset_bottom = 232.0
-theme_override_colors/font_color = Color(1, 0.992157, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 200
 text = "
 hi"
@@ -129,9 +133,10 @@ anchor_bottom = 1.0
 offset_top = -273.0
 offset_right = 557.0
 grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0.992157, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 200
 text = "wave:"
+script = ExtResource("8_i7von")
 
 [node name="Kill_Count_sprite" type="Sprite3D" parent="EnemySpawner/WaveSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.9219, -31.2237)
@@ -140,7 +145,7 @@ texture = SubResource("ViewportTexture_e07wf")
 [node name="StartGameViewport" parent="EnemySpawner/WaveSpawner" instance=ExtResource("6_p0afi")]
 transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0.781, 17.031, -25.532)
 scene = ExtResource("7_er3xc")
-viewport_size = Vector2(400, 200)
+viewport_size = Vector2(410, 200)
 unshaded = true
 scene_properties_keys = PackedStringArray("start_game_ui.gd")
 
@@ -148,10 +153,12 @@ scene_properties_keys = PackedStringArray("start_game_ui.gd")
 visible = false
 
 [node name="GameFinishedViewport" parent="EnemySpawner/WaveSpawner" instance=ExtResource("6_p0afi")]
-transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0.781308, 17.0313, -25.5325)
+transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 0.665318, 17.0313, -25.5325)
 visible = false
 scene = ExtResource("9_amu2d")
+viewport_size = Vector2(400, 200)
 unshaded = true
+scene_properties_keys = PackedStringArray("game_end.gd")
 
 [node name="Castle" parent="." instance=ExtResource("3_4knop")]
 transform = Transform3D(-0.0395215, 0, -0.999219, 0, 1, 0, 0.999219, 0, -0.0395215, 22.1711, 0, -2.21663)
@@ -166,9 +173,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Tower_manager" type="Node3D" parent="."]
 script = ExtResource("10_7xeos")
-break_change = 1000
+break_change = 1191
 
 [connection signal="enemy_died" from="EnemySpawner" to="." method="_on_enemy_spawner_enemy_died"]
 [connection signal="enemy_reach_end" from="EnemySpawner/WaveSpawner" to="Castle" method="_on_wave_spawner_enemy_reach_end"]
 [connection signal="wave_done" from="EnemySpawner/WaveSpawner" to="EnemySpawner" method="_on_wave_spawner_wave_done"]
 [connection signal="start_game" from="EnemySpawner/WaveSpawner/StartGameViewport" to="." method="_on_viewport_2_din_3d_start_game"]
+[connection signal="game_over" from="Castle" to="EnemySpawner" method="_on_castle_game_over"]
+[connection signal="game_over" from="Castle" to="EnemySpawner/WaveSpawner" method="_on_castle_game_over"]

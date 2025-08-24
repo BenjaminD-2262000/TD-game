@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi4gt27yg160l"]
+[gd_scene load_steps=8 format=3 uid="uid://bi4gt27yg160l"]
 
 [ext_resource type="Script" path="res://base_nodes/Tower_base.gd" id="1_octl6"]
 [ext_resource type="PackedScene" uid="uid://b6yhmpfrwlfcw" path="res://lever_snap.tscn" id="2_pp7sx"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gcakb"]
 size = Vector3(0.77002, 0.95752, 0.782349)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hjqew"]
+viewport_path = NodePath("LevelViewport")
 
 [node name="TowerBase" type="Node3D"]
 script = ExtResource("1_octl6")
@@ -40,6 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004964, 1.27065, 2.15287)
 [node name="Viewport2Din3D" parent="." instance=ExtResource("4_wjybi")]
 transform = Transform3D(1, 0, 0, 0, 0.987245, 0.159209, 0, -0.159209, 0.987245, 0.830657, 1.33968, 3.16231)
 visible = false
+collision_layer = 5242880
 scene = ExtResource("4_q7gpo")
 viewport_size = Vector2(700, 350)
 unshaded = true
@@ -47,5 +51,21 @@ scene_properties_keys = PackedStringArray("upgrade_screen.gd")
 
 [node name="Upgrade_screen" parent="Viewport2Din3D" instance=ExtResource("4_q7gpo")]
 visible = false
+
+[node name="LevelViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(41, 81)
+
+[node name="Level" type="Label" parent="LevelViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 75
+text = "0"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0408258, 8.05889, 0.0547217)
+billboard = 1
+shaded = true
+texture = SubResource("ViewportTexture_hjqew")
 
 [connection signal="upgrade_confirmed" from="Viewport2Din3D/Upgrade_screen" to="." method="_on_upgrade_screen_upgrade_confirmed"]

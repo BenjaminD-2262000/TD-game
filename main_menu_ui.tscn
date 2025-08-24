@@ -62,6 +62,8 @@ text = "Staring wave:"
 
 [node name="starting wave" type="SpinBox" parent="Control/ColorRect/Button_H/MarginContainer/HBoxContainer"]
 layout_mode = 2
+min_value = 1.0
+value = 1.0
 
 [node name="CenterContainer2" type="CenterContainer" parent="Control/ColorRect"]
 layout_mode = 0

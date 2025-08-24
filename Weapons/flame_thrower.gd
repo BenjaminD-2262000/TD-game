@@ -43,7 +43,6 @@ func _on_hitbox_body_entered(body):
 
 func _on_wheel_smooth_wheel_moving() -> void:
 	can_hit = true
-	print("flame on !!!!!!!!!!!!!!!!")
 	$Node3D/FireRange.show()
 	return
 

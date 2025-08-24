@@ -6,6 +6,8 @@ extends Node3D
 var screws_bolted: int = 0
 signal repair_game_done
 
+@onready var screw_mesh = $Screw
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -29,7 +31,7 @@ func start_repair():
 	screws_bolted = 0
 	$Screw.monitorable = true
 	$Screw.monitoring = true
-	$Screw/MeshInstance3D.show()
+	screw_mesh.show()
 	
 	spawn_screw()
 
@@ -38,7 +40,7 @@ func start_repair():
 func disable_game():
 	$Screw.monitorable = false
 	$Screw.monitoring = false
-	$Screw/MeshInstance3D.hide()
+	screw_mesh.hide()
 	
 
 func screwed_in():

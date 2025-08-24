@@ -2,6 +2,7 @@ extends Label
 
 var kill_count: int = 0
 var wave_size: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	text =  str(kill_count, "/", wave_size)
@@ -16,5 +17,6 @@ func enemy_died():
 	_ready()
 
 func set_wave_size(found_wave_size):
+	kill_count = 0
 	wave_size = found_wave_size
 	_ready()

@@ -5,11 +5,13 @@ extends Node3D
 @export var enemy_scenes: Dictionary # {"basic": PackedScene}
 
 var enemies_spawned: int = 0
-var enemies_killed: int = 0
+var enemies_killed_wave: int = 0
+var enemies_killed_total: int = 0
 var enemies_in_wave
 var enemies_of_type
 var enemie_type_in_wave: int = 0
 var timer = null
+
 
 signal wave_done
 signal enemy_reach_end
@@ -71,11 +73,11 @@ func _on_enemy_reached_end(enemy):
 	enemy_reach_end.emit(enemy)
 
 func _on_enemy_died(worth: int):
-	enemies_killed += 1
+	enemies_killed_wave += 1
+	enemies_killed_total += 1
 	get_parent().enemy_killed(worth)
-	if enemies_killed >= enemies_in_wave:
-		enemies_killed = 0
-		$StartGameViewport.wave_finished()
+	if enemies_killed_wave >= enemies_in_wave:
+		enemies_killed_wave = 0
 		wave_done.emit()
 		
 	$SubViewport/Kill_count.enemy_died()

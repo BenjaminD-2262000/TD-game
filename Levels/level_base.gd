@@ -30,13 +30,11 @@ func init(mocap: bool, no_legs: bool, starting_wave:int):
 
 
 func start_game():
-	print("starting game")
 	game_started = true
 	$EnemySpawner.start_spawning()
 
 
 func _on_viewport_2_din_3d_start_game() -> void:
-	print("recieved signal")
 	start_game()
 
 

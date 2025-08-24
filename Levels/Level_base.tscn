@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Levels/Kill_count.gd" id="5_fb2ce"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="6_e3ecj"]
 [ext_resource type="PackedScene" uid="uid://cqapcqfp4ioag" path="res://player.tscn" id="8_d6amp"]
-[ext_resource type="PackedScene" uid="uid://0cvbw33uu3f" path="res://Levels/game_successfull.tscn" id="9_cg7pl"]
+[ext_resource type="PackedScene" uid="uid://0cvbw33uu3f" path="res://Levels/game_end.tscn" id="9_cg7pl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yjdow"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

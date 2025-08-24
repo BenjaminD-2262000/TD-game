@@ -9,7 +9,6 @@ func _init(_enemy, _duration, _damage_per_tick):
 	effect_symbol = preload("res://enemies/Fire.png")
 
 func _ready():
-	apply_effect()  # Apply the first tick immediately
 	var time_left_on_fire = Timer.new()
 	time_left_on_fire.wait_time = duration
 	time_left_on_fire.autostart = true
@@ -23,14 +22,10 @@ func _ready():
 	timer.one_shot = false
 	add_child(timer)
 	timer.timeout.connect(_on_tick)
-	_on_tick	#instantly do damage
+	_on_tick()	#instantly do damage
 
 func _on_tick():
-	if enemy and duration > 0:
-		enemy.take_damage(damage_per_tick, "Fire")
-		duration -= 1
-	else:
-		end_effect()
+	enemy.take_damage(damage_per_tick, "Fire")
 
 func end_effect():
 	enemy.effect_icon.texture = null

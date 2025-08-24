@@ -47,6 +47,7 @@ strafe = true
 
 [node name="RayCast3D" type="RayCast3D" parent="Left_Hand"]
 target_position = Vector3(0, 0, -10)
+collision_mask = 5
 
 [node name="Wrench" parent="Left_Hand" instance=ExtResource("6_jkcly")]
 visible = false
@@ -103,6 +104,7 @@ time_on_fire = 2.0
 distance = 10000.0
 
 [node name="PlayerBody" parent="." instance=ExtResource("5_fo0ap")]
+collision_layer = 1
 collision_mask = 769
 
 [node name="UDP_listener" type="Node" parent="."]

@@ -1,6 +1,9 @@
 extends XRController3D
 
+@onready var functionPickup = $Weapons/FunctionPickup
+
 @export var weapon_list: Array[NodePath]
+
 var current_weapon_index: int = 0
 var previous_button_state: bool = false
 
@@ -45,9 +48,7 @@ func _switch_weapon(new_index: int):
 		current_weapon.hide()
 		current_weapon = null  # Remove reference to avoid conflicts
 
-	# Update index
 	current_weapon_index = new_index
-
 	# Activate the new weapon
 	var new_weapon = get_node_or_null(weapon_list[current_weapon_index])
 	if new_weapon:
@@ -59,6 +60,5 @@ func _switch_weapon(new_index: int):
 func get_active_weapon():
 	return current_weapon
 
-@onready var functionPickup = $Weapons/FunctionPickup
 func _on_right_hand_pickup(can_pickup: bool) -> void:
 	functionPickup.enabled = can_pickup

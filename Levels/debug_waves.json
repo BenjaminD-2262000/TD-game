@@ -1,23 +1,52 @@
-
 [
-	[
-		{
-			"amount": 2,
-			"type": "basic"
-		},
-			
-		{	"amount": 3,
-			"type": "fast"
-		},
-		{
-			"amount": 5,
-			"type": "basic"
-		}
-	],
-	[
-		{
-			"amount": 5,
-			"type": "fast"
-		}
-	]
+  [
+	{ "amount": 5, "type": "armor" }
+  ],
+  [
+	{ "amount": 8, "type": "basic" },
+	{ "amount": 2, "type": "fast" }
+  ],
+  [
+	{ "amount": 10, "type": "basic" },
+	{ "amount": 4, "type": "fast" }
+  ],
+  [
+	{ "amount": 12, "type": "basic" },
+	{ "amount": 6, "type": "fast" },
+	{ "amount": 2, "type": "armor" }
+  ],
+  [
+	{ "amount": 15, "type": "basic" },
+	{ "amount": 8, "type": "fast" },
+	{ "amount": 4, "type": "armor" }
+  ],
+  [
+	{ "amount": 18, "type": "basic" },
+	{ "amount": 10, "type": "fast" },
+	{ "amount": 6, "type": "armor" }
+  ],
+  [
+	{ "amount": 20, "type": "basic" },
+	{ "amount": 12, "type": "fast" },
+	{ "amount": 8, "type": "armor" }
+  ],
+  [
+	{ "amount": 22, "type": "basic" },
+	{ "amount": 14, "type": "fast" },
+	{ "amount": 10, "type": "armor" }
+  ],
+  [
+	{ "amount": 25, "type": "basic" },
+	{ "amount": 16, "type": "fast" },
+	{ "amount": 12, "type": "armor" }
+  ],
+  [
+	{ "amount": 30, "type": "basic" },
+	{ "amount": 20, "type": "fast" },
+	{ "amount": 15, "type": "armor" }
+  ],
+[
+	{ "amount": 1, "type": "basic" },
+
+  ]
 ]
