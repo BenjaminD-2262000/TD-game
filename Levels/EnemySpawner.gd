@@ -60,7 +60,7 @@ func _on_wave_spawner_wave_done() -> void:
 	elif game_over:
 		return
 	else:
-		$WaveSpawner/StartGameViewport.show()
+		$WaveSpawner/StartGameViewport.wave_finished()
 
 func game_won():
 	var game_over_scene = load(GAME_END_PATH)

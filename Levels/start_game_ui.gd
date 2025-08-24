@@ -14,5 +14,6 @@ func _process(delta: float) -> void:
 
 func enable():
 	pass
+
 func _on_start_wave_pressed():
 	viewport.on_start_game()

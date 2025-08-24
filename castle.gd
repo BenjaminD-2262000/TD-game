@@ -29,7 +29,7 @@ func handle_enemy_at_door(enemy):
 		return  # Enemy is already deleted, stop execution
 	if not castle_destroyed:
 		take_damage(enemy.damage)
-		enemy.take_damage(castle_damage)
+		enemy.take_damage(castle_damage, "castle")
 
 func _on_wave_spawner_enemy_reach_end(enemy):
 	if enemy.has_meta("damage_timer"):  #only one timer

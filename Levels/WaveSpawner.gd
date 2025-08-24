@@ -66,7 +66,6 @@ func spawn_enemy(wave):
 				timer.stop()
 				timer.queue_free()
 				timer = null
-			#make start wave button visible again
 
 
 func _on_enemy_reached_end(enemy):

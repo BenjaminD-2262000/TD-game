@@ -40,3 +40,5 @@ res://addons/godot-xr-tools/interactables/interactable_handle.gd
 res://scripts/enemy_base.gd
 res://enemies/Status effects/Fire_effect.gd
 res://enemies/armored_enemy.tscn
+res://Levels/start_game_ui.gd
+res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn
