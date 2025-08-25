@@ -11,18 +11,14 @@ func _ready() -> void:
 	hitbox.body_exited.connect(_on_enemy_exit_range)
 	
 	update_range()
-	
-	var timer = Timer.new()
-	timer.wait_time = fire_rate
-	timer.autostart = true
-	add_child(timer)
-	timer.timeout.connect(func():
-		freeze()
-	)
+	set_damage_timer()
 	
 	set_next_level_stats(1)
 
-func freeze():
+
+
+
+func effect():
 	if not (placed and setup) or broken:
 		return
 	#turn the range red to signal fire
@@ -74,19 +70,18 @@ func _on_lever_snap_full_crank() -> void:
 		set_transparancy(VISIBLE)
 		setup = true
 		remove_child($LeverSnap)
-
+		
 func _on_enemy_exit_range(enemy):
-	if enemy == current_enemy:
-		current_enemy = enemies_in_range.pop_front()
-	else:
-		enemies_in_range.erase(enemy)
-
+	remove_enemy(enemy)
 
 func _on_enemy_in_range_died(enemy, worth):
-	if enemy == current_enemy:
-		if enemies_in_range[0]:
-			current_enemy = enemies_in_range.pop_front()
-		else:
-			current_enemy = null
+	remove_enemy(enemy)
+
+func remove_enemy(enemy):
+	if current_enemies.has(enemy):
+		current_enemies.erase(enemy)
+		if enemies_in_range.size() > 0 and current_enemies.size() < max_enemy_hit:
+			current_enemies.push_back(enemies_in_range.pop_front())
+		
 	else:
 		enemies_in_range.erase(enemy)

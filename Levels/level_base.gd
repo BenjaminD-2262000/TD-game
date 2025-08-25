@@ -18,12 +18,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func init(mocap: bool, no_legs: bool, starting_wave:int):
+func init(mocap: bool, starting_wave:int):
 	if mocap:
 		$Player.set_walking_type("mocap")
 		$Player.start_udp_script()
-	elif no_legs:
-		$Player.set_walking_type("no_legs")
+	else:
+		$Player.set_walking_type("no_cap")
 	
 	$EnemySpawner.set_wave(starting_wave)
 

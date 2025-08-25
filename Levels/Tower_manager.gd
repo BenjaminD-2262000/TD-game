@@ -21,16 +21,15 @@ func _process(delta):
 #gives a chance for each tower to get broken down each second
 func handle_breaking():
 	var towers = get_children()
-	#remove the timer and the preview tower
-	towers.pop_front()
-	towers.pop_front()
 	
-	if towers.size() <= 0:
+	if towers.size() <= 2:
 		return
 
 	var nr_of_towers = towers.size()
 	var random_number = rng.randi_range(0, break_change)
 	
+	
 	if random_number == 1:
-		var random_tower = rng.randi_range(0, nr_of_towers - 1)
-		towers[random_tower].breakdown()
+		var random_tower = rng.randi_range(2, nr_of_towers - 1)  #start at 2 because child 0 and 1 are timer and preview tower
+		if towers[random_tower] is Tower:
+			towers[random_tower].breakdown()

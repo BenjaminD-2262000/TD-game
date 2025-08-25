@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 var motion_capture = true
-var no_legs = false
 var starting_wave = 0
 
 
@@ -27,11 +26,10 @@ func set_max_starter_Wave():
 
 func _on_start_game_pressed() -> void:
 	motion_capture = $"Control/ColorRect/Button_H/Buttons/Motion capture".button_pressed
-	no_legs = $"Control/ColorRect/Button_H/Buttons/No legs mode".button_pressed
 	#displayed value starts at one for player convenience but backend uses 0 indexing
 	starting_wave = $"Control/ColorRect/Button_H/MarginContainer/HBoxContainer/starting wave".value - 1
 	var level = load("res://Levels/Debug.tscn").instantiate()
-	level.init(motion_capture, no_legs, starting_wave)
+	level.init(motion_capture, starting_wave)
 	
 	get_tree().get_root().add_child(level)
 	get_tree().get_current_scene().queue_free()

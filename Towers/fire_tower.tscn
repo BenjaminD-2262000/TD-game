@@ -30,6 +30,9 @@ level_tree_path = "res://Towers/Level trees/Fire_tower.json"
 transform = Transform3D(2.45319, 0, 0, 0, 3.0781, 0, 0, 0, 2.36762, 0, 2.46457, 0)
 mesh = SubResource("CylinderMesh_g158e")
 
+[node name="LeverSnap" parent="." index="3"]
+transform = Transform3D(0.992252, 0, 0.124242, 0, 1, 0, -0.124242, 0, 0.992252, 0, 1.65, 2.53579)
+
 [node name="Sprite3D" parent="." index="8"]
 texture = SubResource("ViewportTexture_tqh0i")
 

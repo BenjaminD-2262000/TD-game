@@ -10,7 +10,7 @@ GODOT_PORT = 4242
 
 # Track which markers were already raised
 knee_above_threshold = {}
-HEIGHT_THRESHOLD = 800  # mm
+HEIGHT_THRESHOLD = 600  # mm
 
 def on_packet(packet):
     """Callback function called every time a data packet arrives from QTM"""
@@ -27,6 +27,7 @@ def on_packet(packet):
                 if z > HEIGHT_THRESHOLD and not was_above:
                     # Knee just rose above threshold → send step
                     msg = "step"
+                    print(msg)
                     sock.sendto(msg.encode(), (GODOT_HOST, GODOT_PORT))
                     knee_above_threshold[label] = True
 

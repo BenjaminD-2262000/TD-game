@@ -60,7 +60,7 @@ func _on_button_pressed(name: String) -> void:
 			if name == "trigger_click":
 				place_object()
 
-	elif name == "by_button":
+	if name == "by_button":
 		switch_mode()
 		return
 

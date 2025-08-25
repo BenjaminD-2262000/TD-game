@@ -44,10 +44,6 @@ layout_mode = 2
 button_pressed = true
 text = "Motion capture"
 
-[node name="No legs mode" type="CheckBox" parent="Control/ColorRect/Button_H/Buttons"]
-layout_mode = 2
-text = "No legs mode"
-
 [node name="MarginContainer" type="MarginContainer" parent="Control/ColorRect/Button_H"]
 layout_mode = 2
 size_flags_horizontal = 8

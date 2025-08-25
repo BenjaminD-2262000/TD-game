@@ -16,7 +16,7 @@ signal pay_for_upgrade(cost: int)
 @onready var tower_location = $Pivot/Tower/RootNode/tower
 
 var current_level: int = 0
-var current_enemy: Node3D = null
+var current_enemies: Array
 var enemies_in_range: Array
 var placed: bool = false
 var broken: bool = false
@@ -31,6 +31,8 @@ var setup: bool=false
 
 const TRANSPARANT = 0.95
 const VISIBLE = 0.0
+
+var damage_timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,32 +71,36 @@ func set_transparancy(transparancy):
 func _process(delta):
 	pass
 
-func damage_enemy():
-	if current_enemy:
-		current_enemy.take_damage(damage)
-		audioPlayer.play()
+func effect():
+	for enemy in current_enemies:
+		if enemy:
+			enemy.take_damage(damage)
+			audioPlayer.play()
 
 func _on_enemy_entered_range(enemy):
 	if not enemy is Enemy or not setup or broken:
 		return
 	enemy.Enemy_died.connect(_on_enemy_in_range_died)
-	if not current_enemy:
-		current_enemy = enemy
+	if current_enemies.size() < max_enemy_hit:
+		current_enemies.push_back(enemy)
 		
 	else:
 		enemies_in_range.push_back(enemy)
 
 func set_damage_timer():
 
-	var timer = Timer.new()
-	timer.wait_time = fire_rate
-	timer.autostart = true
-	add_child(timer)
+	damage_timer = Timer.new()
+	damage_timer.wait_time = fire_rate
+	damage_timer.autostart = true
+	add_child(damage_timer)
 
-	timer.timeout.connect(func():
-		damage_enemy()
+	damage_timer.timeout.connect(func():
+		effect()
 	)
-	
+
+func update_fire_rate():
+	damage_timer.free()
+	set_damage_timer()
 
 func _on_enemy_exit_range(enemy):
 	remove_enemy(enemy)
@@ -103,11 +109,11 @@ func _on_enemy_in_range_died(enemy, worth):
 	remove_enemy(enemy)
 
 func remove_enemy(enemy):
-	if enemy == current_enemy:
-		if enemies_in_range.size() > 0:
-			current_enemy = enemies_in_range.pop_front()
-		else:
-			current_enemy = null
+	if current_enemies.has(enemy):
+		current_enemies.erase(enemy)
+		if enemies_in_range.size() > 0 and current_enemies.size() < max_enemy_hit:
+			current_enemies.push_back(enemies_in_range.pop_front())
+		
 	else:
 		enemies_in_range.erase(enemy)
 
@@ -180,9 +186,10 @@ func upgrade():
 	
 	damage += next_level_stats["damage"]
 	range +=  next_level_stats["range"]
-	fire_rate += next_level_stats["fire_rate"]
+	fire_rate -= next_level_stats["fire_rate"]
 	max_enemy_hit += next_level_stats["max_enemy_hit"]
 	
+	update_fire_rate()
 	update_range()
 	
 	current_upgrade_screen.queue_free()

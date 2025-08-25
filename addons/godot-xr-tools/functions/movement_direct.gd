@@ -40,8 +40,8 @@ func physics_movement(_delta: float, player_body: XRToolsPlayerBody, _disabled: 
 	if !_controller.get_is_active():
 		return
 	var dz_input_action
-	if input_action == "mocap":
-		player_body.ground_control_velocity.y += walkingspeed
+	if input_action == "mocap" or input_action == "no_cap":
+		player_body.ground_control_velocity.y += walkingspeed * 2 #a little faster to make movement a little more satisfying
 	else:
 			
 		## get input action with deadzone correction applied

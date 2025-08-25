@@ -1,9 +1,9 @@
 [
 	{
-		"damage": 100,
-		"max_enemy_hit": 0,
-		"range": 5,
-		"fire_rate": 0,
+		"damage": 25,
+		"max_enemy_hit": 1,
+		"range": 1,
+		"fire_rate": 0.1,
 		"price": 35
 	},
 	

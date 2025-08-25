@@ -18,7 +18,7 @@ range = 5
 level_tree_path = "res://Towers/Level trees/Freeze_tower.json"
 
 [node name="LeverSnap" parent="." index="2"]
-transform = Transform3D(0.992252, 0, 0.124242, 0, 1, 0, -0.124242, 0, 0.992252, 0, 2.04546, 1.21971)
+transform = Transform3D(0.992252, 0, 0.124242, 0, 1, 0, -0.124242, 0, 0.992252, 0, 1.48552, 1.21971)
 
 [node name="CollisionShape3D" parent="Tower" index="0"]
 transform = Transform3D(4.4, 0, 0, 0, 8.8452, 0, 0, 0, 4.03, -0.0661981, 1.74659, 0.204218)

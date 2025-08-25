@@ -13,6 +13,8 @@ var step_count = 0
 var step_start_time
 var step_length = 0.9  #how many meters per step
 
+@export var walk_height_change: float
+
 func _ready() -> void:
 	step_start_time = Time.get_ticks_msec() / 1000.0
 
@@ -35,16 +37,17 @@ func create_tower_preview():
 #handles walking if there is no motion capture system by looking at head going up or down
 func update_walk_no_cap():
 	var y_position = $XRCamera3D.global_transform.origin.y
-	if abs(y_position - prev_y_pos) > 10:
+	if abs(y_position - prev_y_pos) > walk_height_change:
 		step_count += 1
-	
+
+	prev_y_pos = y_position
 	# Calculate speed every few seconds or as needed
 	var current_time = Time.get_ticks_msec() / 1000.0
 	var elapsed_time = current_time - step_start_time
 	
-	if elapsed_time >= 0.10: # Calculate every second
+	if elapsed_time >= 0.10: 
 		var speed = (step_count * step_length) / elapsed_time # m/0.1s
-		speed = speed * 10
+		speed = speed * 100
 		walkingspeed = speed
 		# Reset tracking for next interval
 		step_count = 0

@@ -26,6 +26,9 @@ volume_db = -25.905
 transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 0, 0, 0)
 script = ExtResource("3_h0uik")
 
+[node name="LeverSnap" parent="." index="3"]
+transform = Transform3D(0.992252, 0, 0.124242, 0, 1, 0, -0.124242, 0, 0.992252, 0, 1.65, 1.11465)
+
 [node name="CollisionShape3D" parent="Tower" index="0"]
 transform = Transform3D(4.4, 0, 0, 0, 8.8452, 0, 0, 0, 4.03, 0.00537109, 3.81212, -0.0789569)
 

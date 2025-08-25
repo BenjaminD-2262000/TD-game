@@ -51,7 +51,9 @@ func die():
 func apply_status_effect(effect: StatusEffect):
 	# Prevent duplicate effects of the same type (e.g., only one burning effect at a time)
 	for e in active_effects:
-		if e.get_class() == effect.get_class():
+		if e == null:
+			active_effects.erase(e)
+		elif e.get_class() == effect.get_class():
 			return  
 	
 	effect_icon.texture = effect.effect_symbol

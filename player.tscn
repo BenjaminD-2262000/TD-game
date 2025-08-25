@@ -28,6 +28,7 @@ viewport_path = NodePath("Left_Hand/CostViewport")
 
 [node name="Player" type="XROrigin3D"]
 script = ExtResource("1_ewx2v")
+walk_height_change = 0.01
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 
